@@ -3,8 +3,9 @@ package com.microblink.result.activity.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.microblink.entities.recognizers.Recognizer;
 import com.microblink.result.extract.BaseResultExtractor;

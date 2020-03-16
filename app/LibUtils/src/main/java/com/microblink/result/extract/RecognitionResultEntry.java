@@ -3,10 +3,11 @@ package com.microblink.result.extract;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import android.text.TextUtils;
 
 import com.microblink.hardware.orientation.Orientation;
 import com.microblink.image.Image;
@@ -14,7 +15,6 @@ import com.microblink.libutils.R;
 import com.microblink.results.date.Date;
 import com.microblink.results.date.DateResult;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

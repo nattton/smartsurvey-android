@@ -2,7 +2,9 @@ package com.microblink.help;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
 import androidx.fragment.app.FragmentActivity;
+
 import com.microblink.libutils.R;
 import com.microblink.locale.LanguageUtils;
 

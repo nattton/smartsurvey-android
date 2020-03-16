@@ -8,11 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.microblink.libutils.R;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
 
 public abstract class BaseMenuActivity extends Activity {
 
