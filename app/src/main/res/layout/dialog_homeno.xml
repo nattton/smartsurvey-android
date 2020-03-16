@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@color/colorBorder">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/thsarabun_bold"
+        android:text="รหัสประจำบ้าน"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtHomeNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/thsarabun_bold"
+        android:digits="0123456789"
+        android:inputType="phone"
+        android:hint="ระบุรหัสประจำบ้าน"
+        android:ems="10"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btnAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ตกลง"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_menulistbutton"
+        android:textColor="@android:color/white" />
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7.1 คนอายุตั้งแต่ 6 ปีขึ้นไป ทุกคนในครัวเรือนนี้ได้ออกกำลังกายอย่างน้อยสัปดาห์ละ 3 วัน ๆ ละ 30 นาที หรือ ได้ออกแรง/ออกกำลังติดต่อกันอย่างน้อย 10 นาที ขึ้นไป รวมกันทั้งวัน 30 นาที อย่างน้อยสัปดาห์ละ 5 วัน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/check1_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ได้ออกกำลังกาย หรือได้ออกแรง/ ออกกำลังทุกคน" />
+
+        <CheckBox
+            android:id="@+id/check1_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ได้ออกกำลังกาย ... คน" />
+
+        <CheckBox
+            android:id="@+id/check1_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ได้ออกแรง/ ออกกำลัง ... คน" />
+
+        <CheckBox
+            android:id="@+id/check1_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่ได้ออกกำลังกายหรือไม่ได้ออกแรง/ไม่ได้ ... คน" />
+
+    </LinearLayout>
+
+</LinearLayout>

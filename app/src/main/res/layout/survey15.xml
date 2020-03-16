@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15.1 ครัวเรือนนี้ มีเด็กอายุ 3 - 5 ปี หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี....คน" />
+
+            <RadioButton
+                android:id="@+id/radio1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี (ข้ามไปข้อ 16)" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15.2 เด็กอายุ 3 - 5 ปี ได้รับการบริการเลี้ยงดูเตรียมความพร้อม ก่อนวัยเรียนในศูนย์พัฒนาเด็กเล็ก ศูนย์พัฒนาเด็กเล็กเคลื่อนที่ ศูนย์พัฒนาเด็กเล็กก่อนเกณฑ์ขององค์กรปกครองส่วนท้องถิ่น สถาบันศาสนา อนุบาลชนบท โรงเรียนอนุบาล เป็นต้น หรือได้เข้าร่วมกิจกรรมเกี่ยวกับการเตรียมความพร้อมของเด็กก่อนวัยเรียน ทุกคน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ได้รับบริการทุกคน" />
+
+            <RadioButton
+                android:id="@+id/radio2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่ได้รับบริการ....คน" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

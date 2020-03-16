@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6.1 จำนวนคนในครัวเรือนที่มีประกันสุขภาพ/ สิทธิรักษาพยาบาล ดังต่อไปนี้ (ตอบได้มากกว่า 1 ข้อ)"
+            android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/check1_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ประกันสุขภาพเอกชน" />
+
+        <CheckBox
+            android:id="@+id/check1_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สิทธิข้าราชการ" />
+
+        <CheckBox
+            android:id="@+id/check1_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สิทธิประกันสังคม" />
+
+        <CheckBox
+            android:id="@+id/check1_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สิทธิสำนักงานหลักประกันสุขภาพแห่งชาติ... คน" />
+
+        <CheckBox
+            android:id="@+id/check1_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="อื่นๆ............. คน" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6.2 ในรอบปีที่ผ่านมา จำนวนคนในครัวเรือนที่ใช้บริการสถานพยาบาล ดังต่อไปนี้"
+            android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/check2_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สถานีอนามัย/โรงพยาบาลส่งเสริมสุขภาพตำบล" />
+
+        <CheckBox
+            android:id="@+id/check2_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="โรงพยาบาลของรัฐ" />
+
+        <CheckBox
+            android:id="@+id/check2_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" โรงพยาบาลเอกชน" />
+
+        <CheckBox
+            android:id="@+id/check2_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="คลินิก... คน" />
+
+        <CheckBox
+            android:id="@+id/check2_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ออื่นๆ............คน" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6.3 ครัวเรือนนี้ มีคนอายุตั้งแต่ 35 ปี ขึ้นไป หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6.4 ในรอบปีที่ผ่านมา คนอายุตั้งแต่ 35 ปีขึ้นไป ได้รับการตรวจสุขภาพประจำปี ทุกคน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ได้รับการตรวจทุกคน" />
+
+            <RadioButton
+                android:id="@+id/radio4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่ได้รับการตรวจ" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6.5 คนที่ไม่ได้รับการตรวจสุขภาพประจำปี ตามข้อ 6.4ได้รับการตรวจคัดกรองความเสี่ยงต่อโรคเบาหวานและความดันโลหิตสูง ทุกคน หรือไม่่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio5_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ได้รับการตรวจทุกคน" />
+
+            <RadioButton
+                android:id="@+id/radio5_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่ได้รับการตรวจ" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

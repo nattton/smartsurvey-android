@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBorder">
+
+    <TextView
+        android:id="@+id/txtDialogVies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/thsarabun_bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
+        android:text="กดเงินสด (โปรดระบุ)" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordernocomplete">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="left"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="left"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical" >
+
+                <CheckBox
+                    android:id="@+id/checkBox61"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:textSize="20dp"
+                    android:text="ค่าน้ำประปา" />
+
+                <CheckBox
+                    android:id="@+id/checkBox62"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="ค่าไฟฟ้า" />
+
+                <CheckBox
+                    android:id="@+id/checkBox63"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="ค่าเดินทางไปรักษาพยาบาล" />
+
+                <CheckBox
+                    android:id="@+id/checkBox64"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="ค่าเช่าบ้านผู้สูงอายุ" />
+
+                <CheckBox
+                    android:id="@+id/checkBox65"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="ค่าเบี้ยคนพิการ" />
+
+                <CheckBox
+                    android:id="@+id/checkBox66"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="เงินพิเศษ" />
+
+                <CheckBox
+                    android:id="@+id/checkBox67"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="เงินช่วยเหลือผู้สูงอายุ" />
+
+                <CheckBox
+                    android:id="@+id/checkBox68"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20dp"
+                    android:text="เงินอุดหนุนเด็กแรกเกิด" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="35dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_menubutton"
+                android:fontFamily="@font/thsarabun_bold"
+                android:text="บันทึก"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_menubutton"
+                android:fontFamily="@font/thsarabun_bold"
+                android:text="ออก"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
+

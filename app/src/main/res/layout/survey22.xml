@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="21.1 ในรอบปีที่ผ่านมา ครัวเรือนนี้มีรายได้จากข้อใดข้อหนึ่ง หรือหลายข้อดังต่อไปนี้ หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1) รายได้จากอาชีพหลักของทุกคนในครัวเรือน"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText1_1_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2) รายได้จากอาชีพรอง/อาชีพเสริมของทุกคนในครัวเรือน"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText1_1_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3) รายได้อื่น ๆ ของทุกคนในครัวเรือน (เช่น ลูกหลานส่งเงินให้ ค่าเช่า ดอกเบี้ยเงินฝาก บำนาญ/เบี้ยยังชีพ เงินปันผลหุ้น/สหกรณ์ ฯลฯ"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText1_1_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4) รายได้ที่เกิดจากการทำ/การปลูก การเลี้ยงสัตว์และการหาไว้กินเอง  แล้วคิดคำนวณเป็นจำนวนเงินทั้งหมด"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText1_1_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5) รวมรายได้ทั้งหมดของครัวเรือน (รายได้จากข้อ 1)+2)+3)+4))"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText1_1_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ครัวเรือนมีรายได้เฉลี่ยคนละ"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText1_1_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="21.2 รายจ่ายของครัวเรือนในรอบปีที่ผ่านมา ครัวเรือนมีรายจ่ายในแต่ละด้าน ดังต่อไปนี้"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1) รายจ่ายที่เป็นต้นทุนการผลิต ค่าพันธุ์พืช/สัตว์ ค่าปุ๋ย/ยาฆ่าแมลง ค่าจ้าง/แรงงาน ค่าเช่าที่ดิน ค่าเครื่องจักร ค่าน้ำมัน ฯลฯ"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText2_2_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2) รายจ่ายในการอุปโภคบริโภคที่จำเป็น ได้แก่ ค่าอาหาร เสื้อผ้า ที่อยู่อาศัย ค่ายา/รักษาพยาบาล ค่าใช้จ่ายด้านการศึกษา ค่าเดินทาง ค่าน้ำ ค่าไฟ และค่าใช้จ่ายส่วนบุคคล (สบู่ ยาสีฟัน ฯลฯ) "
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText2_2_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3) รายจ่ายในการอุปโภคบริโภคที่ไม่จำเป็น ได้แก่ ค่าบันเทิง หวย การพนัน บุหรี่ เหล้า ยาดอง น้ำอัดลม ขนมกินเล่น และสินค้าฟุ่มเฟือย ฯลฯ"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText2_2_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4) รายจ่ายในการชำระหนี้สิน (การชำระดอกเบี้ยรวมถึงการชำระเงินต้นในรอบปีที่ผ่านมา)"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText2_2_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5) รวมรายจ่ายทั้งหมดของครัวเรือน (รายจ่ายจากข้อ 1)+2)+3)+4))"
+            android:textColor="@color/colorPrimary" />
+        <EditText
+            android:id="@+id/editText2_2_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22.3 การเข้าถึงแหล่งเงินทุน  คือ สามารถขอกู้เงินและได้รับเงินทุนในแหล่งเงินทุนต่าง ๆ ต่อไปนี้ กลุ่มออมทรัพย์เพื่อการผลิต สหกรณ์ ธนาคารเพื่อการเกษตรและสหกรณ์ ธนาคารออมสิน ธนาคารกรุงไทย ธนาคารอิสลาม ธนาคาร SME ธนาคารพาณิชย์อื่นๆ สถาบันการเงิน ที่ให้การสนับสนุนสินเชื่อภาคอุตสาหกรรม ร้านค้า พ่อค้า แม่ค้า นายทุน เงินทุนหมุนเวียนจากทางราชการ เป็นต้น *ข้อนี้ให้ครัวเรือนตอบเฉพาะแหล่งเงินทุนที่ขอกู้ตามข้อ 22.3.1  1) -9) แล้วจึงตอบในข้อ 22.3.2 ว่าครัวเรือนได้รับเงินกู้เพียงพอหรือไม่ หากครัวเรือนไม่ได้ขอกู้เงินจากแหล่งใดๆ ไม่ต้องตอบข้อนี้"
+            android:textColor="@color/colorPrimary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22.3.1 ครัวเรือนสามารถเข้าถึงแหล่งเงินทุนดังต่อไปนี้ หรือไม่ (กรณีไม่กู้เงินข้ามไป ข้อ 22.4)"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="กู้" />
+
+            <RadioButton
+                android:id="@+id/radio3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่กู้" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1) กลุ่มออมทรัพย์เพื่อการผลิต"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2) สหกรณ์"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3) ธนาคารออมสิน/ธนาคารกรุงไทย/ธนาคารอิสลาม/ธนาคาร SME"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4) ธนาคารพาณิชย์อื่นๆ"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5) สถาบันการเงินที่ให้การสนับสนุนสินเชื่อภาคอุตสาหกรรม"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_5_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_5_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6) ร้านค้า/พ่อค้า/แม่ค้า/นายทุน"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_6_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_6_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7) เงินทุนหมุนเวียนจากทางราชการ (เช่น กองทุนหมู่บ้าน/ชุมชน 1 ล้านบาท กองทุนฟื้นฟูเกษตรกร เงินกระตุ้นเศรษฐกิจ 1 แสนบาท โครงการ กข.คจ. กองทุนพัฒนาบทบาทสตรี ฯลฯ)"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_7_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_7_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8) อื่นๆ ระบุ......."
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_8_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าถึง ระบุ.......บาท" />
+
+            <RadioButton
+                android:id="@+id/radio3_8_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เข้าไม่ถึง" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question3_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22.3.2 ครัวเรือนได้รับเงินกู้อย่างเพียงพอ หรือไม่"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup3_2_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_2_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เพียงพอ" />
+
+            <RadioButton
+                android:id="@+id/radio3_2_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่เพียงพอ" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ระบุจำนวนที่ต้องการ" />
+            <EditText
+                android:id="@+id/editText3_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="หนี้สินของครัวเรือน หนี้นอกระบบ หมายถึง หนี้ที่กู้ยืมจากบุคคลและสถาบันต่างๆที่ไม่ใช่ธนาคารหรือสถาบันการเงินที่ถูกต้องตามกฎหมาย เช่น นายทุน พ่อค้า หรือกลุ่มบุคคลที่ปล่อยเงินกู้ดอกเบี้ยสูงกว่าที่กฎหมายกำหนด"
+            android:textColor="@color/colorPrimary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1) ครัวเรือนนี้ มีหนี้ผ่านสถาบันการเงิน"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup4_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio4_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+
+            <RadioButton
+                android:id="@+id/radio4_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี.......คน .......บาท" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2) ครัวเรือนนี้ มีหนี้สินของกองทุนชุมชน"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup4_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio4_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+
+            <RadioButton
+                android:id="@+id/radio4_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี.......คน .......บาท" />
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3) ครัวเรือนนี้ มีหนี้นอกระบบ"
+            android:textColor="@color/colorPrimary" />
+        <RadioGroup
+            android:id="@+id/radioGroup4_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio4_3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+
+            <RadioButton
+                android:id="@+id/radio4_3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี.......คน .......บาท" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

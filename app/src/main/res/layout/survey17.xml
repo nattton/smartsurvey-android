@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="17.1 ในรอบปีที่ผ่านมา ครัวเรือนนี้ มีเด็กจบชั้น ม.3 หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี.....คน" />
+
+            <RadioButton
+                android:id="@+id/radio1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี (ข้ามไปข้อ 17.5)" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17.2 เด็กจบชั้น ม.3 ได้เรียนต่อชั้น ม.4 หรือเทียบเท่า ทุกคน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ได้เรียนทุกคน" />
+
+            <RadioButton
+                android:id="@+id/radio2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่ได้เรียน....คน" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17.3 เด็กที่ได้เรียนต่อชั้น ม.4 หรือเทียบเท่า มีการออกกลางคัน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี.......................คน" />
+
+            <RadioButton
+                android:id="@+id/radio3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี (ข้ามไปข้อ 17.5)" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17.4 เด็กที่ออกกลางคัน ไปทำอะไร"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เด็กที่ออกกลางคันไปทำอะไร" />
+
+            <RadioButton
+                android:id="@+id/radio4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ศึกษาเองที่บ้าน     (โฮมสคูล)..........................คน" />
+            <RadioButton
+                android:id="@+id/radio4_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ศึกษาเองที่บ้าน     (โฮมสคูล)..........................คน" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17.5 เด็กอายุ 15 - 18 ปี มีความสนใจในการหาความรู้จากสื่อต่างๆเช่น การอ่านหนังสือ การดูข่าวสาร สารคดี การใช้อินเตอร์เน็ตเพื่อหาความรู้ เป็นต้น โดยเฉลี่ยกี่ชั่วโมงต่อสัปดาห์"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkbox5_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=".........ชั่วโมง/สัปดาห์" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17.6 เด็กอายุ 15 – 25 ปี มีความสนใจเป็นเยาวชน OTOP (Young OTOP) หรือไม่ (Young OTOP คือ เยาวชนคนรุ่นใหม่ที่สนใจเข้ามามีส่วนหนึ่งในการอนุรักษ์และสืบสานภูมิปัญญาท้องถิ่น สามารถนำภูมิปัญญาท้องถิ่นมาสร้างให้เกิดมูลค่า เกิดการพัฒนาอาชีพ สร้างงาน สร้างรายได้ และมีเป้าหมายในการพัฒนาให้เป็นผู้ประกอบการ OTOP รุ่นใหม่ที่มีศักยภาพ)"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio6_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สนใจ จำนวน......คน" />
+
+            <RadioButton
+                android:id="@+id/radio6_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่สนใจ" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

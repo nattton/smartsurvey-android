@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20.1 ครัวเรือนนี้ มีคนอายุ 15 - 59 ปี หรือไม่ (ไม่นับรวมผู้ที่กำลังศึกษาอย่างเดียว โดยไม่ประกอบอาชีพ และคนพิการที่ไม่สามารถช่วยเหลือตนเองได้)"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี....คน" />
+
+            <RadioButton
+                android:id="@+id/radio1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี (ข้ามไปข้อ 21)" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20.2 คนอายุ 15 - 59 ปี มีอาชีพและมีรายได้ ทุกคน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/checkbox2_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ทุกคน (ข้ามไปข้อ 21)" />
+        <CheckBox
+            android:id="@+id/checkbox2_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่มีอาชีพและไม่มี รายได้....คน" />
+        <CheckBox
+            android:id="@+id/checkbox2_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่มีอาชีพแต่มีรายได้.....คน" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20.3 คนอายุ 15 - 59 ปี ที่ไม่มีอาชีพ ตามข้อ 20.2 มีความสมัครใจที่จะประกอบอาชีพ กี่คน"
+            android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/checkbox3_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="จำนวน .....คน " />
+    </LinearLayout>
+</LinearLayout>

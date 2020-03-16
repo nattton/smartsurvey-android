@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lienarDetail"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBorder">
+
+    <TextView
+        android:id="@+id/txtDetailHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/thsarabun_bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp"
+        android:text="คำอธิบายข้อมูลสมาชิก" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|top"
+        android:background="@drawable/bordernocomplete">
+
+            <LinearLayout
+                android:id="@+id/linearmaster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtDetailValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text=""
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btnDetailMember1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_menulistbutton"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text="สมาชิกในครัวเรือนในปีปัจจุบัน"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"/>
+
+                <Button
+                    android:id="@+id/btnDetailMember2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_menulistbutton"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text="ครัวเรือน"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btnDetailMember3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_menulistbutton"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text="คนที่มีอายุมากว่า 2 ปีขึ้นไป"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btnDetailMember4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_menulistbutton"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text="สถานะทางร่างกาย"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btnDetailMember5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_menulistbutton"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text="ข้อมูลคนต่างด้าว"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/btnClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_menulistbutton"
+                    android:fontFamily="@font/thsarabun_bold"
+                    android:text="ออก"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
