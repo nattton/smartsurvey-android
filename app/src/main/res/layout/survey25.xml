@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="25. ทุกคนในครัวเรือนนี้ สูบบุหรี่ หรือไม่ (ยาสูบ ยาเส้น หรือยามวน)"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่สูบบุหรี่ทุกคน" />
+
+            <RadioButton
+                android:id="@+id/radio1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สูบบุหรี่....คน" />
+
+            <RadioButton
+                android:id="@+id/radio1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ผู้ที่สูบบุหรี่เป็นผู้ที่หารายได้หลักให้กับครัวเรือน" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

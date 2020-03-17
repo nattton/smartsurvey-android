@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="27.1 ครัวเรือนนี้ มีผู้สูงอายุ หรือไม่ (อายุ 60 ปีขึ้นไป)"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี (ข้ามไปข้อ 28)" />
+
+            <RadioButton
+                android:id="@+id/radio1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี....คน" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordergroup"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="27.2 ผู้สูงอายุ ได้รับการดูแลเอาใจใส่ในชีวิตความเป็นอยู่ ด้านอาหารการกิน เสื้อผ้าเครื่องนุ่งห่ม และได้รับการดูแลเมื่อยามเจ็บไข้ได้ป่วย การดูแลเอาใจใส่ด้านสภาพจิตใจจากคนในครอบครัว หมู่บ้านหรือชุมชน รวมทั้งได้รับสวัสดิการชุมชนหรือเบี้ยยังชีพ จากภาครัฐ หรือภาคเอกชน หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ได้รับทุกคน" />
+
+            <RadioButton
+                android:id="@+id/radio2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่ได้รับ....คน" />
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

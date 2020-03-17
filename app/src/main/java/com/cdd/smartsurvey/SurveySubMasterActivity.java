@@ -114,6 +114,16 @@ public class SurveySubMasterActivity extends AppCompatActivity {
                 else if (MetricNo.equals("3")) LinearBody.addView(setSurvey22());
                 else if (MetricNo.equals("4")) LinearBody.addView(setSurvey23());
                 break;
+            case "5":
+                if (MetricNo.equals("1")) LinearBody.addView(setSurvey24());
+                else if (MetricNo.equals("2")) LinearBody.addView(setSurvey25());
+                else if (MetricNo.equals("3")) LinearBody.addView(setSurvey26());
+                else if (MetricNo.equals("4")) LinearBody.addView(setSurvey27());
+                else if (MetricNo.equals("5")) LinearBody.addView(setSurvey28());
+                else if (MetricNo.equals("6")) LinearBody.addView(setSurvey29());
+                else if (MetricNo.equals("7")) LinearBody.addView(setSurvey30());
+                else if (MetricNo.equals("8")) LinearBody.addView(setSurvey31());
+                break;
         }
     }
 
@@ -325,6 +335,54 @@ public class SurveySubMasterActivity extends AppCompatActivity {
         View viewSurvey = getLayoutInflater().inflate(R.layout.survey23, null);
 
         return  viewSurvey;
+    }
+
+    public View setSurvey24() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey24, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey25() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey25, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey26() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey26, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey27() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey27, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey28() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey28, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey29() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey29, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey30() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey30, null);
+
+        return viewSurvey;
+    }
+
+    public View setSurvey31() {
+        View viewSurvey = getLayoutInflater().inflate(R.layout.survey31, null);
+
+        return viewSurvey;
     }
 
     public TextView setHeaderTextView(String Value){
