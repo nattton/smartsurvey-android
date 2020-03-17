@@ -33,7 +33,7 @@ dependencies {
     implementation("com.microblink:blinkid:${rootProject.ext.blinkIdVersion}@aar") {
         transitive = true
     }
-    implementation project(':LibUtils')
+//    implementation project(':LibUtils')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

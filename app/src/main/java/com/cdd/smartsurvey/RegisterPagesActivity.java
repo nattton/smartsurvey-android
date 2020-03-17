@@ -2,7 +2,6 @@ package com.cdd.smartsurvey;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,12 +45,6 @@ import com.cdd.smartsurvey.utils.AllMessage;
 import com.cdd.smartsurvey.utils.CheckAccuracy;
 import com.cdd.smartsurvey.utils.GetThaiCharector;
 import com.cdd.smartsurvey.utils.ImageUtil;
-import com.microblink.MicroblinkSDK;
-import com.microblink.entities.recognizers.RecognizerBundle;
-import com.microblink.entities.recognizers.blinkid.generic.BlinkIdCombinedRecognizer;
-import com.microblink.intent.IntentDataTransferMode;
-import com.microblink.uisettings.ActivityRunner;
-import com.microblink.uisettings.BlinkIdUISettings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,22 +89,16 @@ public class RegisterPagesActivity extends AppCompatActivity {
 
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private BlinkIdCombinedRecognizer recognizer;
-    private RecognizerBundle recognizerBundle;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MicroblinkSDK.setLicenseFile(GlobalValue.LicenseFile,this);
-        MicroblinkSDK.setIntentDataTransferMode(IntentDataTransferMode.PERSISTED_OPTIMISED);
         setContentView(R.layout.activity_register);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},0);
-        recognizer = new BlinkIdCombinedRecognizer();
-        recognizerBundle = new RecognizerBundle(recognizer);
         allMessage = new AllMessage();
         MyRequestQueue = Volley.newRequestQueue(this);
 
@@ -123,14 +110,6 @@ public class RegisterPagesActivity extends AppCompatActivity {
             public void onClick(View view){
                 Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,1);
-            }
-        });
-
-        btnCaptureID = (Button)findViewById(R.id.btnCaptureID);
-        btnCaptureID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view){
-                openCaptureID();
             }
         });
 
@@ -382,37 +361,9 @@ public class RegisterPagesActivity extends AppCompatActivity {
                 return;
             }
 
-            if (resultCode == Activity.RESULT_OK) {
-                onScanSuccess(data);
-            } else {
-                onScanCanceled();
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-    public void openCaptureID() {
-        BlinkIdUISettings uiSettings = new BlinkIdUISettings(recognizerBundle);
-        ActivityRunner.startActivityForResult(this, MY_BLINKID_REQUEST_CODE, uiSettings);
-    }
-
-    private void onScanSuccess(Intent data) {
-        recognizerBundle.loadFromIntent(data);
-
-        BlinkIdCombinedRecognizer.Result result = recognizer.getResult();
-        String birthDate = result.getDateOfBirth().getDate().toString().substring(0,10).replace('.','/');
-        String cardID = result.getDocumentNumber();
-        if (cardID.isEmpty()) {
-            cardID = result.getDocumentNumber();
-        }
-        txtCardID = (EditText) findViewById(R.id.txtCardID);
-        txtCardID.setText(cardID);
-
-        txtBirthDate = (TextView) findViewById(R.id.txtBirthDate);
-        txtBirthDate.setText(birthDate);
     }
 
     private void onScanCanceled() {
