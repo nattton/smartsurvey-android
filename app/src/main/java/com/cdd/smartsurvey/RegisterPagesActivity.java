@@ -22,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,10 +60,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RegisterPagesActivity extends AppCompatActivity {
 
     private static final String TAG = "registerPagesActivity";
-    public static final int MY_BLINKID_REQUEST_CODE = 123;
 
     public Button btnCamera;
-    public Button btnCaptureID;
     public Button btnClose;
     public Button btnCloseMain;
     public Button btnSave;
@@ -357,17 +354,9 @@ public class RegisterPagesActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bitmap);
             }
 
-            if (requestCode != MY_BLINKID_REQUEST_CODE) {
-                return;
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void onScanCanceled() {
-        Toast.makeText(this, "Scan cancelled!", Toast.LENGTH_SHORT).show();
     }
 
     public void ShowAlertDialogWithPrefix_Listview()

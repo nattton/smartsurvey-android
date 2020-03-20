@@ -44,11 +44,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
-        Button btnLogin = (Button) findViewById(R.id.custom_button);
-        uname = (EditText) findViewById(R.id.username);
-        upassword = (EditText) findViewById(R.id.password);
+        Button btnLogin = findViewById(R.id.custom_button);
+        uname = findViewById(R.id.username);
+        upassword = findViewById(R.id.password);
 
         MyRequestQueue = Volley.newRequestQueue(this);
 

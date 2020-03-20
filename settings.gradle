@@ -1,2 +1,2 @@
-include ':app', ':LibUtils'
+include ':app'
 rootProject.name='smartsurvey'

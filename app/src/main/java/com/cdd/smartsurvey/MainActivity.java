@@ -54,13 +54,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         android_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         MyRequestQueue = Volley.newRequestQueue(this);
-        SendHistory(GlobalValue.dbUrl);
+//        SendHistory(GlobalValue.dbUrl);
+        CopyDBFromAssets();
+        openLogin();
     }
 
-    private synchronized void stopThread(Thread theThread)
-    {
-        if (theThread != null)
-        {
+    private synchronized void stopThread(Thread theThread) {
+        if (theThread != null) {
             theThread = null;
         }
     }
@@ -68,6 +68,107 @@ public class MainActivity extends AppCompatActivity {
     public void openLogin() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    public void CopyDBFromAssets() {
+        int count;
+        try {
+            File dataFolder = new File("/data/data/com.cdd.smartsurvey/databases");
+            if (!dataFolder.exists()) {
+                dataFolder.mkdirs();
+            }
+            inputstream = getApplicationContext().getAssets().open("smartsurvey_master.db");
+            outputstream = new FileOutputStream("/data/data/com.cdd.smartsurvey/databases/smartsurvey_master.db");
+            while ((count = inputstream.read(dataArray)) != -1) {
+
+                outputstream.write(dataArray, 0, count);
+            }
+
+            outputstream.flush();
+            outputstream.close();
+            inputstream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void SendHistory(String aurl) {
+
+        StringRequest LoginAPIRequest = new StringRequest(Request.Method.POST, aurl + "insertinfomobile", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    jobj = new JSONObject(response);
+                    uid = jobj.get("status").toString();
+                    GlobalValue.uid = jobj.get("status").toString();
+                    CheckDownloadDB(GlobalValue.dbUrl);
+                } catch (JSONException e) {
+                }
+
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("deviceid", android_id.toString()); //Add the data you'd like to send to the server
+                return MyData;
+            }
+        };
+
+        MyRequestQueue.add(LoginAPIRequest);
+    }
+
+    public void CheckDownloadDB(String aurl) {
+
+        StringRequest LoginAPIRequest = new StringRequest(Request.Method.POST, aurl + "checkdownloaddb", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    jobj = new JSONObject(response);
+                    if (jobj.get("status").toString().equals("0")) {
+                        final Thread thread = new Thread() {
+
+                            @Override
+                            public void run() {
+                                try {
+                                    sleep(3000);
+                                    stopThread(this);
+
+                                    new DownloadDBWithProgressDialog().execute(dbURL);
+
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        thread.start();
+                    } else {
+                        openLogin();
+                    }
+
+                } catch (JSONException e) {
+                }
+            }
+        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("deviceid", android_id.toString()); //Add the data you'd like to send to the server
+                MyData.put("uid", uid.toString());
+                return MyData;
+            }
+        };
+
+        MyRequestQueue.add(LoginAPIRequest);
+
     }
 
     public class DownloadDBWithProgressDialog extends AsyncTask<String, String, String> {
@@ -85,8 +186,7 @@ public class MainActivity extends AppCompatActivity {
             try {
 
                 File dataFolder = new File("/data/data/com.cdd.smartsurvey/databases");
-                if (!dataFolder.exists())
-                {
+                if (!dataFolder.exists()) {
                     dataFolder.mkdirs();
                 }
 
@@ -105,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
                     totalSize += count;
 
-                    publishProgress(""+(int)((totalSize*100)/FileSize));
+                    publishProgress("" + (int) ((totalSize * 100) / FileSize));
 
                     outputstream.write(dataArray, 0, count);
                 }
@@ -127,88 +227,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "DB Downloaded Successfully", Toast.LENGTH_LONG).show();
             openLogin();
         }
-    }
-
-    public void SendHistory (String aurl) {
-
-        StringRequest LoginAPIRequest = new StringRequest(Request.Method.POST, aurl+"insertinfomobile", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    jobj = new JSONObject(response);
-                    uid  = jobj.get("status").toString();
-                    GlobalValue.uid = jobj.get("status").toString();
-                    CheckDownloadDB(GlobalValue.dbUrl);
-                } catch (JSONException e) {
-                }
-
-            }
-        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("deviceid",android_id.toString()); //Add the data you'd like to send to the server
-                return MyData;
-            }
-        };
-
-        MyRequestQueue.add(LoginAPIRequest);
-    }
-
-    public void CheckDownloadDB (String aurl) {
-
-        StringRequest LoginAPIRequest = new StringRequest(Request.Method.POST, aurl+"checkdownloaddb", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                try {
-                    jobj = new JSONObject(response);
-                    if (jobj.get("status").toString().equals("0"))
-                    {
-                        final Thread thread = new Thread() {
-
-                            @Override
-                            public void run() {
-                                try {
-                                    sleep(3000);
-                                    stopThread(this);
-
-                                    new DownloadDBWithProgressDialog().execute(dbURL);
-
-
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        };
-                        thread.start();
-                    }
-                    else
-                    {
-                        openLogin();
-                    }
-
-                } catch (JSONException e) {
-                }
-            }
-        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("deviceid",android_id.toString()); //Add the data you'd like to send to the server
-                MyData.put("uid",uid.toString());
-                return MyData;
-            }
-        };
-
-        MyRequestQueue.add(LoginAPIRequest);
-
     }
 }
 
