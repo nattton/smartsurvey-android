@@ -8,6 +8,8 @@ public class GlobalValue {
     public static String signature = "";
     public static String homeno = "";
     public static String dbUrl = "http://27.254.121.113/SmartSurveyAPI_war_exploded/function/";
+    public static String apiUrl = "http://app.hummingwing.com/cdd/api/";
+    public static String apiToken = "Q09NTVVOSVRZIERFVkVMT1BNRU5UIERFUEFSVE1FTlQ=";
     public static String DetailMember1="สมาชิกในครัวเรือนในปีปัจจุบัน หมายถึง สมาชิกที่อยู่ประจำในครัวเรือนนี้ (คนที่ไม่ได้อยู่ประจำ แต่ไป ๆ มา ๆ ในรอบปีที่ผ่านมา ต้องมีเวลารวมกันไม่น้อยกว่า 6 เดือน)";
     public static String DetailMember2="ครัวเรือน หมายถึง ครอบครัวที่อยู่ในบ้านเรือนเดียวกัน กินอยู่ ใช้จ่ายร่วมกัน ครัวเรือนหนึ่ง ๆ อาจมีหลายครอบครัวก็ได้";
     public static String DetailMember3="คนที่มีอายุมากกว่า 2 ปีขึ้นไป ไม่ต้องใส่เศษเดือน แต่ถ้าอายุไม่ถึง 2 ปี ให้ระบุเดือนด้วย เช่น อายุ 1 ปี 11 เดือน หรือ 1 ปี 1 เดือน หรือ อายุ 11 เดือน หรือ อายุ 3 เดือน เป็นต้น \n" +

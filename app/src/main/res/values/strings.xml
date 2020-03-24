@@ -2,4 +2,16 @@
     <string name="app_name">SmartSurvey</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="api_token">Q09NTVVOSVRZIERFVkVMT1BNRU5UIERFUEFSVE1FTlQ=</string>
+    <string name="preference_file_key">com.cdd.smartsurvey</string>
+    <string name="pref_user">pref_user</string>
+    <string name="pref_activation">pref_activation</string>
+    <string name="pref_user_token">pref_user_token</string>
+    <string name="pref_firstname">pref_firstname</string>
+    <string name="pref_lastname">pref_lastname</string>
+    <string name="pref_idcard">pref_idcard</string>
+    <string name="pref_addr">pref_addr</string>
+    <string name="pref_addr2">pref_addr2</string>
+    <string name="pref_position">pref_position</string>
+    <string name="pref_photo">pref_photo</string>
 </resources>
