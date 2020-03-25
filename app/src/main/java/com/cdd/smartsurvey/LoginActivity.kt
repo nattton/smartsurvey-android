@@ -20,6 +20,7 @@ import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     var returnOut: String? = null
+    var isLoading: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -82,6 +83,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun CheckLogin() {
+        if (isLoading) return
+        isLoading = true
         val params = listOf(
                 Pair("u", username!!.text.toString()),
                 Pair("p", password!!.text.toString()),
@@ -90,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
         )
         Fuel.post("mobile.php", params)
                 .responseObject(LoginResponse.Deserializer()) { _, _, result ->
+                    isLoading = false
                     when (result) {
                         is Result.Success -> {
                             val (loginResponse, _) = result
