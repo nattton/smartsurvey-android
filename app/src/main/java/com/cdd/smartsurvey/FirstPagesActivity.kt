@@ -1,6 +1,7 @@
 package com.cdd.smartsurvey
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -44,7 +45,7 @@ class FirstPagesActivity : AppCompatActivity() {
                         is Result.Success -> {
                             val (commuList, _) = result
                             communityListItems = commuList
-                            setCommunities()
+                            setCommunityList()
 
                         }
                         is Result.Failure -> {
@@ -55,10 +56,26 @@ class FirstPagesActivity : AppCompatActivity() {
                 }
     }
 
-    private fun setCommunities() {
+    private fun setCommunityList() {
         val adapter = CommunityAdapter(applicationContext, communityListItems!!)
         communityListView.adapter = adapter
+        communityListView.setOnItemClickListener { parent, view, position, id ->
+            val selectedItem = communityListItems!!.get(position)
 
+            val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@FirstPagesActivity)
+            alertDialog.setTitle("ยืนยันเลือกชุมชน")
+            alertDialog.setMessage(selectedItem.community_name)
+            alertDialog.setPositiveButton("ตกลง", { dialog, which ->
+                openNewFamily()
+                dialog.dismiss()
+            })
+            alertDialog.setNegativeButton("ยกเลิก", { dialog, which ->
+
+            })
+
+            val dialog: Dialog = alertDialog.create()
+            dialog.show()
+        }
     }
 
     fun openRegister() {
