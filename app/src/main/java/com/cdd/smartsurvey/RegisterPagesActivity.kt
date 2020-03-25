@@ -2,16 +2,12 @@ package com.cdd.smartsurvey
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -43,6 +39,7 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.DataPart
 import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.result.Result
+import com.layernet.thaidatetimepicker.date.DatePickerDialog
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONException
@@ -54,16 +51,19 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RegisterPagesActivity : AppCompatActivity() {
+class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+    companion object {
+        private const val TAG = "registerPagesActivity"
+    }
+
     var txtPicture: String = ""
-    var currentPhotoPath: String = ""
+    lateinit var currentPhotoPath: String
     var jobj: JSONObject? = null
     var MyRequestQueue: RequestQueue? = null
     var returnOut: String? = null
     var allMessage: AllMessage? = null
-    var imageView: CircleImageView? = null
-    private var mDisplayDate: TextView? = null
-    private var mDateSetListener: OnDateSetListener? = null
+
+    //    var imageView: CircleImageView? = null
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_TAKE_PHOTO = 1
     private val RECORD_REQUEST_CODE = 101
@@ -76,7 +76,7 @@ class RegisterPagesActivity : AppCompatActivity() {
         setupPermissions()
         allMessage = AllMessage()
         MyRequestQueue = Volley.newRequestQueue(this)
-        imageView = findViewById<View>(R.id.profileimage) as CircleImageView
+//        imageView = findViewById<View>(R.id.profileimage) as CircleImageView
         btnCapture.setOnClickListener {
             dispatchTakePictureIntent()
         }
@@ -185,25 +185,36 @@ class RegisterPagesActivity : AppCompatActivity() {
         txtTumbon!!.setOnClickListener { ShowAlertDialogWithTumbon_Listview() }
         txtCommunity!!.setOnClickListener { ShowAlertDialogWithCommunity_Listview() }
         btnClose.setOnClickListener { onBackPressed() }
-        mDisplayDate = findViewById<View>(R.id.txtBirthDate) as TextView
-        mDisplayDate!!.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val year = cal[Calendar.YEAR]
-            val month = cal[Calendar.MONTH]
-            val day = cal[Calendar.DAY_OF_MONTH]
-            val dialog = DatePickerDialog(
+        txtBirthDate.setOnClickListener {
+            val now = Calendar.getInstance()
+            val dpd = DatePickerDialog.newInstance(
                     this@RegisterPagesActivity,
-                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                    mDateSetListener,
-                    year, month, day)
-            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.show()
+                    now[Calendar.YEAR],
+                    now[Calendar.MONTH],
+                    now[Calendar.DAY_OF_MONTH]
+            )
+
+            dpd.show(fragmentManager, "Datepickerdialog");
         }
-        mDateSetListener = OnDateSetListener { view, year, month, day ->
-            Log.d(TAG, "onDateSet: dd/mm/yyyy: $day/$month/$year")
-            val date = "$day/$month/$year"
-            mDisplayDate!!.text = date
-        }
+//        txtBirthDate.setOnClickListener {
+//            val cal = Calendar.getInstance()
+//            val year = cal[Calendar.YEAR]
+//            val month = cal[Calendar.MONTH]
+//            val day = cal[Calendar.DAY_OF_MONTH]
+//            val dialog = DatePickerDialog(
+//                    this@RegisterPagesActivity,
+//                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                    mDateSetListener,
+//                    year, month, day)
+//            dialog
+//            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            dialog.show()
+//        }
+//        mDateSetListener = OnDateSetListener { view, year, month, day ->
+//            Log.d(TAG, "onDateSet: dd/mm/yyyy: $day/$month/$year")
+//            val date = "$day/$month/$year"
+//            txtBirthDate.text = date
+//        }
         if (GlobalValue.qestionerid.toInt() > 0) {
             AssignData(GlobalValue.dbUrl)
         }
@@ -243,7 +254,8 @@ class RegisterPagesActivity : AppCompatActivity() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val processBitmap = resizeBitmap(currentPhotoPath)
             saveImage(processBitmap, currentPhotoPath)
-            imageView!!.setImageBitmap(processBitmap)
+//            val processBitmap = BitmapFactory.decodeFile(currentPhotoPath)
+            profileimage.setImageBitmap(processBitmap)
         }
 //        try {
 //            val bitmap = data!!.extras["data"] as Bitmap
@@ -581,50 +593,6 @@ class RegisterPagesActivity : AppCompatActivity() {
                         }
                     }
                 }
-
-//        val LoginAPIRequest: StringRequest = object : StringRequest(Method.POST, "$aurl/mobile.php", Response.Listener { response ->
-//            try {
-//                jobj = JSONObject(response)
-//                if (jobj!!["status"].toString().toInt() > 0) {
-//                    GlobalValue.qestionerid = jobj!!["status"].toString()
-//                    openMainMenu()
-//                } else {
-//                    allMessage!!.ErrorMessage(this@RegisterPagesActivity)
-//                }
-//            } catch (e: JSONException) {
-//            }
-//        }, Response.ErrorListener { error ->
-//            //Create an error listener to handle errors appropriately.
-//            returnOut = error.toString()
-//        }) {
-//            override fun getParams(): Map<String, String> {
-//                val MyData: MutableMap<String, String> = HashMap()
-//                try {
-////                    MyData.put("tbl_user_masterid", GlobalValue.loginid);
-////                    MyData.put("year", "2563");
-////                    MyData.put("questioner_type", "1");
-//                    MyData["t"] = getString(R.string.api_token)
-//                    MyData["task"] = "saveuserinfo"
-//                    MyData["prefix_id"] = txtPrefix!!.tag.toString()
-//                    MyData["name"] = txtName!!.text.toString()
-//                    MyData["sname"] = txtSurname!!.text.toString()
-//                    MyData["idcard"] = txtCardID!!.text.toString()
-//                    MyData["sex_id"] = txtGender!!.tag.toString()
-//                    MyData["birthday"] = txtBirthDate!!.text.toString()
-//                    MyData["addr"] = txtAddress!!.text.toString()
-//                    MyData["community_id"] = txtCommunity!!.tag.toString()
-//                    MyData["district_code"] = txtTumbon!!.tag.toString()
-//                    MyData["amphur_code"] = txtAmphur!!.tag.toString()
-//                    MyData["province_code"] = txtProvince!!.tag.toString()
-//
-////                    MyData.put("picture", );
-//                } catch (e: Exception) {
-//                    allMessage!!.ErrorMessage(this@RegisterPagesActivity)
-//                }
-//                return MyData
-//            }
-//        }
-//        MyRequestQueue!!.add(LoginAPIRequest)
     }
 
     fun openMainMenu() {
@@ -659,7 +627,7 @@ class RegisterPagesActivity : AppCompatActivity() {
                     txtCommunity!!.tag = jdata["tbl_community_id"]
                     txtCommunity!!.text = jdata["tbl_community_name"].toString()
                     txtPicture = jdata["picture"].toString()
-                    imageView!!.setImageBitmap(ImageUtil.convert(jdata["picture"].toString()))
+                    profileimage.setImageBitmap(ImageUtil.convert(jdata["picture"].toString()))
                 } catch (e: JSONException) {
                 }
             }, //Create an error listener to handle errors appropriately.
@@ -684,6 +652,7 @@ class RegisterPagesActivity : AppCompatActivity() {
                 } catch (ex: IOException) {
                     // Error occurred while creating the File
 
+                    null
                     null
                 }
                 // Continue only if the File was successfully created
@@ -753,7 +722,9 @@ class RegisterPagesActivity : AppCompatActivity() {
 
     }
 
-    companion object {
-        private const val TAG = "registerPagesActivity"
+    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        Log.d(TAG, "onDateSet: dd/mm/yyyy: $dayOfMonth/${monthOfYear + 1}/${year + 543}")
+        val date = "$dayOfMonth/${monthOfYear + 1}/${year + 543}"
+        txtBirthDate.text = date
     }
 }
