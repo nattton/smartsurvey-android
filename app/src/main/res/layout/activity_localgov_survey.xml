@@ -33,6 +33,7 @@
         app:srcCompat="@drawable/borderlayout" />
 
     <RadioGroup
+        android:id="@+id/radioGroupArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
@@ -41,7 +42,9 @@
 
         <RadioButton
             android:id="@+id/radioButton1"
+            android:layout_height="wrap_content"
             android:layout_width="202dp"
+            android:tag="1"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="120dp"
             android:fontFamily="@font/thsarabun_bold"
@@ -51,7 +54,9 @@
 
         <RadioButton
             android:id="@+id/radioButton2"
+            android:layout_height="wrap_content"
             android:layout_width="202dp"
+            android:tag="2"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="05dp"
             android:fontFamily="@font/thsarabun_bold"
@@ -62,7 +67,9 @@
 
         <RadioButton
             android:id="@+id/radioButton3"
+            android:layout_height="wrap_content"
             android:layout_width="202dp"
+            android:tag="3"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="05dp"
             android:fontFamily="@font/thsarabun_bold"
@@ -73,7 +80,9 @@
 
         <RadioButton
             android:id="@+id/radioButton4"
+            android:layout_height="wrap_content"
             android:layout_width="202dp"
+            android:tag="4"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="05dp"
             android:fontFamily="@font/thsarabun_bold"
@@ -84,7 +93,9 @@
 
         <RadioButton
             android:id="@+id/radioButton5"
+            android:layout_height="wrap_content"
             android:layout_width="202dp"
+            android:tag="5"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="05dp"
             android:fontFamily="@font/thsarabun_bold"
@@ -95,7 +106,9 @@
 
         <RadioButton
             android:id="@+id/radioButton6"
+            android:layout_height="wrap_content"
             android:layout_width="202dp"
+            android:tag="6"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="05dp"
             android:fontFamily="@font/thsarabun_bold"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartSurvey</string>
+    <string name="app_name">Smart Survey</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="api_token">Q09NTVVOSVRZIERFVkVMT1BNRU5UIERFUEFSVE1FTlQ=</string>
@@ -14,4 +14,5 @@
     <string name="pref_addr2">pref_addr2</string>
     <string name="pref_position">pref_position</string>
     <string name="pref_photo">pref_photo</string>
+    <string name="pref_select_community">pref_select_community</string>
 </resources>

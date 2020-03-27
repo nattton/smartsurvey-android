@@ -9,12 +9,16 @@ import kotlinx.android.parcel.Parcelize
 data class Community(
         val community_id: String,
         val community_name: String,
+        val amphur_code: String,
+        val amphur_name: String,
         val family_amount: String,
         val message: String,
         val moo: String,
+        val province_code: String,
+        val province_name: String,
         val status: String,
-        val subdistrict_code: String,
-        val subdistrict_name: String,
+        val tumbon_code: String,
+        val tumbon_name: String,
         val survey_amount: Int
 ) : Parcelable {
     class Deserializer : ResponseDeserializable<Array<Community>> {

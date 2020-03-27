@@ -7,7 +7,6 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Process
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,8 +26,8 @@ class LoginActivity : AppCompatActivity() {
 
         FuelManager.instance.basePath = GlobalValue.apiUrl
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-        val btnLogin = findViewById<Button>(R.id.custom_button)
-        btnLogin.setOnClickListener { CheckLogin() }
+
+        btnLogin.setOnClickListener { doLogin() }
         val timer = Timer()
         timer.schedule(object : TimerTask() {
             override fun run() {
@@ -46,6 +45,17 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }, 0, 3000)
+
+        checkLogin()
+    }
+
+    private fun checkLogin() {
+        val sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        var user = sharedPref.getString(getString(R.string.pref_user), "")
+        var userToken = sharedPref.getString(getString(R.string.pref_user_token), "")
+        if (user != "" && userToken != "") {
+            openMainMenu()
+        }
     }
 
     private val isNetworkAvailable: Boolean
@@ -82,11 +92,12 @@ class LoginActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    fun CheckLogin() {
+    fun doLogin() {
         if (isLoading) return
         isLoading = true
+        val user = username!!.text.toString()
         val params = listOf(
-                Pair("u", username!!.text.toString()),
+                Pair("u", user),
                 Pair("p", password!!.text.toString()),
                 Pair("t", GlobalValue.apiToken),
                 Pair("task", "login")
@@ -106,17 +117,20 @@ class LoginActivity : AppCompatActivity() {
                             } else if (loginResponse?.status == "1") {
                                 GlobalValue.loginid = loginResponse.token
                                 val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-                                val editor = sharedPref.edit()
-                                editor.putString(getString(R.string.pref_user_token), loginResponse.token)
-                                editor.putString(getString(R.string.pref_activation), loginResponse.activation)
-                                editor.putString(getString(R.string.pref_firstname), loginResponse.fname)
-                                editor.putString(getString(R.string.pref_lastname), loginResponse.lname)
-                                editor.putString(getString(R.string.pref_idcard), loginResponse.idcard)
-                                editor.putString(getString(R.string.pref_addr), loginResponse.addr)
-                                editor.putString(getString(R.string.pref_addr2), loginResponse.addr2)
-                                editor.putString(getString(R.string.pref_position), loginResponse.position)
-                                editor.putString(getString(R.string.pref_photo), loginResponse.photo)
-                                editor.apply()
+                                with(sharedPref.edit()) {
+                                    putString(getString(R.string.pref_user), user)
+                                    putString(getString(R.string.pref_user_token), loginResponse.token)
+                                    putString(getString(R.string.pref_activation), loginResponse.activation)
+                                    putString(getString(R.string.pref_firstname), loginResponse.fname)
+                                    putString(getString(R.string.pref_lastname), loginResponse.lname)
+                                    putString(getString(R.string.pref_idcard), loginResponse.idcard)
+                                    putString(getString(R.string.pref_addr), loginResponse.addr)
+                                    putString(getString(R.string.pref_addr2), loginResponse.addr2)
+                                    putString(getString(R.string.pref_position), loginResponse.position)
+                                    putString(getString(R.string.pref_photo), loginResponse.photo)
+                                    apply()
+                                }
+
                                 if (loginResponse.activation == "0") {
                                     openRegister()
                                 } else if (loginResponse.activation == "1") {

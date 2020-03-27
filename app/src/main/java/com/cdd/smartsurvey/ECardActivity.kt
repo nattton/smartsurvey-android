@@ -56,7 +56,6 @@ class ECardActivity : AppCompatActivity() {
         val profileURL = sharedPref.getString(getString(R.string.pref_photo), "")
         Glide.with(applicationContext)
                 .load(profileURL)
-                .override(123, 92)
                 .fitCenter()
                 .into(imgCard)
 

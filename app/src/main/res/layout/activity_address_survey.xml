@@ -102,6 +102,17 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:id="@+id/txtMoo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@drawable/fieldinput"
+                android:fontFamily="@font/thsarabun_bold"
+                android:hint="หมู่"
+                android:padding="20dp"
+                android:textSize="20dp" />
+
+            <EditText
                 android:id="@+id/txtSoi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -30,7 +30,22 @@ class FirstPagesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_firstpages)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         btnProfile.setOnClickListener { openRegister() }
-        btnNewFamily.setOnClickListener { openNewFamily() }
+        btnNewFamily.setOnClickListener {
+            val community = Community("",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    0)
+            openNewFamily(community)
+        }
         loadCommunityList()
     }
 
@@ -66,7 +81,7 @@ class FirstPagesActivity : AppCompatActivity() {
             alertDialog.setTitle("ยืนยันเลือกชุมชน")
             alertDialog.setMessage(selectedItem.community_name)
             alertDialog.setPositiveButton("ตกลง", { dialog, which ->
-                openNewFamily()
+                openNewFamily(selectedItem)
                 dialog.dismiss()
             })
             alertDialog.setNegativeButton("ยกเลิก", { dialog, which ->
@@ -83,10 +98,11 @@ class FirstPagesActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openNewFamily() {
-        val intent = Intent(this@FirstPagesActivity, AcceptSurveyActivity::class.java)
+    fun openNewFamily(community: Community) {
+        val intent = Intent(this@FirstPagesActivity, AcceptSurveyActivity::class.java).apply {
+            putExtra(GlobalValue.EXTRA_COMMUNITY, community)
+        }
         startActivity(intent)
-        //      showFirstDialog(this);
     }
 
     private fun showFirstDialog(c: Context) {

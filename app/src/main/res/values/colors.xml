@@ -7,4 +7,6 @@
     <color name="colorNetworkOn">#26C600</color>
     <color name="colorNetworkOff">#FF0511</color>
     <color name="colorBorder">#F0EDED</color>
+    <color name="mdtp_accent_color">#009688</color>
+    <color name="mdtp_accent_color_dark">#00796b</color>
 </resources>

@@ -38,8 +38,13 @@ class CommunityAdapter(private val context: Context,
         val community = getItem(position)
 
         holder.textCommunityName.text = community.community_name
-        var percent = (community.survey_amount / community.family_amount.toInt()) * 100
-        holder.textPercent.text = "${percent}%"
+        if (community.family_amount.toInt() > 0) {
+            var percent = (community.survey_amount / community.family_amount.toInt()) * 100
+            holder.textPercent.text = "${percent}%"
+        } else {
+            holder.textPercent.visibility = View.GONE
+        }
+
         return view
     }
 

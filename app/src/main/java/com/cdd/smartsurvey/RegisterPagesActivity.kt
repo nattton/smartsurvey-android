@@ -56,7 +56,7 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         private const val TAG = "registerPagesActivity"
     }
 
-    var txtPicture: String = ""
+    //    var txtPicture: String = ""
     lateinit var currentPhotoPath: String
     var jobj: JSONObject? = null
     var MyRequestQueue: RequestQueue? = null
@@ -626,7 +626,7 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
                     txtTumbon!!.text = jdata["tbl_tumbon_name"].toString()
                     txtCommunity!!.tag = jdata["tbl_community_id"]
                     txtCommunity!!.text = jdata["tbl_community_name"].toString()
-                    txtPicture = jdata["picture"].toString()
+//                    txtPicture = jdata["picture"].toString()
                     profileimage.setImageBitmap(ImageUtil.convert(jdata["picture"].toString()))
                 } catch (e: JSONException) {
                 }
