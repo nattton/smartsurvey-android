@@ -4,6 +4,11 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
+data class UploadList(
+        var familyList: ArrayList<Family>
+) : Parcelable
+
+@Parcelize
 data class Family(
         var community: String,
         var prefix: String,
