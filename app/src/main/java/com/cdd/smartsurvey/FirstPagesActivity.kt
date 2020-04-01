@@ -13,10 +13,11 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.cdd.smartsurvey.adapter.CommunityAdapter
+import com.cdd.smartsurvey.adapter.CommunityListAdapter
 import com.cdd.smartsurvey.http.model.Community
 import com.cdd.smartsurvey.utils.CheckAccuracy
 import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_firstpages.*
 
@@ -28,8 +29,10 @@ class FirstPagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_firstpages)
+        FuelManager.instance.basePath = GlobalValue.apiUrl
+
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        btnProfile.setOnClickListener { openRegister() }
+
         btnNewFamily.setOnClickListener {
             val community = Community("",
                     "",
@@ -47,6 +50,10 @@ class FirstPagesActivity : AppCompatActivity() {
             openNewFamily(community)
         }
         loadCommunityList()
+        btnWaitingList.setOnClickListener {
+            val intent = Intent(this, WaitingUploadActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loadCommunityList() {
@@ -72,7 +79,7 @@ class FirstPagesActivity : AppCompatActivity() {
     }
 
     private fun setCommunityList() {
-        val adapter = CommunityAdapter(applicationContext, communityListItems!!)
+        val adapter = CommunityListAdapter(applicationContext, communityListItems!!)
         communityListView.adapter = adapter
         communityListView.setOnItemClickListener { parent, view, position, id ->
             val selectedItem = communityListItems!!.get(position)
@@ -91,11 +98,6 @@ class FirstPagesActivity : AppCompatActivity() {
             val dialog: Dialog = alertDialog.create()
             dialog.show()
         }
-    }
-
-    fun openRegister() {
-        val intent = Intent(this, RegisterPagesActivity::class.java)
-        startActivity(intent)
     }
 
     fun openNewFamily(community: Community) {

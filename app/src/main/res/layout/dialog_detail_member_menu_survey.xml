@@ -24,7 +24,7 @@
         android:background="@drawable/bordernocomplete">
 
             <LinearLayout
-                android:id="@+id/linearmaster"
+                android:id="@+id/linearBody"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="50dp"

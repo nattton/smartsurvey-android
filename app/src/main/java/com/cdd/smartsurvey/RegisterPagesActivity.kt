@@ -25,24 +25,17 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.cdd.smartsurvey.http.model.RegisterResponse
 import com.cdd.smartsurvey.sqlite.DatabaseHelper
 import com.cdd.smartsurvey.sqlite.model.*
-import com.cdd.smartsurvey.utils.AllMessage
-import com.cdd.smartsurvey.utils.CheckAccuracy
-import com.cdd.smartsurvey.utils.GetThaiCharector
-import com.cdd.smartsurvey.utils.ImageUtil
+import com.cdd.smartsurvey.utils.*
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.DataPart
 import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.result.Result
 import com.layernet.thaidatetimepicker.date.DatePickerDialog
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_register.*
-import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -59,7 +52,6 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
     //    var txtPicture: String = ""
     lateinit var currentPhotoPath: String
     var jobj: JSONObject? = null
-    var MyRequestQueue: RequestQueue? = null
     var returnOut: String? = null
     var allMessage: AllMessage? = null
 
@@ -75,13 +67,12 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setupPermissions()
         allMessage = AllMessage()
-        MyRequestQueue = Volley.newRequestQueue(this)
 //        imageView = findViewById<View>(R.id.profileimage) as CircleImageView
         btnCapture.setOnClickListener {
             dispatchTakePictureIntent()
         }
-        btnSave.setOnClickListener { //                openMainMenu();
-            SendData(GlobalValue.apiUrl)
+        btnSave.setOnClickListener {
+            SendData()
         }
         txtName!!.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -178,12 +169,21 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable) {}
         })
-        txtPrefix!!.setOnClickListener { ShowAlertDialogWithPrefix_Listview() }
-        txtGender!!.setOnClickListener { ShowAlertDialogWithGender_Listview() }
-        txtProvince!!.setOnClickListener { ShowAlertDialogWithProvince_Listview() }
-        txtAmphur!!.setOnClickListener { ShowAlertDialogWithAmphur_Listview() }
-        txtTumbon!!.setOnClickListener { ShowAlertDialogWithTumbon_Listview() }
-        txtCommunity!!.setOnClickListener { ShowAlertDialogWithCommunity_Listview() }
+        val formUtils = FormUtils(this@RegisterPagesActivity, layoutInflater)
+        txtPrefix.setOnClickListener {
+            formUtils.ShowAlertDialogWithPrefix_Listview(txtPrefix, txtGender)
+        }
+        txtGender.setOnClickListener {
+            formUtils.ShowAlertDialogWithGender_Listview(txtGender)
+        }
+        txtProvince.setOnClickListener {
+            formUtils.ShowAlertDialogWithProvince_Listview(txtProvince, txtAmphur, txtTumbon, txtCommunity)
+        }
+        txtAmphur.setOnClickListener {
+            formUtils.ShowAlertDialogWithAmphur_Listview(txtProvince, txtAmphur, txtTumbon, txtCommunity)
+        }
+        txtTumbon.setOnClickListener { formUtils.ShowAlertDialogWithTumbon_Listview(txtProvince, txtAmphur, txtTumbon, txtCommunity) }
+        txtCommunity.setOnClickListener { formUtils.ShowAlertDialogWithCommunity_Listview(txtTumbon, txtCommunity) }
         btnClose.setOnClickListener { onBackPressed() }
         txtBirthDate.setOnClickListener {
             val now = Calendar.getInstance()
@@ -195,28 +195,6 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
             )
 
             dpd.show(fragmentManager, "Datepickerdialog");
-        }
-//        txtBirthDate.setOnClickListener {
-//            val cal = Calendar.getInstance()
-//            val year = cal[Calendar.YEAR]
-//            val month = cal[Calendar.MONTH]
-//            val day = cal[Calendar.DAY_OF_MONTH]
-//            val dialog = DatePickerDialog(
-//                    this@RegisterPagesActivity,
-//                    android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-//                    mDateSetListener,
-//                    year, month, day)
-//            dialog
-//            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            dialog.show()
-//        }
-//        mDateSetListener = OnDateSetListener { view, year, month, day ->
-//            Log.d(TAG, "onDateSet: dd/mm/yyyy: $day/$month/$year")
-//            val date = "$day/$month/$year"
-//            txtBirthDate.text = date
-//        }
-        if (GlobalValue.qestionerid.toInt() > 0) {
-            AssignData(GlobalValue.dbUrl)
         }
     }
 
@@ -268,277 +246,8 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 //        }
     }
 
-    fun ShowAlertDialogWithPrefix_Listview() {
-        val txtSearch: EditText
-        val db: DatabaseHelper
-        val prefixList: MutableList<Prefix> = ArrayList()
-        db = DatabaseHelper(this)
-        prefixList.addAll(db.allPrefixs)
-        var item: Prefix
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in prefixList.indices) {
-            item = prefixList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_prefix_valuelist, null)
-        val prefixAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                prefixAdapter.filter.filter(s)
-            }
 
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = prefixAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtPrefix!!.tag = clickItemMap["code"]
-            txtPrefix!!.text = clickItemMap["codename"] as String?
-            if (txtPrefix!!.tag == "001" || txtPrefix!!.tag == "002") {
-                txtGender!!.tag = "1"
-                txtGender!!.text = "ชาย (male)"
-            } else {
-                txtGender!!.tag = "2"
-                txtGender!!.text = "หญิง (Female)"
-            }
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose.setOnClickListener { show.dismiss() }
-    }
 
-    fun ShowAlertDialogWithGender_Listview() {
-        val txtSearch: EditText
-        val genderList: MutableList<Gender> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(this)
-        genderList.addAll(db.allGenders)
-        var item: Gender
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in genderList.indices) {
-            item = genderList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_gender_valuelist, null)
-        val genderAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                genderAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = genderAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtGender!!.tag = clickItemMap["code"]
-            txtGender!!.text = clickItemMap["codename"] as String?
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose.setOnClickListener { show.dismiss() }
-    }
-
-    fun ShowAlertDialogWithProvince_Listview() {
-        val txtSearch: EditText
-        val provinceList: MutableList<Province> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(this)
-        provinceList.addAll(db.allProvinces)
-        var item: Province
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in provinceList.indices) {
-            item = provinceList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_province_valuelist, null)
-        val provinceAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                provinceAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = provinceAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtProvince!!.tag = clickItemMap["code"]
-            txtProvince!!.text = clickItemMap["codename"] as String?
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose.setOnClickListener { show.dismiss() }
-        txtAmphur!!.tag = ""
-        txtAmphur!!.text = ""
-        txtTumbon!!.tag = ""
-        txtTumbon!!.text = ""
-        txtCommunity!!.tag = ""
-        txtCommunity!!.text = ""
-    }
-
-    fun ShowAlertDialogWithAmphur_Listview() {
-        val txtSearch: EditText
-        val amphurList: MutableList<Amphur> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(this)
-        amphurList.addAll(db.getAllAmphurs(if (txtProvince!!.tag == null) "0" else txtProvince!!.tag.toString()))
-        var item: Amphur
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in amphurList.indices) {
-            item = amphurList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_amphur_valuelist, null)
-        val amphurAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                amphurAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = amphurAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtAmphur!!.tag = clickItemMap["code"]
-            txtAmphur!!.text = clickItemMap["codename"] as String?
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose!!.setOnClickListener { show.dismiss() }
-        txtTumbon!!.tag = ""
-        txtTumbon!!.text = ""
-        txtCommunity!!.tag = ""
-        txtCommunity!!.text = ""
-    }
-
-    fun ShowAlertDialogWithTumbon_Listview() {
-        val txtSearch: EditText
-        val tumbonList: MutableList<Tumbon> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(this)
-        tumbonList.addAll(db.getAllTumbons(if (txtAmphur!!.tag == null) "0" else txtAmphur!!.tag.toString()))
-        var item: Tumbon
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in tumbonList.indices) {
-            item = tumbonList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_tumbon_valuelist, null)
-        val tumbonAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                tumbonAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = tumbonAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtTumbon!!.tag = clickItemMap["code"]
-            txtTumbon!!.text = clickItemMap["codename"] as String?
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose!!.setOnClickListener { show.dismiss() }
-        txtCommunity!!.tag = ""
-        txtCommunity!!.text = ""
-    }
-
-    fun ShowAlertDialogWithCommunity_Listview() {
-        val txtSearch: EditText
-        val communityList: MutableList<Community> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(this)
-        communityList.addAll(db.getAllCommunitys(if (txtTumbon!!.tag == null) "0" else txtTumbon!!.tag.toString()))
-        var item: Community
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in communityList.indices) {
-            item = communityList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["moo"] = item.moo
-            listItemMap["codename"] = "หมู่ที่ " + item.moo + " " + item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_community_valuelist, null)
-        val communityAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                communityAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = communityAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtCommunity!!.tag = clickItemMap["code"]
-            txtCommunity!!.text = clickItemMap["codename"] as String?
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose!!.setOnClickListener { show.dismiss() }
-    }
 
     override fun onBackPressed() {
         val ab = AlertDialog.Builder(this@RegisterPagesActivity, R.style.AlertDialogTheme)
@@ -555,7 +264,7 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         ab.show()
     }
 
-    fun SendData(aurl: String) {
+    fun SendData() {
         val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
                 ?: return
         var userToken = sharedPref.getString(getString(R.string.pref_user_token), "")
@@ -600,47 +309,6 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         startActivity(intent)
     }
 
-    fun AssignData(aurl: String) {
-        var subpath = ""
-        if (GlobalValue.qestionerid != "0") {
-            subpath = "questioner/profile/select"
-            val LoginAPIRequest: StringRequest = object : StringRequest(Method.POST, aurl + subpath, Response.Listener { response ->
-                try {
-                    jobj = JSONObject(response)
-                    val array = jobj!!.getJSONArray("TransQuestionerProfile")
-                    val jdata = array.getJSONObject(0)
-                    txtCardID!!.setText(jdata["idcard"].toString())
-                    txtPrefix!!.tag = jdata["tbl_prefix_code"]
-                    txtPrefix!!.text = jdata["tbl_prefix_name"].toString()
-                    txtName!!.setText(jdata["name"].toString())
-                    txtSurname!!.setText(jdata["surname"].toString())
-                    txtGender!!.tag = jdata["tbl_gender_code"]
-                    txtGender!!.text = jdata["tbl_gender_name"].toString()
-                    txtBirthDate!!.text = jdata["birthdate"].toString()
-                    txtAddress!!.setText(jdata["address1"].toString())
-                    txtProvince!!.tag = jdata["tbl_province_id"]
-                    txtProvince!!.text = jdata["tbl_province_name"].toString()
-                    txtAmphur!!.tag = jdata["tbl_amphur_id"]
-                    txtAmphur!!.text = jdata["tbl_amphur_name"].toString()
-                    txtTumbon!!.tag = jdata["tbl_tumbon_id"]
-                    txtTumbon!!.text = jdata["tbl_tumbon_name"].toString()
-                    txtCommunity!!.tag = jdata["tbl_community_id"]
-                    txtCommunity!!.text = jdata["tbl_community_name"].toString()
-//                    txtPicture = jdata["picture"].toString()
-                    profileimage.setImageBitmap(ImageUtil.convert(jdata["picture"].toString()))
-                } catch (e: JSONException) {
-                }
-            }, //Create an error listener to handle errors appropriately.
-                    Response.ErrorListener { }) {
-                override fun getParams(): Map<String, String> {
-                    val MyData: MutableMap<String, String> = HashMap()
-                    MyData["questionerid"] = GlobalValue.qestionerid
-                    return MyData
-                }
-            }
-            MyRequestQueue!!.add(LoginAPIRequest)
-        }
-    }
 
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->

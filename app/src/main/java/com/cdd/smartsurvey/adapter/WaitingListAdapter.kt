@@ -7,27 +7,31 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cdd.smartsurvey.R
-import com.cdd.smartsurvey.http.model.Community
+import com.cdd.smartsurvey.data.model.Family
+import com.cdd.smartsurvey.data.model.Member
+import kotlinx.android.synthetic.main.list_item_member.view.*
 
-class CommunityAdapter(private val context: Context,
-                       private val dataSource: Array<Community>) : BaseAdapter() {
+class WaitingListAdapter(private val context: Context,
+                         private val dataSource: ArrayList<Family>) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     private class ViewHolder {
-        lateinit var textCommunityName: TextView
-        lateinit var textPercent: TextView
+        lateinit var txtNo: TextView
+        lateinit var txtName: TextView
+        lateinit var txtCardID: TextView
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View
         val holder: ViewHolder
         if (convertView == null) {
-            view = inflater.inflate(R.layout.list_item_community, parent, false)
+            view = inflater.inflate(R.layout.list_item_member, parent, false)
 
             holder = ViewHolder()
-            holder.textCommunityName = view.findViewById(R.id.textCommunityName)
-            holder.textPercent = view.findViewById(R.id.textPercent)
+            holder.txtNo = view.findViewById(R.id.txtNo)
+            holder.txtName = view.findViewById(R.id.txtName)
+            holder.txtCardID = view.findViewById(R.id.txtCardID)
 
             view.tag = holder
         } else {
@@ -35,20 +39,15 @@ class CommunityAdapter(private val context: Context,
             holder = convertView.tag as ViewHolder
         }
 
-        val community = getItem(position)
-
-        holder.textCommunityName.text = community.community_name
-        if (community.family_amount.toInt() > 0) {
-            var percent = (community.survey_amount / community.family_amount.toInt()) * 100
-            holder.textPercent.text = "${percent}%"
-        } else {
-            holder.textPercent.visibility = View.GONE
-        }
+        val family = getItem(position)
+        holder.txtNo.text = "${position + 1}"
+        holder.txtName.text = "${family.fname} ${family.lname}"
+        holder.txtCardID.text = family.idcard
 
         return view
     }
 
-    override fun getItem(position: Int): Community {
+    override fun getItem(position: Int): Family {
         return dataSource[position]
     }
 

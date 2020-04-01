@@ -1,6 +1,7 @@
 package com.cdd.smartsurvey
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cdd.smartsurvey.data.model.Family
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_area_leave_survey.*
 
 class AreaLeaveSurveyActivity : AppCompatActivity() {

@@ -117,7 +117,7 @@ class LoginActivity : AppCompatActivity() {
                             } else if (loginResponse?.status == "1") {
                                 GlobalValue.loginid = loginResponse.token
                                 val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-                                with(sharedPref.edit()) {
+                                sharedPref.edit().apply {
                                     putString(getString(R.string.pref_user), user)
                                     putString(getString(R.string.pref_user_token), loginResponse.token)
                                     putString(getString(R.string.pref_activation), loginResponse.activation)

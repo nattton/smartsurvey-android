@@ -68,8 +68,6 @@ class AddressSurveyActivity : AppCompatActivity() {
         family.hamphur = txtAmphur.tag.toString()
         family.hprovince = txtProvince.tag.toString()
 
-        val jsonData = Gson().toJson(family)
-        Log.d("JsonData", jsonData)
         val intent = Intent(this, LocalGovSurveyActivity::class.java).apply {
             putExtra(GlobalValue.EXTRA_FAMILY, family)
         }

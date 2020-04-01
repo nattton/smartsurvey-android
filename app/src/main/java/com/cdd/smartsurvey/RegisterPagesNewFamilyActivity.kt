@@ -2,13 +2,10 @@ package com.cdd.smartsurvey
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -18,28 +15,16 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
-import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.Volley
-import com.cdd.smartsurvey.RegisterPagesNewFamilyActivity
-import com.cdd.smartsurvey.data.model.Answer
 import com.cdd.smartsurvey.data.model.Family
-import com.cdd.smartsurvey.data.model.Member
 import com.cdd.smartsurvey.http.model.Community
-import com.cdd.smartsurvey.sqlite.DatabaseHelper
-import com.cdd.smartsurvey.sqlite.model.Gender
-import com.cdd.smartsurvey.sqlite.model.Prefix
-import com.cdd.smartsurvey.utils.AllMessage
-import com.cdd.smartsurvey.utils.GetThaiCharector
-import com.cdd.smartsurvey.utils.ImageUtil
+import com.cdd.smartsurvey.utils.*
 import com.layernet.thaidatetimepicker.date.DatePickerDialog
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_register_newfamily.*
-import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -47,23 +32,19 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     companion object {
         private const val TAG = "registerPagesActivity"
-        const val MY_BLINKID_REQUEST_CODE = 123
     }
 
     private val REQUEST_IMAGE_CAPTURE = 1
     private val REQUEST_TAKE_PHOTO = 1
-    private val RECORD_REQUEST_CODE = 101
 
     lateinit var currentPhotoPath: String
-    var returnOut: String? = null
     var allMessage: AllMessage? = null
     var imageView: CircleImageView? = null
-    private var mDisplayDate: TextView? = null
-    var btnStartSurvey: Button? = null
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,8 +118,9 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
                 // TODO Auto-generated method stub
             }
         })
-        txtPrefix.setOnClickListener { ShowAlertDialogWithPrefix_Listview() }
-        txtGender!!.setOnClickListener { ShowAlertDialogWithGender_Listview() }
+        val formUtil = FormUtils(this@RegisterPagesNewFamilyActivity, layoutInflater)
+        txtPrefix.setOnClickListener { formUtil.ShowAlertDialogWithPrefix_Listview(txtPrefix, txtGender) }
+        txtGender.setOnClickListener { formUtil.ShowAlertDialogWithGender_Listview(txtGender) }
         btnBack.setOnClickListener { onBackPressed() }
     }
 
@@ -165,104 +147,9 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
 //        }
     }
 
-    private fun onScanCanceled() {
-        Toast.makeText(this, "Scan cancelled!", Toast.LENGTH_SHORT).show()
-    }
-
     fun openMenuDetailSurvey() {
         val intent = Intent(this, MenuSurveyActivity::class.java)
         startActivity(intent)
-    }
-
-    fun ShowAlertDialogWithPrefix_Listview() {
-        val txtSearch: EditText
-        val db: DatabaseHelper
-        val prefixList: MutableList<Prefix> = ArrayList()
-        db = DatabaseHelper(this)
-        prefixList.addAll(db.allPrefixs)
-        var item: Prefix
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in prefixList.indices) {
-            item = prefixList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesNewFamilyActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_prefix_valuelist, null)
-        val prefixAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                prefixAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = prefixAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtPrefix!!.tag = clickItemMap["code"]
-            txtPrefix!!.text = clickItemMap["codename"] as String?
-            if (txtPrefix!!.tag == "001" || txtPrefix!!.tag == "002") {
-                txtGender!!.tag = "1"
-                txtGender!!.text = "ชาย (male)"
-            } else {
-                txtGender!!.tag = "2"
-                txtGender!!.text = "หญิง (Female)"
-            }
-            show.dismiss()
-        }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
-        btnClose.setOnClickListener { show.dismiss() }
-    }
-
-    fun ShowAlertDialogWithGender_Listview() {
-        val txtSearch: EditText
-        val genderList: MutableList<Gender> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(this)
-        genderList.addAll(db.allGenders)
-        var item: Gender
-        val itemDataList = ArrayList<Map<String, Any?>>()
-        for (i in genderList.indices) {
-            item = genderList[i]
-            val listItemMap: MutableMap<String, Any?> = HashMap()
-            listItemMap["code"] = item.code
-            listItemMap["codename"] = item.codename
-            itemDataList.add(listItemMap)
-        }
-        val mBuilder = AlertDialog.Builder(this@RegisterPagesNewFamilyActivity)
-        val mView = layoutInflater.inflate(R.layout.dialog_gender_valuelist, null)
-        val genderAdapter = SimpleAdapter(this, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
-        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
-        txtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                genderAdapter.filter.filter(s)
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        })
-        val list = mView.findViewById<View>(R.id.lstValue) as ListView
-        list.adapter = genderAdapter
-        mBuilder.setView(mView)
-        val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
-            val clickItemObj = adapterView.adapter.getItem(index)
-            val clickItemMap = clickItemObj as HashMap<*, *>
-            txtGender!!.tag = clickItemMap["code"]
-            txtGender!!.text = clickItemMap["codename"] as String?
-            show.dismiss()
-        }
-        var btnClose = mView.findViewById<View>(R.id.btnClose)
-        btnClose!!.setOnClickListener { show.dismiss() }
     }
 
     fun StoreData() {
@@ -285,8 +172,8 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
                 "",
                 "",
                 "",
-                ArrayList<Member>(),
-                Answer("", "", ""))
+                ArrayList(),
+                HashMap())
 
         with(family) {
             community = selectCommunity.community_id
@@ -314,6 +201,7 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
                 val photoFile: File? = try {
                     createImageFile()
                 } catch (ex: IOException) {
+                    // Error occurred while creating the File
                     // Error occurred while creating the File
 
                     null

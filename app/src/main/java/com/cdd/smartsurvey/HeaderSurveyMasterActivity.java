@@ -63,7 +63,7 @@ public class HeaderSurveyMasterActivity extends AppCompatActivity {
         imgIcon = (ImageView) findViewById(R.id.imgIcon);
         HeaderValue = (TextView) findViewById(R.id.txtHeaderValue);
         MetricValue = (TextView) findViewById(R.id.txtMetricValue);
-        LinearMaster = (LinearLayout) findViewById(R.id.linearmaster);
+        LinearMaster = (LinearLayout) findViewById(R.id.linearBody);
 
         imgIcon.setImageBitmap(ImageUtil.convert(imgicon));
         HeaderValue.setText(headervalue);

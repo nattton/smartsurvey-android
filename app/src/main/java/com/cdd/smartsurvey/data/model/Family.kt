@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class UploadList(
+data class WaitingList(
         var familyList: ArrayList<Family>
 ) : Parcelable
 
@@ -28,7 +28,7 @@ data class Family(
         var hlive: String,
         var hjob: String,
         var hmember: ArrayList<Member>,
-        var answer: Answer
+        var answer: HashMap<String, String>
 ) : Parcelable
 
 @Parcelize
@@ -44,11 +44,4 @@ data class Member(
         var religion: String,
         var relation: String,
         var health: String
-) : Parcelable
-
-@Parcelize
-data class Answer(
-        var survey1: String,
-        var survey2: String,
-        var survey3: String
 ) : Parcelable
