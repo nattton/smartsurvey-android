@@ -91,9 +91,8 @@ class StartSurveyAcitivity : AppCompatActivity() {
             buttonData!!.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20f)
             buttonData!!.setBackgroundResource(R.drawable.custom_menubutton)
             buttonData!!.id = item!!.id
-            sc = item!!.id.toString() + "SMARTSURVEY" + item!!.groupImage + "SMARTSURVEY" + item!!.groupName + "SMARTSURVEY" + item!!.groupMetric
-            buttonData!!.contentDescription = sc
-            buttonData!!.setOnClickListener { v -> openHeaderSurvey(v.contentDescription) }
+            buttonData!!.tag = item
+            buttonData!!.setOnClickListener { v -> openHeaderSurvey(v.tag as SurveyGroup) }
             imageViewProgress = ImageView(this)
             val imageViewProgress_params = FrameLayout.LayoutParams((40 * Resources.getSystem().displayMetrics.density).toInt(),
                     FrameLayout.LayoutParams.MATCH_PARENT)
@@ -147,14 +146,12 @@ class StartSurveyAcitivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openHeaderSurvey(sc: CharSequence) {
-        val scdata = sc.toString()
-        val scarray = scdata.split("SMARTSURVEY").toTypedArray()
+    fun openHeaderSurvey(sc: SurveyGroup) {
         val intent = Intent(this, HeaderSurveyMasterActivity::class.java)
-        intent.putExtra("taggroup", scarray[0])
-        intent.putExtra("imgicon", scarray[1])
-        intent.putExtra("headervalue", scarray[2])
-        intent.putExtra("metricvalue", scarray[3])
+        intent.putExtra("taggroup", sc.id.toString())
+        intent.putExtra("imgicon", sc.groupImage)
+        intent.putExtra("headervalue", sc.groupName)
+        intent.putExtra("metricvalue", sc.groupMetric)
         startActivity(intent)
     }
 }

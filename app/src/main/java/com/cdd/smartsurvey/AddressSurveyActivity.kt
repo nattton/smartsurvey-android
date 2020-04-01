@@ -105,7 +105,7 @@ class AddressSurveyActivity : AppCompatActivity() {
         list.adapter = provinceAdapter
         mBuilder.setView(mView)
         val show = mBuilder.show()
-        list.onItemClickListener = OnItemClickListener { adapterView, view, index, l ->
+        list.onItemClickListener = OnItemClickListener { adapterView, _, index, _ ->
             val clickItemObj = adapterView.adapter.getItem(index)
             val clickItemMap = clickItemObj as HashMap<*, *>
             txtProvince!!.tag = clickItemMap["code"]
