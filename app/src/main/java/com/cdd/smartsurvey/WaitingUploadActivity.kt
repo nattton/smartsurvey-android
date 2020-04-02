@@ -35,8 +35,6 @@ class WaitingUploadActivity : AppCompatActivity() {
         if (waitingJson != "") {
             waitingList = Gson().fromJson(waitingJson, WaitingList::class.java)
         }
-        val dividerItemDecoration = DividerItemDecoration(applicationContext, requestedOrientation)
-        listViewWaiting.addItemDecoration(dividerItemDecoration)
         listViewWaiting.layoutManager = LinearLayoutManager(this)
         listViewWaiting.setHasFixedSize(true)
         listViewWaiting.adapter = WaitingRecyclerViewAdapter(waitingList.familyList) { view, position, familyItem ->

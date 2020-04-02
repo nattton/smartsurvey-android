@@ -11,40 +11,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.cdd.smartsurvey.sqlite.model.SurveyGroup
+import com.cdd.smartsurvey.sqlite.model.SurveyMetric
 import com.cdd.smartsurvey.utils.ImageUtil
 import kotlinx.android.synthetic.main.activity_survey_sub_master.*
+import kotlinx.android.synthetic.main.survey1.*
 
 class SurveySubMasterActivity : AppCompatActivity() {
-    var SurveyGroupID: String? = null
-    var MetricNo: String? = null
-    var HeaderName: String? = null
-    var HeaderImage: String? = null
-    var DetailData: String? = null
-    var btnBack: Button? = null
-    var btnDetail: Button? = null
+    lateinit var surveyGroup: SurveyGroup
+    lateinit var surveyMetric: SurveyMetric
     var LinearDetail: LinearLayout? = null
-    var imgIcon: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_sub_master)
-        val intent = intent
-        SurveyGroupID = intent.getStringExtra(EXTRA_SurveyGroupID)
-        MetricNo = intent.getStringExtra(EXTRA_MetricNo)
-        HeaderName = intent.getStringExtra(EXTRA_MetricDisplay)
-        HeaderImage = intent.getStringExtra(EXTRA_Image)
-        DetailData = intent.getStringExtra(EXTRA_MetricDesc)
-        imgIcon = findViewById<View>(R.id.imgIcon) as ImageView
-        btnBack = findViewById<View>(R.id.btnBack) as Button
-        btnBack!!.setOnClickListener { onBackPressed() }
-        btnDetail = findViewById<View>(R.id.btnDetail) as Button
-        btnDetail!!.setOnClickListener { ShowDetail(HeaderName, DetailData) }
-        imgIcon!!.setImageBitmap(ImageUtil.convert(HeaderImage))
+        surveyGroup = intent.getParcelableExtra(GlobalValue.EXTRA_SURVEY_GROUP)
+        surveyMetric = intent.getParcelableExtra(GlobalValue.EXTRA_SURVEY_METRIC)
+        btnBack.setOnClickListener { onBackPressed() }
+        btnDetail.setOnClickListener { ShowDetail(surveyGroup.groupName, surveyMetric.metric_description) }
+        imgIcon.setImageBitmap(ImageUtil.convert(surveyGroup.groupImage))
         selectQuestion()
     }
 
     private fun selectQuestion() {
-        linearheader.addView(setHeaderFrameLayout(HeaderName))
-        when (SurveyGroupID) {
+        txtHeader?.text = surveyMetric.metric_display
+        val MetricNo = surveyMetric.metric_no
+        when (surveyGroup.id.toString()) {
             "1" -> if (MetricNo == "1") linearBody.addView(setSurvey1()) else if (MetricNo == "2") linearBody.addView(setSurvey2()) else if (MetricNo == "3") linearBody.addView(setSurvey3()) else if (MetricNo == "4") linearBody.addView(setSurvey4()) else if (MetricNo == "5") linearBody.addView(setSurvey5()) else if (MetricNo == "6") linearBody.addView(setSurvey6()) else if (MetricNo == "7") linearBody.addView(setSurvey7())
             "2" -> if (MetricNo == "1") linearBody.addView(setSurvey8()) else if (MetricNo == "2") linearBody.addView(setSurvey9()) else if (MetricNo == "3") linearBody.addView(setSurvey10()) else if (MetricNo == "4") linearBody.addView(setSurvey11()) else if (MetricNo == "5") linearBody.addView(setSurvey12()) else if (MetricNo == "6") linearBody.addView(setSurvey13()) else if (MetricNo == "7") linearBody.addView(setSurvey14())
             "3" -> if (MetricNo == "1") linearBody.addView(setSurvey15()) else if (MetricNo == "2") linearBody.addView(setSurvey16()) else if (MetricNo == "3") linearBody.addView(setSurvey10()) else if (MetricNo == "4") linearBody.addView(setSurvey11()) else if (MetricNo == "5") linearBody.addView(setSurvey12()) else if (MetricNo == "6") linearBody.addView(setSurvey13()) else if (MetricNo == "7") linearBody.addView(setSurvey14()) else if (MetricNo == "8") linearBody.addView(setSurvey15()) else if (MetricNo == "9") linearBody.addView(setSurvey16()) else if (MetricNo == "10") linearBody.addView(setSurvey17()) else if (MetricNo == "11") linearBody.addView(setSurvey18()) else if (MetricNo == "12") linearBody.addView(setSurvey19())
@@ -54,7 +45,6 @@ class SurveySubMasterActivity : AppCompatActivity() {
     }
 
     fun setSurvey1(): View {
-        linearheader.addView(setHeaderFrameLayout(""))
         val viewSurvey = layoutInflater.inflate(R.layout.survey1, null)
         val radioGroup1 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup1)
         val question2 = viewSurvey.findViewById<View>(R.id.question2)
@@ -241,40 +231,26 @@ class SurveySubMasterActivity : AppCompatActivity() {
         return layoutInflater.inflate(R.layout.survey31, null)
     }
 
-    fun setHeaderTextView(Value: String?): TextView {
-        val TextMaster = TextView(applicationContext)
-        val paramsText = ConstraintLayout.LayoutParams(
-                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                ConstraintLayout.LayoutParams.WRAP_CONTENT
-        )
-        TextMaster.layoutParams = paramsText
-        TextMaster.typeface = ResourcesCompat.getFont(applicationContext, R.font.thsarabun_bold)
-        TextMaster.gravity = Gravity.CENTER_VERTICAL
-        TextMaster.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
-        TextMaster.text = Value
-        TextMaster.textSize = 22f
-        val params = TextMaster.layoutParams as MarginLayoutParams
-        params.setMargins((20 * Resources.getSystem().displayMetrics.density).toInt(),
-                (20 * Resources.getSystem().displayMetrics.density).toInt(),
-                (20 * Resources.getSystem().displayMetrics.density).toInt(), 0)
-        TextMaster.setOnClickListener { onBackPressed() }
-        return TextMaster
-    }
+//    fun setHeaderTextView(Value: String?): TextView {
+//        val TextMaster = TextView(applicationContext)
+//        val paramsText = ConstraintLayout.LayoutParams(
+//                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+//                ConstraintLayout.LayoutParams.WRAP_CONTENT
+//        )
+//        TextMaster.layoutParams = paramsText
+//        TextMaster.typeface = ResourcesCompat.getFont(applicationContext, R.font.thsarabun_bold)
+//        TextMaster.gravity = Gravity.CENTER_VERTICAL
+//        TextMaster.setTextColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
+//        TextMaster.text = Value
+//        TextMaster.textSize = 22f
+//        val params = TextMaster.layoutParams as MarginLayoutParams
+//        params.setMargins((20 * Resources.getSystem().displayMetrics.density).toInt(),
+//                (20 * Resources.getSystem().displayMetrics.density).toInt(),
+//                (20 * Resources.getSystem().displayMetrics.density).toInt(), 0)
+//        TextMaster.setOnClickListener { onBackPressed() }
+//        return TextMaster
+//    }
 
-    fun setHeaderFrameLayout(Value: String?): FrameLayout {
-        val FrameMaster = FrameLayout(applicationContext)
-        val lp = FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
-        )
-        FrameMaster.layoutParams = lp
-        FrameMaster.background = resources.getDrawable(R.drawable.bordergroup)
-        FrameMaster.addView(setHeaderTextView(Value))
-        val params = FrameMaster.layoutParams as MarginLayoutParams
-        params.setMargins(10, 0, 10, 0)
-        FrameMaster.setOnClickListener { onBackPressed() }
-        return FrameMaster
-    }
 
     fun setQuestionFrameLayout(Value: String?, choic: String?): FrameLayout {
         val FrameMaster = FrameLayout(applicationContext)
@@ -284,7 +260,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         )
         FrameMaster.layoutParams = lp
         FrameMaster.background = resources.getDrawable(R.drawable.bordergroup)
-        FrameMaster.addView(setHeaderTextView(Value))
+//        FrameMaster.addView(setHeaderTextView(Value))
         val params = FrameMaster.layoutParams as MarginLayoutParams
         params.setMargins(10, 0, 10, 0)
         FrameMaster.setOnClickListener { onBackPressed() }
@@ -304,13 +280,5 @@ class SurveySubMasterActivity : AppCompatActivity() {
         val show = mBuilder.show()
         LinearDetail = mView.findViewById<View>(R.id.lienarDetail) as LinearLayout
         LinearDetail!!.setOnClickListener { show.dismiss() }
-    }
-
-    companion object {
-        const val EXTRA_SurveyGroupID = "EXTRA_SurveyGroupID"
-        const val EXTRA_MetricNo = "EXTRA_MetricNo"
-        const val EXTRA_MetricDisplay = "EXTRA_MetricDisplay"
-        const val EXTRA_Image = "EXTRA_Image"
-        const val EXTRA_MetricDesc = "EXTRA_MetricDesc"
     }
 }

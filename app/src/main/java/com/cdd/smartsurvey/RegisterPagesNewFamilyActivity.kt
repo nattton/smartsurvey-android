@@ -155,25 +155,7 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
     fun StoreData() {
         val selectCommunity: Community = intent.getParcelableExtra(GlobalValue.EXTRA_COMMUNITY)
 
-        var family = Family("",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ArrayList(),
-                HashMap())
+        var family = Family()
 
         with(family) {
             community = selectCommunity.community_id

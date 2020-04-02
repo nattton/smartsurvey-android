@@ -147,11 +147,9 @@ class StartSurveyAcitivity : AppCompatActivity() {
     }
 
     fun openHeaderSurvey(sc: SurveyGroup) {
-        val intent = Intent(this, HeaderSurveyMasterActivity::class.java)
-        intent.putExtra("taggroup", sc.id.toString())
-        intent.putExtra("imgicon", sc.groupImage)
-        intent.putExtra("headervalue", sc.groupName)
-        intent.putExtra("metricvalue", sc.groupMetric)
+        val intent = Intent(this, HeaderSurveyMasterActivity::class.java).apply {
+            putExtra(GlobalValue.EXTRA_SURVEY_GROUP, sc)
+        }
         startActivity(intent)
     }
 }

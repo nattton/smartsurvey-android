@@ -38,7 +38,6 @@ class MemberSurveyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_survey)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-//        family = intent.getParcelableExtra(GlobalValue.EXTRA_FAMILY)
         familyIndex = intent.getIntExtra(GlobalValue.EXTRA_FAMILY_INDEX, 0)
         LoadData()
 
@@ -46,8 +45,6 @@ class MemberSurveyActivity : AppCompatActivity() {
         btnDetail.setOnClickListener { ShowDetailMenu() }
         btnSave.setOnClickListener { SendData() }
         btnAdd.setOnClickListener { AddMember() }
-        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        params.setMargins((20 * Resources.getSystem().displayMetrics.density).toInt(), 0, 0, 0)
 
         adapter = MemberListAdapter(applicationContext, family.hmember)
         listViewMember.adapter = adapter
@@ -87,8 +84,7 @@ class MemberSurveyActivity : AppCompatActivity() {
 
         mView.findViewById<Button>(R.id.btnClose).setOnClickListener { show.dismiss() }
         mView.findViewById<Button>(R.id.btnSave).setOnClickListener {
-            var member = Member("", "", "", "",
-                    "", "", "", "", "", "", "")
+            var member = Member()
             member.prefix = txtPrefix.tag.toString()
             member.firstname = txtName.text.toString()
             member.lastname = txtSurname.text.toString()

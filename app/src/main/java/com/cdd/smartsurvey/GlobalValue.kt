@@ -9,6 +9,8 @@ object GlobalValue {
     val EXTRA_COMMUNITY = "EXTRA_COMMUNITY"
     val EXTRA_FAMILY = "EXTRA_FAMILY"
     val EXTRA_FAMILY_INDEX = "EXTRA_FAMILY_INDEX"
+    val EXTRA_SURVEY_GROUP = "EXTRA_SURVEY_GROUP"
+    val EXTRA_SURVEY_METRIC = "EXTRA_SURVEY_METRIC"
 
     @JvmField
     var dbUrl = "http://27.254.121.113/SmartSurveyAPI_war_exploded/function/"

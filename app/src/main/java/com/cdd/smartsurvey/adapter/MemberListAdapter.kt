@@ -39,7 +39,7 @@ class MemberListAdapter(private val context: Context,
         }
 
         val member = getItem(position)
-        holder.txtNo.text = "${position + 1}"
+        holder.txtNo.text = "${position + 1}."
         holder.txtName.text = "${member.firstname} ${member.lastname}"
         holder.txtCardID.text = member.idcard
 
