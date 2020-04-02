@@ -52,7 +52,6 @@ class MemberSurveyActivity : AppCompatActivity() {
 
     fun SendData() {
         val intent = Intent(this, StartSurveyAcitivity::class.java).apply {
-            putExtra(GlobalValue.EXTRA_FAMILY, family)
             putExtra(GlobalValue.EXTRA_FAMILY_INDEX, familyIndex)
         }
         startActivity(intent)
@@ -109,7 +108,7 @@ class MemberSurveyActivity : AppCompatActivity() {
     }
 
     fun SaveData() {
-        var waitingList = WaitingList(ArrayList())
+        var waitingList = WaitingList()
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         var waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
         if (waitingJson != "") {

@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class WaitingList(
-        var familyList: ArrayList<Family>
+        var familyList: ArrayList<Family> = ArrayList()
 ) : Parcelable
 
 @Parcelize

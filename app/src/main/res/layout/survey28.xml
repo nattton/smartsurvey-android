@@ -4,11 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/txtHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Header"
+            android:textColor="@color/colorPrimary" />
+    </FrameLayout>
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bordergroup"
+        android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -41,7 +56,7 @@
         android:id="@+id/question2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bordergroup"
+        android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -74,7 +89,7 @@
         android:id="@+id/question3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bordergroup"
+        android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
 
