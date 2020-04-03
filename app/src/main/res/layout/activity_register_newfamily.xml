@@ -99,6 +99,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:textSize="20dp"
                     android:hint="คำนำหน้าชื่อ"
+                    android:tag=""
                     android:padding="20dp" />
 
                 <EditText
@@ -160,6 +161,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:textSize="20dp"
                     android:hint="เพศ"
+                    android:tag=""
                     android:padding="20dp" />
 
                 <TextView

@@ -34,19 +34,7 @@ class FirstPagesActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         btnNewFamily.setOnClickListener {
-            val community = Community("",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    0)
+            val community = Community()
             openNewFamily(community)
         }
         loadCommunityList()

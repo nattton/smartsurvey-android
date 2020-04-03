@@ -20,14 +20,15 @@
             android:text="Header"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
+
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:padding="20dp"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -45,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="0"
-                android:text="มี....คน" />
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
@@ -60,10 +61,10 @@
         android:id="@+id/question2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:padding="20dp"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,13 +81,15 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ได้กิน...คน" />
+                android:tag="1"
+                android:text="ไม่ได้กิน ... คน" />
         </RadioGroup>
     </LinearLayout>
 
@@ -94,10 +97,10 @@
         android:id="@+id/question3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:padding="20dp"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -114,12 +117,14 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="มี...คน" />
+                android:tag="0"
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="1"
                 android:text="ไม่มี" />
         </RadioGroup>
     </LinearLayout>
@@ -128,10 +133,10 @@
         android:id="@+id/question4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:padding="20dp"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -148,13 +153,15 @@
                 android:id="@+id/radio4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio4_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ได้กิน...คน" />
+                android:tag="1"
+                android:text="ไม่ได้กิน ... คน" />
         </RadioGroup>
     </LinearLayout>
 

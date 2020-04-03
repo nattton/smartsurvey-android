@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:text="ชุมชน"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/thsarabun_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textPercent"
         app:layout_constraintStart_toStartOf="parent"

@@ -14,7 +14,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -31,8 +30,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     companion object {
@@ -119,8 +116,8 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
             }
         })
         val formUtil = FormUtils(this@RegisterPagesNewFamilyActivity, layoutInflater)
-        txtPrefix.setOnClickListener { formUtil.ShowAlertDialogWithPrefix_Listview(txtPrefix, txtGender) }
-        txtGender.setOnClickListener { formUtil.ShowAlertDialogWithGender_Listview(txtGender) }
+        txtPrefix.setOnClickListener { formUtil.showAlertDialogWithPrefix(txtPrefix, txtGender) }
+        txtGender.setOnClickListener { formUtil.showAlertDialogWithGender(txtGender) }
         btnBack.setOnClickListener { onBackPressed() }
     }
 

@@ -10,13 +10,27 @@ import androidx.appcompat.app.AlertDialog
 import com.cdd.smartsurvey.R
 import com.cdd.smartsurvey.sqlite.DatabaseHelper
 import com.cdd.smartsurvey.sqlite.model.*
-import com.layernet.thaidatetimepicker.date.DatePickerDialog
 import java.util.*
 import kotlin.collections.ArrayList
 
 class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
 
-    fun ShowAlertDialogWithPrefix_Listview(txtPrefix: TextView, txtGender: TextView) {
+    fun showDialogInputNumber(question: String, hint: String, inputListener: (String) -> Unit) {
+        val mBuilder = AlertDialog.Builder(context)
+        val mView = layoutInflater.inflate(R.layout.dialog_input_number, null)
+        mView.findViewById<TextView>(R.id.textQuestion).text = question
+        val editTextInput = mView.findViewById<EditText>(R.id.editTextInput)
+        editTextInput.hint = hint
+        val btnOK = mView.findViewById<Button>(R.id.btnOK)
+        mBuilder.setView(mView)
+        val show = mBuilder.show()
+        btnOK.setOnClickListener {
+            show.dismiss()
+            inputListener(editTextInput.text.toString())
+        }
+    }
+
+    fun showAlertDialogWithPrefix(txtPrefix: TextView, txtGender: TextView) {
         val txtSearch: EditText
         val db: DatabaseHelper
         val prefixList: MutableList<Prefix> = ArrayList()
@@ -65,7 +79,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         btnClose.setOnClickListener { show.dismiss() }
     }
 
-    fun ShowAlertDialogWithGender_Listview(txtGender: TextView) {
+    fun showAlertDialogWithGender(txtGender: TextView) {
         val txtSearch: EditText
         val genderList: MutableList<Gender> = ArrayList()
         val db: DatabaseHelper
@@ -107,7 +121,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         btnClose!!.setOnClickListener { show.dismiss() }
     }
 
-    fun ShowAlertDialogWithProvince_Listview(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
+    fun showAlertDialogWithProvince(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val provinceList: MutableList<Province> = java.util.ArrayList()
         val db: DatabaseHelper
@@ -155,7 +169,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         txtCommunity.text = ""
     }
 
-    fun ShowAlertDialogWithAmphur_Listview(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
+    fun showAlertDialogWithAmphur(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val amphurList: MutableList<Amphur> = java.util.ArrayList()
         val db: DatabaseHelper
@@ -201,7 +215,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         txtCommunity.text = ""
     }
 
-    fun ShowAlertDialogWithTumbon_Listview(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
+    fun showAlertDialogWithTumbon(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val tumbonList: MutableList<Tumbon> = java.util.ArrayList()
         val db: DatabaseHelper
@@ -245,7 +259,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         txtCommunity.text = ""
     }
 
-    fun ShowAlertDialogWithCommunity_Listview(txtTumbon: TextView, txtCommunity: TextView) {
+    fun showAlertDialogWithCommunity(txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val communityList: MutableList<Community> = java.util.ArrayList()
         val db: DatabaseHelper

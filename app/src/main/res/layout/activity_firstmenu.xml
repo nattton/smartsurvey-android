@@ -165,17 +165,33 @@
 
     <Button
         android:id="@+id/btnECard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="116dp"
+        android:layout_height="34dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/custom_menubutton"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button_positive"
         android:fontFamily="@font/thsarabun_bold"
         android:text="บัตรประจำตัว พช."
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="100dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button_negative"
+        android:fontFamily="@font/thsarabun_bold"
+        android:text="ออกจากระบบ"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintStart_toEndOf="@+id/btnECard"
         app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
 

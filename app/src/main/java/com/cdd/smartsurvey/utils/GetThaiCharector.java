@@ -22,7 +22,7 @@ public class GetThaiCharector {
 
     public static Boolean checkThaiNumber(CharSequence arg) throws UnsupportedEncodingException {
         Boolean returnFont;
-        Pattern mPattern = Pattern.compile("^[ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ูฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ1-9!-/:-@\\[-`{-~\\s]+$");
+        Pattern mPattern = Pattern.compile("^[ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ูฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ0-9!-/:-@\\[-`{-~\\s]+$");
         if (mPattern.matcher(arg).matches())
         {
             returnFont = true;

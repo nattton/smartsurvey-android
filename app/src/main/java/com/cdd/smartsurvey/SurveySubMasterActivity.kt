@@ -1,27 +1,20 @@
 package com.cdd.smartsurvey
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup.MarginLayoutParams
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.cdd.smartsurvey.data.model.Family
 import com.cdd.smartsurvey.data.model.WaitingList
 import com.cdd.smartsurvey.sqlite.model.SurveyGroup
 import com.cdd.smartsurvey.sqlite.model.SurveyMetric
 import com.cdd.smartsurvey.sqlite.model.SurveyMetricList
+import com.cdd.smartsurvey.utils.FormUtils
 import com.cdd.smartsurvey.utils.ImageUtil
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_survey_sub_master.*
-import kotlinx.android.synthetic.main.survey1.*
-import java.util.ArrayList
 
 class SurveySubMasterActivity : AppCompatActivity() {
     lateinit var surveyGroup: SurveyGroup
@@ -31,6 +24,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
     lateinit var family: Family
     var familyIndex = 0
     var LinearDetail: LinearLayout? = null
+    lateinit var formUtil: FormUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_sub_master)
@@ -39,6 +33,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         surveyMetricIndex = intent.getIntExtra(GlobalValue.EXTRA_SURVEY_METRIC_INDEX, 0)
         familyIndex = intent.getIntExtra(GlobalValue.EXTRA_FAMILY_INDEX, 0)
         loadFamily(familyIndex)
+        formUtil = FormUtils(this@SurveySubMasterActivity, layoutInflater)
 
         btnBack.setOnClickListener { onBackPressed() }
         btnDetail.setOnClickListener { ShowDetail(surveyGroup.groupName, surveyMetric.metric_description) }
@@ -117,7 +112,6 @@ class SurveySubMasterActivity : AppCompatActivity() {
             else if (MetricNo == "7") setSurvey30()
             else if (MetricNo == "8") setSurvey31()
         }
-
         scrollViewBody.pageScroll(0)
     }
 
@@ -136,10 +130,37 @@ class SurveySubMasterActivity : AppCompatActivity() {
         val radioGroup2 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup2)
         val btnNext = viewSurvey.findViewById<Button>(R.id.btnNext)
 
-        findViewInBody(R.id.btnNext).setOnClickListener {
-            family.answer["1111"] = findViewInBody(radioGroup1.checkedRadioButtonId).tag.toString()
-            family.answer["1112"] = findViewInBody(radioGroup2.checkedRadioButtonId).tag.toString()
+        radioGroup1.setOnCheckedChangeListener { _, checkedId ->
+            val questionNo = "1111"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio1_1 -> {
+                    formUtil.showDialogInputNumber("มีจำนวน", " ... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
             SaveData()
+        }
+
+        radioGroup2.setOnCheckedChangeListener { _, checkedId ->
+            val questionNo = "1112"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio2_2 -> {
+                    formUtil.showDialogInputNumber("น้อยกว่า", " ... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "น้อยกว่า $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        findViewInBody(R.id.btnNext).setOnClickListener {
             surveyMetricIndex = 1
             selectQuestion()
         }
@@ -151,19 +172,75 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.addView(viewSurvey)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
         val radioGroup1 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup1)
-        val question2 = viewSurvey.findViewById<View>(R.id.question2)
         val radioGroup2 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup2)
-        val question3 = viewSurvey.findViewById<View>(R.id.question3)
-        val radioGroup3 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup2)
-        val question4 = viewSurvey.findViewById<View>(R.id.question4)
+        val radioGroup3 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup3)
         val radioGroup4 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup4)
+
+        radioGroup1.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "1121"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio1_1 -> {
+                    formUtil.showDialogInputNumber("มีจำนวน", " ... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        radioGroup2.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "1122"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio2_2 -> {
+                    formUtil.showDialogInputNumber("ไม่ได้กิน", " ... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้กิน $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        radioGroup3.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "1123"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio3_1 -> {
+                    formUtil.showDialogInputNumber("มีจำนวน", " ... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        radioGroup4.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "1124"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio4_2 -> {
+                    formUtil.showDialogInputNumber("ไม่ได้กิน", " ... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้กิน $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 0
             selectQuestion()
         }
         findViewInBody(R.id.btnNext).setOnClickListener {
-            family.answer["1121"] = findViewInBody(radioGroup1.checkedRadioButtonId).tag.toString()
             surveyMetricIndex = 2
             selectQuestion()
         }
@@ -175,9 +252,38 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.addView(viewSurvey)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
         val radioGroup1 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup1)
-        val question2 = viewSurvey.findViewById<View>(R.id.question2)
         val radioGroup2 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup2)
-        val question3 = viewSurvey.findViewById<View>(R.id.question3)
+
+        radioGroup1.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "1131"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio1_1 -> {
+                    formUtil.showDialogInputNumber("จำนวน", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        radioGroup2.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "1132"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio2_2 -> {
+                    formUtil.showDialogInputNumber("จำนวน", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 1
             selectQuestion()

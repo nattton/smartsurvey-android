@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -74,10 +72,10 @@ class MemberSurveyActivity : AppCompatActivity() {
         val txtBirthDate = mView.findViewById<TextView>(R.id.txtBirthDate)
 
         txtPrefix.setOnClickListener {
-            formUltis.ShowAlertDialogWithPrefix_Listview(txtPrefix, txtGender)
+            formUltis.showAlertDialogWithPrefix(txtPrefix, txtGender)
         }
         txtGender.setOnClickListener {
-            formUltis.ShowAlertDialogWithGender_Listview(txtGender)
+            formUltis.showAlertDialogWithGender(txtGender)
         }
 
 

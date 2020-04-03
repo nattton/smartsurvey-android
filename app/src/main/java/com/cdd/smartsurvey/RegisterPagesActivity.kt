@@ -16,19 +16,12 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
-import android.widget.*
-import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.Volley
 import com.cdd.smartsurvey.http.model.RegisterResponse
-import com.cdd.smartsurvey.sqlite.DatabaseHelper
-import com.cdd.smartsurvey.sqlite.model.*
 import com.cdd.smartsurvey.utils.*
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.DataPart
@@ -171,19 +164,19 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         })
         val formUtils = FormUtils(this@RegisterPagesActivity, layoutInflater)
         txtPrefix.setOnClickListener {
-            formUtils.ShowAlertDialogWithPrefix_Listview(txtPrefix, txtGender)
+            formUtils.showAlertDialogWithPrefix(txtPrefix, txtGender)
         }
         txtGender.setOnClickListener {
-            formUtils.ShowAlertDialogWithGender_Listview(txtGender)
+            formUtils.showAlertDialogWithGender(txtGender)
         }
         txtProvince.setOnClickListener {
-            formUtils.ShowAlertDialogWithProvince_Listview(txtProvince, txtAmphur, txtTumbon, txtCommunity)
+            formUtils.showAlertDialogWithProvince(txtProvince, txtAmphur, txtTumbon, txtCommunity)
         }
         txtAmphur.setOnClickListener {
-            formUtils.ShowAlertDialogWithAmphur_Listview(txtProvince, txtAmphur, txtTumbon, txtCommunity)
+            formUtils.showAlertDialogWithAmphur(txtProvince, txtAmphur, txtTumbon, txtCommunity)
         }
-        txtTumbon.setOnClickListener { formUtils.ShowAlertDialogWithTumbon_Listview(txtProvince, txtAmphur, txtTumbon, txtCommunity) }
-        txtCommunity.setOnClickListener { formUtils.ShowAlertDialogWithCommunity_Listview(txtTumbon, txtCommunity) }
+        txtTumbon.setOnClickListener { formUtils.showAlertDialogWithTumbon(txtProvince, txtAmphur, txtTumbon, txtCommunity) }
+        txtCommunity.setOnClickListener { formUtils.showAlertDialogWithCommunity(txtTumbon, txtCommunity) }
         btnClose.setOnClickListener { onBackPressed() }
         txtBirthDate.setOnClickListener {
             val now = Calendar.getInstance()

@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="0"
-                android:text="มี....คน" />
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:tag="1"
                 android:text="ไม่มี (ข้ามไปข้อ 3)" />
+
         </RadioGroup>
     </LinearLayout>
 
@@ -89,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1"
-                android:text="น้อยกว่า.....คน" />
+                android:text="น้อยกว่า ... คน" />
         </RadioGroup>
     </LinearLayout>
 
