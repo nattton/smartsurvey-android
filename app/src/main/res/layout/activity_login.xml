@@ -56,7 +56,7 @@
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/thsarabun_bold"
         android:text="ABC"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -132,7 +132,7 @@
         android:fontFamily="@font/thsarabun_bold"
         android:text="ลืมรหัสผ่าน"
         android:textColor="@color/colorfontMaster"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent" />
 

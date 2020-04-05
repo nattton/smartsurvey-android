@@ -26,12 +26,6 @@ class StartSurveyAcitivity : AppCompatActivity() {
     lateinit var family: Family
     var familyIndex = 0
     var linearMain: LinearLayout? = null
-    var btnHealth: Button? = null
-    var btnEnvironment: Button? = null
-    var btnEducation: Button? = null
-    var btnPayment: Button? = null
-    var btnPopular: Button? = null
-    var btnOther: Button? = null
     var frameLayout: FrameLayout? = null
     var imageViewIcon: ImageView? = null
     var txtdisplay: TextView? = null
@@ -39,7 +33,6 @@ class StartSurveyAcitivity : AppCompatActivity() {
     var imageViewProgress: ImageView? = null
     var txtProgress: TextView? = null
     var item: SurveyGroup? = null
-    var sc: CharSequence? = null
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,7 +117,7 @@ class StartSurveyAcitivity : AppCompatActivity() {
             linearMain!!.addView(frameLayout)
         }
         btnBack.setOnClickListener { onBackPressed() }
-        btnSend.setOnClickListener { goWaitingUpload() }
+        btnSend.setOnClickListener { goSatisfactionSurvey() }
     }
 
     fun loadFamily(index: Int) {
@@ -138,24 +131,8 @@ class StartSurveyAcitivity : AppCompatActivity() {
         family = waitingList.familyList[index]
     }
 
-    fun goWaitingUpload() {
-
-//        var waitingList = WaitingList(ArrayList())
-//        val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-//        var waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
-//        if (waitingJson != "") {
-//            waitingList = Gson().fromJson(waitingJson, WaitingList::class.java)
-//        }
-//
-//        waitingList.familyList.add(family)
-//
-//        waitingJson = Gson().toJson(waitingList)
-//        sharedPref.edit().apply {
-//            putString(getString(R.string.pref_waiting_list), waitingJson)
-//            apply()
-//        }
-
-        val intent = Intent(this, WaitingUploadActivity::class.java)
+    fun goSatisfactionSurvey() {
+        val intent = Intent(this, SatisfactionSurveyActivity::class.java)
         startActivity(intent)
     }
 

@@ -89,7 +89,7 @@ class FirstPagesActivity : AppCompatActivity() {
     }
 
     fun openNewFamily(community: Community) {
-        val intent = Intent(this@FirstPagesActivity, AcceptSurveyActivity::class.java).apply {
+        val intent = Intent(this@FirstPagesActivity, RegisterPagesNewFamilyActivity::class.java).apply {
             putExtra(GlobalValue.EXTRA_COMMUNITY, community)
         }
         startActivity(intent)

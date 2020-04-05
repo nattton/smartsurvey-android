@@ -11,7 +11,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/txtHeader"
@@ -25,6 +25,7 @@
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -39,24 +40,28 @@
             android:id="@+id/check1_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="1"
             android:text="ได้ออกกำลังกาย หรือได้ออกแรง/ ออกกำลังทุกคน" />
 
         <CheckBox
             android:id="@+id/check1_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="2"
             android:text="ได้ออกกำลังกาย ... คน" />
 
         <CheckBox
             android:id="@+id/check1_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="3"
             android:text="ได้ออกแรง/ ออกกำลัง ... คน" />
 
         <CheckBox
             android:id="@+id/check1_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tag="4"
             android:text="ไม่ได้ออกกำลังกายหรือไม่ได้ออกแรง/ไม่ได้ ... คน" />
 
     </LinearLayout>
@@ -78,7 +83,7 @@
             android:fontFamily="@font/thsarabun_bold"
             android:text="ย้อนกลับ"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnNext"
@@ -92,6 +97,6 @@
             android:fontFamily="@font/thsarabun_bold"
             android:text="ถัดไป"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

@@ -16,7 +16,6 @@
         android:id="@+id/editTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:layout_margin="10dp"
         android:lines="1">
 

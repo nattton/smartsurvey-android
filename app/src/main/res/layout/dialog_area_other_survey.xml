@@ -47,7 +47,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:hint="ระบุข้อมูลอื่น ๆ"
                     android:padding="20dp"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -68,7 +68,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:hint="จำนวน"
                     android:padding="20dp"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtDialogVies"
@@ -78,7 +78,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:text="ไร่"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -99,7 +99,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:hint="จำนวน"
                     android:padding="20dp"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/txtDialogVies"
@@ -109,7 +109,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:text="ตารางวา"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -131,7 +131,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="บันทึก"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnClose"
@@ -143,7 +143,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="ออก"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

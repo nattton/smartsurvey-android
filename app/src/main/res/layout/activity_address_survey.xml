@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddressSurveyActivity">
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="fill_parent"
@@ -43,22 +44,24 @@
         <RadioButton
             android:id="@+id/rdHomeUse"
             android:layout_width="202dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/thsarabun_bold"
             android:text="มีเลขที่บ้าน"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/rdHomeNotUse"
             android:layout_width="202dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="05dp"
             android:fontFamily="@font/thsarabun_bold"
             android:text="ไม่มีเลขที่บ้าน"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </RadioGroup>
 
@@ -82,13 +85,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:background="@drawable/fieldinput"
+                android:digits="0123456789"
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="รหัสประจำบ้าน"
-                android:maxLength="13"
-                android:digits="0123456789"
                 android:inputType="phone"
+                android:maxLength="13"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/txtAddress"
@@ -99,7 +102,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="เลขที่"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/txtMoo"
@@ -110,7 +113,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="หมู่"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/txtSoi"
@@ -121,7 +124,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="ซอย"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/txtRoad"
@@ -132,7 +135,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="ถนน"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtProvince"
@@ -143,7 +146,8 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="จังหวัด"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:tag=""
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtAmphur"
@@ -154,7 +158,8 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="อำเภอ"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:tag=""
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtTumbon"
@@ -165,7 +170,8 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="ตำบล"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:tag=""
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtCommunity"
@@ -176,7 +182,8 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:hint="ชุมชน"
                 android:padding="20dp"
-                android:textSize="20dp" />
+                android:tag=""
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnSave"
@@ -188,7 +195,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="ถัดไป"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -238,8 +245,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView11"
         app:layout_constraintTop_toTopOf="@+id/imageView11"
@@ -250,16 +258,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/custom_menubutton"
         android:fontFamily="@font/thsarabun_bold"
         android:text="ย้อนกลับ"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView11"
         app:layout_constraintStart_toStartOf="@+id/imageView11"
         app:layout_constraintTop_toTopOf="@+id/imageView11" />
-
 
 
     <ImageView

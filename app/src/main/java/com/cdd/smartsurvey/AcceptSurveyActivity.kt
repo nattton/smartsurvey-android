@@ -19,14 +19,13 @@ class AcceptSurveyActivity : AppCompatActivity() {
         btnClear.setOnClickListener { signatureView!!.clearCanvas() }
         btnStartSurvey.setOnClickListener {
             GlobalValue.signature = ImageUtil.convert(signatureView!!.signatureBitmap)
-            openSmartSurvey()
+            openWaitingUpload()
         }
     }
 
-    fun openSmartSurvey() {
-        val community: Community = intent.getParcelableExtra(GlobalValue.EXTRA_COMMUNITY)
-        val intent = Intent(this, RegisterPagesNewFamilyActivity::class.java).apply {
-            putExtra(GlobalValue.EXTRA_COMMUNITY, community)
+    fun openWaitingUpload() {
+        val intent = Intent(this, WaitingUploadActivity::class.java).apply {
+
         }
         startActivity(intent)
     }

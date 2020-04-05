@@ -25,6 +25,7 @@
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -58,6 +59,7 @@
         android:id="@+id/question2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -91,6 +93,7 @@
         android:id="@+id/question3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -124,6 +127,7 @@
         android:id="@+id/question4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -170,7 +174,7 @@
             android:fontFamily="@font/thsarabun_bold"
             android:text="ย้อนกลับ"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnNext"
@@ -184,6 +188,6 @@
             android:fontFamily="@font/thsarabun_bold"
             android:text="ถัดไป"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

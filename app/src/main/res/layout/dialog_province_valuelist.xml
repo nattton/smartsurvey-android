@@ -31,7 +31,7 @@
             android:fontFamily="@font/thsarabun_bold"
             android:text="ออก"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editText"
@@ -45,7 +45,7 @@
             android:inputType="textPersonName"
             android:fontFamily="@font/thsarabun_bold"
             android:hint="ค้นหาชื่อจังหวัด"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/thsarabun_bold"
-                android:textSize="20dp">
+                android:textSize="20sp">
             </ListView>
 
         </FrameLayout>

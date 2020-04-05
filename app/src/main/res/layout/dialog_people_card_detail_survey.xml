@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/thsarabun_bold"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ค่าน้ำประปา" />
 
                 <CheckBox
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ค่าไฟฟ้า" />
 
                 <CheckBox
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ค่าเดินทางไปรักษาพยาบาล" />
 
                 <CheckBox
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ค่าเช่าบ้านผู้สูงอายุ" />
 
                 <CheckBox
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ค่าเบี้ยคนพิการ" />
 
                 <CheckBox
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="เงินพิเศษ" />
 
                 <CheckBox
@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="เงินช่วยเหลือผู้สูงอายุ" />
 
                 <CheckBox
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="เงินอุดหนุนเด็กแรกเกิด" />
 
             </LinearLayout>
@@ -142,7 +142,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="บันทึก"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnClose"
@@ -154,7 +154,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="ออก"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

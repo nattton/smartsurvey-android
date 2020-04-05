@@ -62,6 +62,7 @@
         <activity android:name=".FirstPagesActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".WaitingUploadActivity" />
+        <activity android:name=".SatisfactionSurveyActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

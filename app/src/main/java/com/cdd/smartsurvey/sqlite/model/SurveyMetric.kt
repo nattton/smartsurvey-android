@@ -4,11 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SurveyMetricList(
-        var list: List<SurveyMetric>
-) : Parcelable
-
-@Parcelize
 data class SurveyMetric(
         var id: Int = 0,
         var tbl_survey_group_masterid: String = "",

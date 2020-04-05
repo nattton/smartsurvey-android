@@ -23,6 +23,7 @@
 
     <LinearLayout
         android:id="@+id/question1"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -32,7 +33,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4.1 ถ้ากินอาหารบรรจุสำเร็จ ต้องมีเครื่องหมาย อย. เช่น เกลือเสริมไอโอดีน น้ำปลา น้ำส้มสายชู อาหารกระป๋อง นม อาหารกล่อง เป็นต้น"
+            android:text="11.1 มีสภาพในบ้านสะอาด ห้องนอนลมพัดผ่านสะดวก ไม่มีฝุ่นละอองและกลิ่นเหม็นอับชื้น ที่หลับนอน ข้าวของเครื่องใช้สะอาด มีการจัดเก็บเป็นระเบียบ ไม่รกรุงรัง"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -44,18 +45,19 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="มี" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่มี" />
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question2"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -65,7 +67,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.2 ถ้ากินเนื้อสัตว์ต้องทำให้สุกด้วยความร้อน"
+            android:text="11.2 มีที่ประกอบอาหารสะอาดเป็นระเบียบ มีตู้กับข้าวหรือฝาชี มีอุปกรณ์ล้างมือที่ใช้งานได้ดี (เช่น สบู่หรือน้ำยาล้างจาน) และมีการกำจัดไขมันก่อนล้าง"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -77,13 +79,13 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="มี" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่มี" />
         </RadioGroup>
     </LinearLayout>
 
@@ -91,6 +93,7 @@
         android:id="@+id/question3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -98,7 +101,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.3 ถ้ากินผักต้องเป็นผักปลอดสารพิษหรือได้ทำการแช่ด้วยน้ำผสมด่างทับทิมหรือน้ำยาล้างผักแล้วล้างด้วยน้ำสะอาดหลาย ๆ ครั้ง"
+            android:text="11.3 มีที่เก็บน้ำสะอาดเพื่อการอุปโภคบริโภคสภาพดี มีฝาปิด"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -110,18 +113,19 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="มี" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่มี" />
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question4"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -131,7 +135,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.4 ก่อนกินอาหารต้องล้างมือทุกครั้งและใช้ช้อนกลาง"
+            android:text="11.4 มีการกำจัดสัตว์ แมลงที่เป็นพาหะนำโรค ได้แก่ ยุงลาย หนู แมลงวัน แมลงสาบ ไม่พบแหล่งเพาะพันธุ์ และที่หลบซ่อนอาศัยภายในบ้านหรือบริเวณบ้าน"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -143,13 +147,189 @@
                 android:id="@+id/radio4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="มี" />
 
             <RadioButton
                 android:id="@+id/radio4_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่มี" />
         </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question5_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.5 มีการจัดการขยะ ดังนี้"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.5.1	มีอุปกรณ์ อาทิ ไม้กวาด ถังขยะ ถุงใส่ขยะ"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup5_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio5_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio5_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question5_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.5.2 มีการคัดแยกขยะออกเป็น 4 ประเภท (1.ของเสียอันตราย 2.ขยะรีไซเคิล 3.เศษอาหาร  4.ขยะอื่นๆ)"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup5_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio5_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio5_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question5_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.5.3 มีการกำจัดขยะแห้ง เช่น ส่งให้ อปท. กำจัด หรือการฝังหลุม"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup5_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio5_3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio5_3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question5_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.5.4 มีการกำจัดขยะเปียกที่ถูกวิธี เช่น ทำปุ๋ยชีวภาพ ทำน้ำหมัก EM เป็นต้น"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup5_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio5_4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio5_4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ย้อนกลับ"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ถัดไป"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

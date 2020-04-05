@@ -1,6 +1,8 @@
 package com.cdd.smartsurvey
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -8,9 +10,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cdd.smartsurvey.data.model.Family
 import com.cdd.smartsurvey.data.model.WaitingList
+import com.cdd.smartsurvey.sqlite.DatabaseHelper
 import com.cdd.smartsurvey.sqlite.model.SurveyGroup
 import com.cdd.smartsurvey.sqlite.model.SurveyMetric
-import com.cdd.smartsurvey.sqlite.model.SurveyMetricList
 import com.cdd.smartsurvey.utils.FormUtils
 import com.cdd.smartsurvey.utils.ImageUtil
 import com.google.gson.Gson
@@ -18,27 +20,40 @@ import kotlinx.android.synthetic.main.activity_survey_sub_master.*
 
 class SurveySubMasterActivity : AppCompatActivity() {
     lateinit var surveyGroup: SurveyGroup
-    lateinit var surveyMetricList: SurveyMetricList
+    lateinit var surveyMetricList: List<SurveyMetric>
     lateinit var surveyMetric: SurveyMetric
     var surveyMetricIndex: Int = 0
     lateinit var family: Family
     var familyIndex = 0
     var LinearDetail: LinearLayout? = null
     lateinit var formUtil: FormUtils
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_sub_master)
-        surveyGroup = intent.getParcelableExtra(GlobalValue.EXTRA_SURVEY_GROUP)
-        surveyMetricList = intent.getParcelableExtra(GlobalValue.EXTRA_SURVEY_METRIC_LIST)
+        val surveyGroupID = intent.getIntExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, 0)
         surveyMetricIndex = intent.getIntExtra(GlobalValue.EXTRA_SURVEY_METRIC_INDEX, 0)
         familyIndex = intent.getIntExtra(GlobalValue.EXTRA_FAMILY_INDEX, 0)
         loadFamily(familyIndex)
+        initView(surveyGroupID)
         formUtil = FormUtils(this@SurveySubMasterActivity, layoutInflater)
+        btnBack.setOnClickListener {
+            val resultIntent = Intent()
+            resultIntent.putExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, surveyGroupID)
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
 
-        btnBack.setOnClickListener { onBackPressed() }
-        btnDetail.setOnClickListener { ShowDetail(surveyGroup.groupName, surveyMetric.metric_description) }
-        imgIcon.setImageBitmap(ImageUtil.convert(surveyGroup.groupImage))
         selectQuestion()
+    }
+
+    fun initView(surveyGroupID: Int) {
+        val db = DatabaseHelper(this)
+        surveyGroup = db.getSurveyGroup(surveyGroupID)!!
+        surveyMetricList = db.getAllSurveyMetrics(surveyGroup.id.toString())
+        btnDetail.setOnClickListener { ShowDetail(surveyGroup.groupName, surveyMetric.metric_description) }
+        txtHeaderValue.text = surveyGroup.groupName
+        imgIcon.setImageBitmap(ImageUtil.convert(surveyGroup.groupImage))
     }
 
     fun loadFamily(index: Int) {
@@ -70,7 +85,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
     }
 
     private fun selectQuestion() {
-        surveyMetric = surveyMetricList.list[surveyMetricIndex]
+        surveyMetric = surveyMetricList[surveyMetricIndex]
         val MetricNo = surveyMetric.metric_no
         when (surveyGroup.id.toString()) {
             "1" -> if (MetricNo == "1") setSurvey1()
@@ -112,7 +127,6 @@ class SurveySubMasterActivity : AppCompatActivity() {
             else if (MetricNo == "7") setSurvey30()
             else if (MetricNo == "8") setSurvey31()
         }
-        scrollViewBody.pageScroll(0)
     }
 
     fun findViewInBody(id: Int): View {
@@ -123,6 +137,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey1, null)
         linearBody.addView(viewSurvey)
+        scrollViewBody.pageScroll(0)
         val txtHeader = viewSurvey.findViewById<TextView>(R.id.txtHeader)
         txtHeader.text = surveyMetric.metric_display
         val radioGroup1 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup1)
@@ -170,6 +185,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey2, null)
         linearBody.addView(viewSurvey)
+        scrollViewBody.pageScroll(0)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
         val radioGroup1 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup1)
         val radioGroup2 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup2)
@@ -250,6 +266,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey3, null)
         linearBody.addView(viewSurvey)
+        scrollViewBody.pageScroll(0)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
         val radioGroup1 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup1)
         val radioGroup2 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup2)
@@ -298,6 +315,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey4, null)
         linearBody.addView(viewSurvey)
+        scrollViewBody.pageScroll(0)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 2
@@ -329,11 +347,160 @@ class SurveySubMasterActivity : AppCompatActivity() {
         val viewSurvey = layoutInflater.inflate(R.layout.survey6, null)
         linearBody.addView(viewSurvey)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        val checkBox1_1 = findViewInBody(R.id.check1_1) as CheckBox
+        val checkBox1_2 = findViewInBody(R.id.check1_2) as CheckBox
+        val checkBox1_3 = findViewInBody(R.id.check1_3) as CheckBox
+        val checkBox1_4 = findViewInBody(R.id.check1_4) as CheckBox
+        val checkBox1_5 = findViewInBody(R.id.check1_5) as CheckBox
+        val checkBox2_1 = findViewInBody(R.id.check1_1) as CheckBox
+        val checkBox2_2 = findViewInBody(R.id.check1_2) as CheckBox
+        val checkBox2_3 = findViewInBody(R.id.check1_3) as CheckBox
+        val checkBox2_4 = findViewInBody(R.id.check1_4) as CheckBox
+        val checkBox2_5 = findViewInBody(R.id.check2_5) as CheckBox
+
+        val radioGroup4 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup4)
+        val radioGroup5 = viewSurvey.findViewById<RadioGroup>(R.id.radioGroup5)
+
+        checkBox1_1.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_1.text = "1. ประกันสุขภาพเอกชน $it คน"
+                    checkBox1_1.tag = "1,$it"
+                }
+            }
+        }
+        checkBox1_2.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_2.text = "2. สิทธิข้าราชการ $it คน"
+                    checkBox1_2.tag = "2,$it"
+                }
+            }
+        }
+        checkBox1_3.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_3.text = "3. สิทธิประกันสังคม $it คน"
+                    checkBox1_3.tag = "3,$it"
+                }
+            }
+        }
+        checkBox1_4.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_4.text = "4. สิทธิสำนักงานหลักประกันสุขภาพแห่งชาติ $it คน"
+                    checkBox1_4.tag = "4,$it"
+                }
+            }
+        }
+        checkBox1_5.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInput("อื่นๆ ... คน", ".......... , ... คน") {
+                    checkBox1_5.text = it
+                }
+            }
+        }
+
+        checkBox2_1.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox2_1.text = "1. สถานีอนามัย/โรงพยาบาลส่งเสริมสุขภาพตำบล $it คน"
+                    checkBox2_1.tag = "1,$it"
+                }
+            }
+        }
+        checkBox2_2.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox2_2.text = "2. โรงพยาบาลของรัฐ $it คน"
+                    checkBox2_2.tag = "2,$it"
+                }
+            }
+        }
+        checkBox2_3.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox2_3.text = "3. โรงพยาบาลเอกชน $it คน"
+                    checkBox2_3.tag = "3,$it"
+                }
+            }
+        }
+        checkBox2_4.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox2_4.text = "4. คลินิก $it คน"
+                    checkBox2_4.tag = "4,$it"
+                }
+            }
+        }
+        checkBox2_5.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInput("อื่นๆ", "..........") {
+                    checkBox1_5.text = "5,$it"
+                }
+            }
+        }
+
+        radioGroup4.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "64"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio4_2 -> {
+                    formUtil.showDialogInputNumber("ไม่ได้รับการตรวจ", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้รับการตรวจ $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        radioGroup5.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "65"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio5_2 -> {
+                    formUtil.showDialogInputNumber("ไม่ได้รับการตรวจ", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้รับการตรวจ $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 4
             selectQuestion()
         }
+
         findViewInBody(R.id.btnNext).setOnClickListener {
+            val listCheck1 = listOf(R.id.check1_1, R.id.check1_2, R.id.check1_3, R.id.check1_4, R.id.check1_5)
+            var ans1: ArrayList<String> = ArrayList()
+            for (checkItem in listCheck1) {
+                val checkBox = findViewInBody(checkItem) as CheckBox
+                if (checkBox.isChecked) ans1.add(checkBox.tag.toString())
+            }
+
+            family.answer["1161"] = ans1.joinToString("|")
+
+            if (checkBox1_5.isChecked) {
+                family.answer["1161"] = family.answer["1161"] + "," + checkBox1_5.text.toString()
+            }
+
+            val listCheck2 = listOf(R.id.check2_1, R.id.check2_2, R.id.check2_3, R.id.check2_4, R.id.check2_5)
+            var ans2: ArrayList<String> = ArrayList()
+            for (checkItem in listCheck2) {
+                val checkBox = findViewInBody(checkItem) as CheckBox
+                if (checkBox.isChecked) ans2.add(checkBox.tag.toString())
+            }
+            family.answer["1162"] = ans2.joinToString("#")
+            if (checkBox2_5.isChecked) {
+                family.answer["1162"] = family.answer["1162"] + "," + checkBox2_5.text.toString()
+            }
+
             surveyMetricIndex = 6
             selectQuestion()
         }
@@ -344,12 +511,44 @@ class SurveySubMasterActivity : AppCompatActivity() {
         val viewSurvey = layoutInflater.inflate(R.layout.survey7, null)
         linearBody.addView(viewSurvey)
         (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        val checkBox1_1 = findViewInBody(R.id.check1_1) as CheckBox
+        val checkBox1_2 = findViewInBody(R.id.check1_2) as CheckBox
+        val checkBox1_3 = findViewInBody(R.id.check1_3) as CheckBox
+        val checkBox1_4 = findViewInBody(R.id.check1_4) as CheckBox
+
+        checkBox1_2.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_2.text = "ได้ออกกำลังกาย $it คน"
+                    checkBox1_2.tag = "2,$it"
+                }
+            }
+        }
+        checkBox1_3.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_3.text = "ได้ออกแรง/ออกกำลัง $it คน"
+                    checkBox1_3.tag = "3,$it"
+                }
+            }
+        }
+        checkBox1_4.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInputNumber("จำนวน", " ... คน") {
+                    checkBox1_4.text = "ไม่ได้ออกกำลังกายหรือไม่ได้ออกแรง/ไม่ได้ออกกำลัง $it คน"
+                    checkBox1_4.tag = "4,$it"
+                }
+            }
+        }
+
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 5
             selectQuestion()
         }
         findViewInBody(R.id.btnNext).setOnClickListener {
-
+            initView(2)
+            surveyMetricIndex = 0
+            selectQuestion()
         }
     }
 
@@ -357,52 +556,232 @@ class SurveySubMasterActivity : AppCompatActivity() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey8, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            initView(1)
+            surveyMetricIndex = 6
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 1
+            selectQuestion()
+        }
     }
 
     fun setSurvey9() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey9, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            surveyMetricIndex = 0
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 2
+            selectQuestion()
+        }
     }
 
-    fun setSurvey10(): View {
-        return layoutInflater.inflate(R.layout.survey10, null)
+    fun setSurvey10() {
+        linearBody.removeAllViews()
+        val viewSurvey = layoutInflater.inflate(R.layout.survey10, null)
+        linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            surveyMetricIndex = 1
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 3
+            selectQuestion()
+        }
     }
 
     fun setSurvey11() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey11, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            surveyMetricIndex = 2
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 4
+            selectQuestion()
+        }
     }
 
     fun setSurvey12() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey12, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        val radioGroup7 = findViewInBody(R.id.radioGroup7) as RadioGroup
+
+        radioGroup7.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "127"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio7_3 -> {
+                    formUtil.showDialogInput("อื่นๆ", "..........") {
+                        (findViewInBody(checkedId) as RadioButton).text = "$it"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            surveyMetricIndex = 3
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 5
+            selectQuestion()
+        }
     }
 
     fun setSurvey13() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey13, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        val checkBox1_6 = findViewInBody(R.id.check1_6) as CheckBox
+        val radioGroup3 = findViewInBody(R.id.radioGroup3) as RadioGroup
+
+        checkBox1_6.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                formUtil.showDialogInput("อื่นๆ", " ..........") {
+                    checkBox1_6.text = it
+                }
+            }
+        }
+
+        radioGroup3.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "133"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio3_2 -> {
+                    formUtil.showDialogInputNumber("จำนวน", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            surveyMetricIndex = 4
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 6
+            selectQuestion()
+        }
     }
 
     fun setSurvey14() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey14, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        val radioGroup3 = findViewInBody(R.id.radioGroup3) as RadioGroup
+
+        radioGroup3.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "141"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio3_2 -> {
+                    formUtil.showDialogInputNumber("มีมูลค่าทรัพย์สิน ที่เสียไป", "... บาท") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มีมูลค่าทรัพย์สิน ที่เสียไป $it บาท"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            surveyMetricIndex = 5
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            initView(3)
+            surveyMetricIndex = 0
+            selectQuestion()
+        }
     }
 
     fun setSurvey15() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey15, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+        val radioGroup1 = findViewInBody(R.id.radioGroup1) as RadioGroup
+        val radioGroup2 = findViewInBody(R.id.radioGroup2) as RadioGroup
+
+        radioGroup1.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "151"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio1_1 -> {
+                    formUtil.showDialogInputNumber("จำนวน", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        radioGroup2.setOnCheckedChangeListener { group, checkedId ->
+            val questionNo = "152"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio2_2 -> {
+                    formUtil.showDialogInputNumber("ไม่ได้รับบริการ จำนวน", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้รับบริการ $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            SaveData()
+        }
+
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            initView(2)
+            surveyMetricIndex = 6
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 1
+            selectQuestion()
+        }
     }
 
     fun setSurvey16() {
         linearBody.removeAllViews()
         val viewSurvey = layoutInflater.inflate(R.layout.survey16, null)
         linearBody.addView(viewSurvey)
+        (findViewInBody(R.id.txtHeader) as TextView).text = surveyMetric.metric_display
+
+        findViewInBody(R.id.btnPrevious).setOnClickListener {
+            initView(2)
+            surveyMetricIndex = 6
+            selectQuestion()
+        }
+        findViewInBody(R.id.btnNext).setOnClickListener {
+            surveyMetricIndex = 1
+            selectQuestion()
+        }
     }
 
     fun setSurvey17() {

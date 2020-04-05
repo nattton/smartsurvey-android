@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/thsarabun_bold"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ซื้อสินค้าอุปโภค-บริโภค" />
 
                 <CheckBox
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ลดค่าซื้อก๊าซหุงต้ม" />
 
                 <CheckBox
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="ค่าโดยสารรถสาธารณะ" />
 
                 <CheckBox
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="แลกเป็นสิ่งของ" />
 
                 <CheckBox
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="แลกเป็นเงินสด" />
 
                 <CheckBox
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/thsarabun_bold"
                     android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:text="กดเงินสด (โปรดระบุ)" />
 
                 <LinearLayout
@@ -116,7 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/thsarabun_bold"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:text="อื่น ๆ" />
 
                     <EditText
@@ -129,7 +129,7 @@
                         android:fontFamily="@font/thsarabun_bold"
                         android:hint="ระบุการนำไปใช้อื่น"
                         android:padding="20dp"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -153,7 +153,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="บันทึก"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnClose"
@@ -165,7 +165,7 @@
                 android:fontFamily="@font/thsarabun_bold"
                 android:text="ออก"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 

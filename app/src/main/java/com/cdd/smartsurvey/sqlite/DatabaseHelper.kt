@@ -42,6 +42,24 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
             return surveyGroups
         }
 
+    fun getSurveyGroup(id: Int): SurveyGroup? {
+        val seletQuery = "SELECT * FROM " + SurveyGroup.TABLE_NAME + " WHERE " + SurveyGroup.COLUMN_ID + " = " + id
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(seletQuery, null)
+        if (cursor.moveToFirst()) {
+            val surveyGroup = SurveyGroup()
+            surveyGroup.id = cursor.getInt(cursor.getColumnIndex(SurveyGroup.COLUMN_ID))
+            surveyGroup.groupName = cursor.getString(cursor.getColumnIndex(SurveyGroup.COLUMN_GROUP_NAME))
+            surveyGroup.groupNo = cursor.getString(cursor.getColumnIndex(SurveyGroup.COLUMN_GROUP_NO))
+            surveyGroup.groupDisplay = cursor.getString(cursor.getColumnIndex(SurveyGroup.COLUMN_GROUP_DISPLAY))
+            surveyGroup.groupOrderby = cursor.getString(cursor.getColumnIndex(SurveyGroup.COLUMN_GROUP_NO))
+            surveyGroup.groupImage = cursor.getString(cursor.getColumnIndex(SurveyGroup.COLUMN_GROUP_IMAGE))
+            surveyGroup.groupMetric = cursor.getString(cursor.getColumnIndex(SurveyGroup.COLUMN_GROUP_METRIC))
+            return surveyGroup
+        }
+        return null
+    }
+
     fun getAllSurveyMetrics(tbl_survey_groupid: String): List<SurveyMetric> {
         val surveyMetrics: MutableList<SurveyMetric> = ArrayList()
         val seletQuery = "SELECT * FROM " + SurveyMetric.TABLE_NAME + " WHERE " + SurveyMetric.COLUMN_TBL_SURVEY_GROUP_MASTERID + " = " +

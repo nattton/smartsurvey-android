@@ -99,7 +99,7 @@
         android:scaleType="fitXY"
         android:text="downloading data file"
         android:textColor="#01286C"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.477"

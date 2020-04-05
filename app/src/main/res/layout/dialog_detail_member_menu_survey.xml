@@ -41,7 +41,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:text=""
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnDetailMember1"
@@ -52,7 +52,7 @@
                     android:text="สมาชิกในครัวเรือนในปีปัจจุบัน"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20dp"/>
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnDetailMember2"
@@ -63,7 +63,7 @@
                     android:text="ครัวเรือน"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnDetailMember3"
@@ -74,7 +74,7 @@
                     android:text="คนที่มีอายุมากว่า 2 ปีขึ้นไป"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnDetailMember4"
@@ -85,7 +85,7 @@
                     android:text="สถานะทางร่างกาย"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnDetailMember5"
@@ -96,7 +96,7 @@
                     android:text="ข้อมูลคนต่างด้าว"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <Button
                     android:id="@+id/btnClose"
@@ -107,7 +107,7 @@
                     android:text="ออก"
                     android:layout_gravity="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
     </FrameLayout>

@@ -49,7 +49,7 @@
                     android:fontFamily="@font/thsarabun_bold"
                     android:text=""
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </ScrollView>
