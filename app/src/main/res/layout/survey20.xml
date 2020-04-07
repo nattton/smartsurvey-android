@@ -75,12 +75,12 @@
             android:id="@+id/checkbox2_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ไม่มีอาชีพและไม่มี รายได้....คน" />
+            android:text="ไม่มีอาชีพและไม่มี รายได้ ... คน" />
         <CheckBox
             android:id="@+id/checkbox2_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ไม่มีอาชีพแต่มีรายได้.....คน" />
+            android:text="ไม่มีอาชีพแต่มีรายได้ ... คน" />
     </LinearLayout>
 
     <LinearLayout
@@ -101,6 +101,40 @@
             android:id="@+id/checkbox3_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="จำนวน .....คน " />
+            android:text="จำนวน ... คน " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ย้อนกลับ"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ถัดไป"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

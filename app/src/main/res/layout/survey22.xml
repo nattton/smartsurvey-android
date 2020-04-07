@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="21.1 ในรอบปีที่ผ่านมา ครัวเรือนนี้มีรายได้จากข้อใดข้อหนึ่ง หรือหลายข้อดังต่อไปนี้ หรือไม่"
+            android:text="22.1 ในรอบปีที่ผ่านมา ครัวเรือนนี้มีรายได้จากข้อใดข้อหนึ่ง หรือหลายข้อดังต่อไปนี้ หรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <TextView
@@ -102,7 +102,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="21.2 รายจ่ายของครัวเรือนในรอบปีที่ผ่านมา ครัวเรือนมีรายจ่ายในแต่ละด้าน ดังต่อไปนี้"
+            android:text="22.2 รายจ่ายของครัวเรือนในรอบปีที่ผ่านมา ครัวเรือนมีรายจ่ายในแต่ละด้าน ดังต่อไปนี้"
             android:textColor="@color/colorPrimary" />
 
         <TextView
@@ -415,7 +415,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="หนี้สินของครัวเรือน หนี้นอกระบบ หมายถึง หนี้ที่กู้ยืมจากบุคคลและสถาบันต่างๆที่ไม่ใช่ธนาคารหรือสถาบันการเงินที่ถูกต้องตามกฎหมาย เช่น นายทุน พ่อค้า หรือกลุ่มบุคคลที่ปล่อยเงินกู้ดอกเบี้ยสูงกว่าที่กฎหมายกำหนด"
+            android:text="22.4 หนี้สินของครัวเรือน หนี้นอกระบบ หมายถึง หนี้ที่กู้ยืมจากบุคคลและสถาบันต่างๆที่ไม่ใช่ธนาคารหรือสถาบันการเงินที่ถูกต้องตามกฎหมาย เช่น นายทุน พ่อค้า หรือกลุ่มบุคคลที่ปล่อยเงินกู้ดอกเบี้ยสูงกว่าที่กฎหมายกำหนด"
             android:textColor="@color/colorPrimary" />
         <TextView
             android:layout_width="wrap_content"
@@ -483,5 +483,39 @@
                 android:layout_height="wrap_content"
                 android:text="มี.......คน .......บาท" />
         </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ย้อนกลับ"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ถัดไป"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

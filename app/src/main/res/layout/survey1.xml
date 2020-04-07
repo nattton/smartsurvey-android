@@ -45,14 +45,14 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
+                android:tag="1"
                 android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
+                android:tag="0"
                 android:text="ไม่มี (ข้ามไปข้อ 3)" />
 
         </RadioGroup>
@@ -82,14 +82,14 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
+                android:tag="1"
                 android:text="ทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
+                android:tag="0"
                 android:text="น้อยกว่า ... คน" />
         </RadioGroup>
     </LinearLayout>

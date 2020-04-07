@@ -40,28 +40,24 @@
             android:id="@+id/check1_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="1"
             android:text="ได้ออกกำลังกาย หรือได้ออกแรง/ ออกกำลังทุกคน" />
 
         <CheckBox
             android:id="@+id/check1_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="2"
             android:text="ได้ออกกำลังกาย ... คน" />
 
         <CheckBox
             android:id="@+id/check1_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="3"
             android:text="ได้ออกแรง/ ออกกำลัง ... คน" />
 
         <CheckBox
             android:id="@+id/check1_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="4"
             android:text="ไม่ได้ออกกำลังกายหรือไม่ได้ออกแรง/ไม่ได้ ... คน" />
 
     </LinearLayout>

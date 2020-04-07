@@ -300,6 +300,108 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/question6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.6 มีร่องระบายน้ำอยู่ในสภาพดี ไม่มีแหล่งน้ำขังในบ้าน และไม่มีการปล่อยน้ำเสียลงแหล่งน้ำสาธารณะ"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio6_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio6_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.7	มีส้วมใช้ที่มีสภาพแข็งแรงใช้งานได้สะอาด มีการระบายอากาศที่ดี ไม่มีการแตกร้าวที่หัวส้วม พื้นที่ ถังส้วม และฝาปิด และมีอุปกรณ์ทำความสะอาด"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio7_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio7_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.8	มีการจัดเก็บและแยกสารเคมีที่เป็นอันตรายออกจากเครื่องใช้อื่นๆ โดยจัดให้เป็นระเบียบและวางให้พ้นมือเด็ก"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio8_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio8_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

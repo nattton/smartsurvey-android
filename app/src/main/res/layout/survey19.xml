@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4.1 ถ้ากินอาหารบรรจุสำเร็จ ต้องมีเครื่องหมาย อย. เช่น เกลือเสริมไอโอดีน น้ำปลา น้ำส้มสายชู อาหารกระป๋อง นม อาหารกล่อง เป็นต้น"
+            android:text="19.1 ครัวเรือนนี้ มีคนอายุ 15 - 59 ปี หรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -42,13 +42,13 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="มี....คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่มี (ข้ามไปข้อ 19)" />
         </RadioGroup>
     </LinearLayout>
 
@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.2 ถ้ากินเนื้อสัตว์ต้องทำให้สุกด้วยความร้อน"
+            android:text="19.2 คนอายุ 15 - 59 ปี สามารถ อ่าน เขียนภาษาไทย และคิดเลขอย่างง่ายได้ ทุกคนหรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -75,13 +75,13 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="ได้ทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่ได้ ... คน" />
         </RadioGroup>
     </LinearLayout>
 
@@ -96,7 +96,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.3 ถ้ากินผักต้องเป็นผักปลอดสารพิษหรือได้ทำการแช่ด้วยน้ำผสมด่างทับทิมหรือน้ำยาล้างผักแล้วล้างด้วยน้ำสะอาดหลาย ๆ ครั้ง"
+            android:text="19.3 คนอายุ 15 - 59 ปี สามารถอ่าน เขียนภาษาอังกฤษได้ ทุกคนหรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -108,46 +108,47 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ใช่" />
+                android:text="ได้ทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
+                android:text="ไม่ได้ ... คน" />
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/question4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
+        <Button
+            android:id="@+id/btnPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.4 ก่อนกินอาหารต้องล้างมือทุกครั้งและใช้ช้อนกลาง"
-            android:textColor="@color/colorPrimary" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ย้อนกลับ"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup4"
+        <Button
+            android:id="@+id/btnNext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/radio4_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ใช่" />
-
-            <RadioButton
-                android:id="@+id/radio4_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ไม่ใช่" />
-        </RadioGroup>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/custom_menubutton"
+            android:fontFamily="@font/thsarabun_bold"
+            android:text="ถัดไป"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 </LinearLayout>

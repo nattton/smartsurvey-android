@@ -209,101 +209,41 @@
             android:text="13.2.1 ในรอบปีที่ผ่านมา ครัวเรือนประสบภัยธรรมชาติ ด้านใดบ้าง ระบุได้มากกว่า 1 ด้าน"
             android:textColor="@color/colorPrimary" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <CheckBox
-                android:id="@+id/check1_1"
+                android:id="@+id/checkBox1_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="อุทกภัย"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
+                android:text="อุทกภัย" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/checkBox1_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="วาตภัย" />
 
-            <CheckBox
-                android:id="@+id/check1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/checkBox1_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="อัคคีภัย" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="วาตภัย"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/checkBox1_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ดินโคลนถล่ม" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/checkBox1_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="แผ่นดินไหว" />
 
-            <CheckBox
-                android:id="@+id/check1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="อัคคีภัย"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/check1_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ดินโคลนถล่ม"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/check1_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="แผ่นดินไหว"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/check1_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="อื่นๆ......................."
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
+        <CheckBox
+            android:id="@+id/checkBox1_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="อื่นๆ ..." />
     </LinearLayout>
 
     <LinearLayout
@@ -338,7 +278,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1"
-                android:text="มี.....คน" />
+                android:text="มี ... คน" />
         </RadioGroup>
     </LinearLayout>
 

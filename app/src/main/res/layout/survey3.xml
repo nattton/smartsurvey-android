@@ -45,15 +45,15 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
+                android:tag="1"
                 android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
-                android:text="ไม่มี" />
+                android:tag="0"
+                android:text="ไม่มี (ข้ามไปข้อ 4)" />
         </RadioGroup>
     </LinearLayout>
 
@@ -81,14 +81,14 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
-                android:text="ทุกคน" />
+                android:tag="1"
+                android:text="ทุกคน (ข้ามไปข้อ 4)" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
+                android:tag="0"
                 android:text="ไม่ได้รับ ... คน" />
         </RadioGroup>
     </LinearLayout>
@@ -143,14 +143,12 @@
                     android:id="@+id/radio3_1_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_1_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -178,14 +176,12 @@
                     android:id="@+id/radio3_2_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_2_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -213,14 +209,12 @@
                     android:id="@+id/radio3_3_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_3_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -248,14 +242,12 @@
                     android:id="@+id/radio3_4_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_4_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -283,14 +275,12 @@
                     android:id="@+id/radio3_5_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_5_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -318,14 +308,12 @@
                     android:id="@+id/radio3_6_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_6_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -353,14 +341,12 @@
                     android:id="@+id/radio3_7_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_7_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -388,14 +374,12 @@
                     android:id="@+id/radio3_8_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_8_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -423,14 +407,12 @@
                     android:id="@+id/radio3_9_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_9_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -458,14 +440,12 @@
                     android:id="@+id/radio3_10_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_10_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -493,14 +473,12 @@
                     android:id="@+id/radio3_11_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_11_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>
@@ -528,14 +506,12 @@
                     android:id="@+id/radio3_12_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="0"
                     android:text="ได้รับ" />
 
                 <RadioButton
                     android:id="@+id/radio3_12_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tag="1"
                     android:text="ไม่ได้รับ" />
             </RadioGroup>
         </LinearLayout>

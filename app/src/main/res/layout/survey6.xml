@@ -40,35 +40,30 @@
             android:id="@+id/check1_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="1"
             android:text="1. ประกันสุขภาพเอกชน ... คน" />
 
         <CheckBox
             android:id="@+id/check1_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="2"
             android:text="2. สิทธิข้าราชการ ... คน" />
 
         <CheckBox
             android:id="@+id/check1_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="3"
             android:text="3. สิทธิประกันสังคม ... คน" />
 
         <CheckBox
             android:id="@+id/check1_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="4"
             android:text="4. สิทธิสำนักงานหลักประกันสุขภาพแห่งชาติ ... คน" />
 
         <CheckBox
             android:id="@+id/check1_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="5"
             android:text="5. อื่นๆ............." />
     </LinearLayout>
 
@@ -91,35 +86,30 @@
             android:id="@+id/check2_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="1"
             android:text="1. สถานีอนามัย/โรงพยาบาลส่งเสริมสุขภาพตำบล ... คน" />
 
         <CheckBox
             android:id="@+id/check2_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="2"
             android:text="2. โรงพยาบาลของรัฐ ... คน" />
 
         <CheckBox
             android:id="@+id/check2_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="3"
             android:text="3. โรงพยาบาลเอกชน ... คน" />
 
         <CheckBox
             android:id="@+id/check2_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="4"
             android:text="4. คลินิก ... คน" />
 
         <CheckBox
             android:id="@+id/check2_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="5"
             android:text="5. อื่นๆ............." />
     </LinearLayout>
 
@@ -147,12 +137,14 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="1"
                 android:text="มี" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่มี (ข้ามไปข้อ 7)" />
         </RadioGroup>
     </LinearLayout>
@@ -181,14 +173,14 @@
                 android:id="@+id/radio4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
+                android:tag="1"
                 android:text="ได้รับการตรวจทุกคน (ข้ามไปข้อ 7)" />
 
             <RadioButton
                 android:id="@+id/radio4_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
+                android:tag="0"
                 android:text="ไม่ได้รับการตรวจ ... คน" />
         </RadioGroup>
     </LinearLayout>
@@ -217,14 +209,14 @@
                 android:id="@+id/radio5_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
+                android:tag="1"
                 android:text="ได้รับการตรวจทุกคน (ข้ามไปข้อ 7)" />
 
             <RadioButton
                 android:id="@+id/radio5_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
+                android:tag="0"
                 android:text="ไม่ได้รับการตรวจ ... คน" />
         </RadioGroup>
     </LinearLayout>

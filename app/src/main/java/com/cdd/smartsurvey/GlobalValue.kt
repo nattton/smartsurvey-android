@@ -15,7 +15,7 @@ object GlobalValue {
 
     @JvmField
     var dbUrl = "http://27.254.121.113/SmartSurveyAPI_war_exploded/function/"
-    var apiUrl = "http://app.hummingwing.com/cdd/api/"
+    var apiUrl = "http://cddsurvey.ddns.me/api/"
     var apiToken = "Q09NTVVOSVRZIERFVkVMT1BNRU5UIERFUEFSVE1FTlQ="
 
     @JvmField
