@@ -30,6 +30,23 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         }
     }
 
+    fun showDialog2InputNumber(question: String, hint: String, hint2: String, inputListener: (String, String) -> Unit) {
+        val mBuilder = AlertDialog.Builder(context)
+        val mView = layoutInflater.inflate(R.layout.dialog_2input_number, null)
+        mView.findViewById<TextView>(R.id.textQuestion).text = question
+        val editTextInput = mView.findViewById<EditText>(R.id.editTextInput)
+        val editTextInput2 = mView.findViewById<EditText>(R.id.editTextInput2)
+        editTextInput.hint = hint
+        editTextInput2.hint = hint2
+        val btnOK = mView.findViewById<Button>(R.id.btnOK)
+        mBuilder.setView(mView)
+        val show = mBuilder.show()
+        btnOK.setOnClickListener {
+            show.dismiss()
+            inputListener(editTextInput.text.toString(), editTextInput2.text.toString())
+        }
+    }
+
     fun showDialogInput(question: String, hint: String, inputListener: (String) -> Unit) {
         val mBuilder = AlertDialog.Builder(context)
         val mView = layoutInflater.inflate(R.layout.dialog_input, null)

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -28,6 +30,10 @@ class SurveySubMasterActivity : AppCompatActivity() {
     var LinearDetail: LinearLayout? = null
     lateinit var formUtil: FormUtils
 
+    fun String?.toIntOrDefault(default: Int = 0): Int {
+        return this?.toIntOrNull() ?: default
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey_sub_master)
@@ -47,7 +53,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         selectQuestion()
     }
 
-    fun initView(surveyGroupID: Int) {
+    private fun initView(surveyGroupID: Int) {
         val db = DatabaseHelper(this)
         surveyGroup = db.getSurveyGroup(surveyGroupID)!!
         surveyMetricList = db.getAllSurveyMetrics(surveyGroup.id.toString())
@@ -56,7 +62,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         imgIcon.setImageBitmap(ImageUtil.convert(surveyGroup.groupImage))
     }
 
-    fun loadFamily(index: Int) {
+    private fun loadFamily(index: Int) {
         var waitingList = WaitingList()
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         val waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
@@ -67,7 +73,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         family = waitingList.familyList[index]
     }
 
-    fun SaveData() {
+    private fun saveData() {
         var waitingList = WaitingList()
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         var waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
@@ -183,11 +189,59 @@ class SurveySubMasterActivity : AppCompatActivity() {
         }
     }
 
+    private fun setRadioInput(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, formatTemplate: String) {
+        (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                radioId -> {
+                    formUtil.showDialogInput(question, hint) {
+                        (findViewInBody(checkedId) as RadioButton).text = formatTemplate.format(it)
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            saveData()
+        }
+    }
+
+    private fun setRadioInputNumber(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, formatTemplate: String) {
+        (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                radioId -> {
+                    formUtil.showDialogInputNumber(question, hint) {
+                        (findViewInBody(checkedId) as RadioButton).text = formatTemplate.format(it)
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            saveData()
+        }
+    }
+
+    private fun setRadio2InputNumber(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, hint2: String, formatTemplate: String) {
+        (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                radioId -> {
+                    formUtil.showDialog2InputNumber(question, hint, hint2) { v1, v2 ->
+                        (findViewInBody(checkedId) as RadioButton).text = formatTemplate.format(v1, v2)
+                        family.answer[questionNo] = "$firstVal,$v1,$v2"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            saveData()
+        }
+    }
+
 
     private fun setRadioGroupTrueFalse(questionNo: String, radioGroupId: Int, trueRadioId: Int) {
         (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
             family.answer[questionNo] = if (checkedId == trueRadioId) "1" else "0"
-            SaveData()
+            saveData()
         }
     }
 
@@ -195,35 +249,8 @@ class SurveySubMasterActivity : AppCompatActivity() {
     private fun setSurvey1() {
         layoutInflater.inflate(R.layout.survey1, linearBody, true)
 
-        (findViewInBody(R.id.radioGroup1) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
-            val questionNo = "1111"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio1_1 -> {
-                    formUtil.showDialogInputNumber("มีจำนวน", " ... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                R.id.radio1_2 -> family.answer[questionNo] = firstVal
-            }
-            SaveData()
-        }
-
-        (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
-            val questionNo = "1121"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio2_2 -> {
-                    formUtil.showDialogInputNumber("น้อยกว่า", " ... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "น้อยกว่า $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                else -> family.answer[questionNo] = firstVal
-            }
-            SaveData()
-        }
+        setRadioInputNumber("1111", R.id.radioGroup1, R.id.radio1_1, "มีจำนวน", " ... คน", "มี %s คน")
+        setRadioInputNumber("1121", R.id.radioGroup2, R.id.radio2_2, "น้อยกว่า", " ... คน", "น้อยกว่า %s คน")
 
         findViewInBody(R.id.btnNext).setOnClickListener {
             surveyMetricIndex = 1
@@ -233,66 +260,10 @@ class SurveySubMasterActivity : AppCompatActivity() {
 
     private fun setSurvey2() {
         layoutInflater.inflate(R.layout.survey2, linearBody, true)
-
-        (findViewInBody(R.id.radioGroup1) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
-            val questionNo = "1211"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio1_1 -> {
-                    formUtil.showDialogInputNumber("มีจำนวน", " ... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                else -> family.answer[questionNo] = firstVal
-            }
-            SaveData()
-        }
-
-        (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
-            val questionNo = "1221"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio2_2 -> {
-                    formUtil.showDialogInputNumber("ไม่ได้กิน", " ... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้กิน $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                else -> family.answer[questionNo] = firstVal
-            }
-            SaveData()
-        }
-
-        (findViewInBody(R.id.radioGroup3) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
-            val questionNo = "1231"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio3_1 -> {
-                    formUtil.showDialogInputNumber("มีจำนวน", " ... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                else -> family.answer[questionNo] = firstVal
-            }
-            SaveData()
-        }
-
-        (findViewInBody(R.id.radioGroup4) as RadioGroup).setOnCheckedChangeListener { group, checkedId ->
-            val questionNo = "1241"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio4_2 -> {
-                    formUtil.showDialogInputNumber("ไม่ได้กิน", " ... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "ไม่ได้กิน $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                else -> family.answer[questionNo] = firstVal
-            }
-            SaveData()
-        }
+        setRadioInputNumber("1211", R.id.radioGroup1, R.id.radio1_1, "มีจำนวน", " ... คน", "มี %s คน")
+        setRadioInputNumber("1221", R.id.radioGroup2, R.id.radio2_2, "ไม่ได้กิน", " ... คน", "ไม่ได้กิน %s คน")
+        setRadioInputNumber("1231", R.id.radioGroup3, R.id.radio3_1, "มีจำนวน", " ... คน", "มี %s คน")
+        setRadioInputNumber("1241", R.id.radioGroup4, R.id.radio4_2, "ไม่ได้กิน", " ... คน", "ไม่ได้กิน %s คน")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 0
@@ -319,7 +290,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { group, checkedId ->
@@ -334,7 +305,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
         setRadioGroupTrueFalse("1331", R.id.radioGroup3_1, R.id.radio3_1_1)
         setRadioGroupTrueFalse("1332", R.id.radioGroup3_2, R.id.radio3_2_1)
@@ -419,7 +390,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup4) as RadioGroup).setOnCheckedChangeListener { group, checkedId ->
@@ -434,7 +405,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup5) as RadioGroup).setOnCheckedChangeListener { group, checkedId ->
@@ -449,7 +420,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -575,7 +546,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -615,7 +586,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -646,7 +617,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         setRadioGroupTrueFalse("21451", R.id.radioGroup5, R.id.radio2_2)
@@ -679,7 +650,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -694,7 +665,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -723,7 +694,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -738,7 +709,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup3) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -753,7 +724,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         setCheckBoxInputNumber("31641", R.id.checkBox4_1, "จำนวน", " ... คน", "เรียนต่อ กศน/การศึกษาผู้ใหญ่  %s คน")
@@ -788,7 +759,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -803,7 +774,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup3) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -818,7 +789,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         setCheckBoxInputNumber("31741", R.id.checkBox4_1, "จำนวน", " ... คน", "เรียนต่อ กศน/การศึกษาผู้ใหญ่  %s คน")
@@ -840,7 +811,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -868,7 +839,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -883,7 +854,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         setCheckBoxInputNumber("31831", R.id.checkBox3_1, "จำนวน", " ... คน", "ผู้ที่จบ ม.3 ในรอบปีที่ผ่านมา %s คน")
@@ -915,7 +886,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup2) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -930,7 +901,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         (findViewInBody(R.id.radioGroup3) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
@@ -945,7 +916,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -974,13 +945,13 @@ class SurveySubMasterActivity : AppCompatActivity() {
                 }
                 else -> family.answer[questionNo] = firstVal
             }
-            SaveData()
+            saveData()
         }
 
         setCheckBox("42021", R.id.checkBox2_1)
         setCheckBoxInputNumber("42022", R.id.checkBox2_2, "จำนวน", " ... คน", "ไม่มีอาชีพและไม่มีรายได้ %s คน")
         setCheckBoxInputNumber("42023", R.id.checkBox2_3, "จำนวน", " ... คน", "ไม่มีอาชีพแต่มีรายได้ %s คน")
-        setCheckBoxInputNumber("42031", R.id.checkBox3, "จำนวน", " ... คน", "จำนวน %s คน")
+        setCheckBoxInput("42031", R.id.checkBox3, "จำนวน ,อาชีพ", " ... คน, ระบุอาชีพ ...", "จำนวน %s")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             initView(3)
@@ -995,6 +966,27 @@ class SurveySubMasterActivity : AppCompatActivity() {
 
     private fun setSurvey21() {
         layoutInflater.inflate(R.layout.survey21, linearBody, true)
+        (findViewInBody(R.id.radioGroup1) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
+            val questionNo = "4211"
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                R.id.radio1_1 -> {
+                    formUtil.showDialogInputNumber("จำนวน", "... คน") {
+                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
+                        family.answer[questionNo] = "$firstVal,$it"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            saveData()
+        }
+
+        setCheckBox("42121", R.id.checkBox2_1)
+        setCheckBoxInputNumber("42122", R.id.checkBox2_2, "จำนวน", " ... คน", "ไม่มีอาชีพและไม่มีรายได้ %s คน")
+        setCheckBoxInputNumber("42123", R.id.checkBox2_3, "จำนวน", " ... คน", "ไม่มีอาชีพแต่มีรายได้ %s คน")
+        setCheckBoxInput("42131", R.id.checkBox3, "... คน, ... บาท", "... คน, ... บาท", "จำนวน %s")
+        setCheckBoxInput("42141", R.id.checkBox4, "จำนวน ,อาชีพ", " ... คน, ระบุอาชีพ ...", "จำนวน %s")
+        setCheckBoxInput("42151", R.id.checkBox5, "จำนวน ,อาชีพ", " ... คน, ระบุอาชีพ ...", "จำนวน %s")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 0
@@ -1008,6 +1000,83 @@ class SurveySubMasterActivity : AppCompatActivity() {
 
     private fun setSurvey22() {
         layoutInflater.inflate(R.layout.survey22, linearBody, true)
+        val sumMember = 1 + family.hmember.size
+        val textChange1 = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val value1 = (findViewInBody(R.id.editText1_1) as EditText).text.toString().toIntOrDefault()
+                val value2 = (findViewInBody(R.id.editText1_2) as EditText).text.toString().toIntOrDefault()
+                val value3 = (findViewInBody(R.id.editText1_3) as EditText).text.toString().toIntOrDefault()
+                val value4 = (findViewInBody(R.id.editText1_4) as EditText).text.toString().toIntOrDefault()
+                val sumMoney = value1 + value2 + value3 + value4
+
+                val average = sumMoney / sumMember
+                val textViewSummary = (findViewInBody(R.id.textViewSummary) as TextView)
+                textViewSummary.text = "ปีละ $sumMoney บาท"
+                val textViewAverage = (findViewInBody(R.id.textViewAverage) as TextView)
+                textViewAverage.text = "$average บาท"
+
+                family.answer["42211"] = value1.toString()
+                family.answer["42212"] = value2.toString()
+                family.answer["42213"] = value3.toString()
+                family.answer["42214"] = value4.toString()
+                family.answer["42215"] = sumMoney.toString()
+                family.answer["42216"] = average.toString()
+
+                saveData()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
+
+        (findViewInBody(R.id.editText1_1) as TextView).addTextChangedListener(textChange1)
+        (findViewInBody(R.id.editText1_2) as TextView).addTextChangedListener(textChange1)
+        (findViewInBody(R.id.editText1_3) as TextView).addTextChangedListener(textChange1)
+        (findViewInBody(R.id.editText1_4) as TextView).addTextChangedListener(textChange1)
+        (findViewInBody(R.id.textViewMember) as TextView).text = "$sumMember คน"
+
+        val textChange2 = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val value1 = (findViewInBody(R.id.editText2_1) as EditText).text.toString().toIntOrDefault()
+                val value2 = (findViewInBody(R.id.editText2_2) as EditText).text.toString().toIntOrDefault()
+                val value3 = (findViewInBody(R.id.editText2_3) as EditText).text.toString().toIntOrDefault()
+                val value4 = (findViewInBody(R.id.editText2_4) as EditText).text.toString().toIntOrDefault()
+                val sumExpense = value1 + value2 + value3 + value4
+                val textViewExpense = (findViewInBody(R.id.textViewExpense) as TextView)
+                textViewExpense.text = "ปีละ $sumExpense บาท"
+
+                family.answer["42221"] = value1.toString()
+                family.answer["42222"] = value2.toString()
+                family.answer["42223"] = value3.toString()
+                family.answer["42224"] = value4.toString()
+                family.answer["42225"] = sumExpense.toString()
+
+                saveData()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        }
+
+        (findViewInBody(R.id.editText2_1) as TextView).addTextChangedListener(textChange2)
+        (findViewInBody(R.id.editText2_2) as TextView).addTextChangedListener(textChange2)
+        (findViewInBody(R.id.editText2_3) as TextView).addTextChangedListener(textChange2)
+        (findViewInBody(R.id.editText2_4) as TextView).addTextChangedListener(textChange2)
+
+        setRadioInputNumber("422311", R.id.radioGroup3_1, R.id.radio3_1_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422312", R.id.radioGroup3_2, R.id.radio3_2_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422314", R.id.radioGroup3_4, R.id.radio3_4_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422315", R.id.radioGroup3_5, R.id.radio3_5_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422316", R.id.radioGroup3_6, R.id.radio3_6_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422317", R.id.radioGroup3_7, R.id.radio3_7_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422318", R.id.radioGroup3_8, R.id.radio3_8_1, "เข้าถึง ระบุ", " ... บาท", "เข้าถึง %s บาท")
+        setRadioInput("422319", R.id.radioGroup3_9, R.id.radio3_9_1, "เข้าถึง อื่นๆ ระบุจำนวน บาท", "อื่นๆ ระบุ ...... , จำนวน ... บาท", "เข้าถึง %s บาท")
+        setRadioInputNumber("422321", R.id.radioGroup3_2_1, R.id.radio3_2_1_2, "ระบุจำนวนที่ต้องการ", " ... บาท", "ไม่เพียงพอ ระบุจำนวนที่ต้องการ %s บาท")
+
+        setRadio2InputNumber("42241", R.id.radioGroup4_1, R.id.radio4_1_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
+        setRadio2InputNumber("42242", R.id.radioGroup4_2, R.id.radio4_2_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
+        setRadio2InputNumber("42243", R.id.radioGroup4_3, R.id.radio4_3_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
+
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 1
             selectQuestion()
