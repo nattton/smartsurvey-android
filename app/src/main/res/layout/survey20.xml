@@ -42,12 +42,14 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="มี....คน" />
+                android:tag="1"
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="2"
                 android:text="ไม่มี (ข้ามไปข้อ 21)" />
         </RadioGroup>
     </LinearLayout>
@@ -67,17 +69,17 @@
             android:textColor="@color/colorPrimary" />
 
         <CheckBox
-            android:id="@+id/checkbox2_1"
+            android:id="@+id/checkBox2_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ทุกคน (ข้ามไปข้อ 21)" />
         <CheckBox
-            android:id="@+id/checkbox2_2"
+            android:id="@+id/checkBox2_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ไม่มีอาชีพและไม่มี รายได้ ... คน" />
         <CheckBox
-            android:id="@+id/checkbox2_3"
+            android:id="@+id/checkBox2_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ไม่มีอาชีพแต่มีรายได้ ... คน" />
@@ -98,7 +100,7 @@
             android:textColor="@color/colorPrimary" />
 
         <CheckBox
-            android:id="@+id/checkbox3_1"
+            android:id="@+id/checkBox3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="จำนวน ... คน " />

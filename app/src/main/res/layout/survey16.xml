@@ -42,14 +42,14 @@
 
             <RadioButton
                 android:id="@+id/radio1_1"
-                android:tag="0"
+                android:tag="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
-                android:tag="1"
+                android:tag="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ไม่มี (ข้ามไปข้อ 17)" />
@@ -78,14 +78,14 @@
 
             <RadioButton
                 android:id="@+id/radio2_1"
-                android:tag="0"
+                android:tag="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ได้เรียนทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
-                android:tag="1"
+                android:tag="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ไม่ได้เรียน ... คน" />
@@ -114,14 +114,14 @@
 
             <RadioButton
                 android:id="@+id/radio3_1"
-                android:tag="0"
+                android:tag="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
-                android:tag="1"
+                android:tag="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ไม่มี (ข้ามไปข้อ 16.5)" />

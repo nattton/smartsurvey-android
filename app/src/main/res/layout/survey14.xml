@@ -137,41 +137,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="14.4 ในรอบปีที่ผ่านมา ครัวเรือนนี้ ถูกบุกรุกที่อยู่อาศัย หรือไม่"
-            android:textColor="@color/colorPrimary" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/radio4_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ไม่ถูกบุกรุก" />
-
-            <RadioButton
-                android:id="@+id/radio4_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ถูกบุกรุก" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/question5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corner"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="14.5 ในรอบปีที่ผ่านมา ครัวเรือนนี้ มีอาชญากรรมอื่นๆ ที่เกี่ยวกับชีวิตและทรัพย์สิน อย่างใดอย่างหนึ่งหรือหลายอย่าง หรือไม่"
+            android:text="14.5 ในรอบปีที่ผ่านมา ครัวเรือนนี้ ถูกบุกรุกที่อยู่อาศัย หรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -183,10 +149,44 @@
                 android:id="@+id/radio5_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่มี" />
+                android:text="ไม่ถูกบุกรุก" />
 
             <RadioButton
                 android:id="@+id/radio5_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ถูกบุกรุก" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14.6 ในรอบปีที่ผ่านมา ครัวเรือนนี้ มีอาชญากรรมอื่นๆ ที่เกี่ยวกับชีวิตและทรัพย์สิน อย่างใดอย่างหนึ่งหรือหลายอย่าง หรือไม่"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio6_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+
+            <RadioButton
+                android:id="@+id/radio6_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="มี" />

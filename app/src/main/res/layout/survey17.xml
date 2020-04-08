@@ -19,13 +19,15 @@
             android:text="Header"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
+
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -42,12 +44,14 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="มี.....คน" />
+                android:tag="1"
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่มี (ข้ามไปข้อ 17.5)" />
         </RadioGroup>
     </LinearLayout>
@@ -56,9 +60,10 @@
         android:id="@+id/question2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,13 +80,15 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="1"
                 android:text="ได้เรียนทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ได้เรียน....คน" />
+                android:tag="0"
+                android:text="ไม่ได้เรียน ... คน" />
         </RadioGroup>
     </LinearLayout>
 
@@ -89,9 +96,10 @@
         android:id="@+id/question3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,12 +116,14 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="มี.......................คน" />
+                android:tag="1"
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่มี (ข้ามไปข้อ 17.5)" />
         </RadioGroup>
     </LinearLayout>
@@ -122,9 +132,10 @@
         android:id="@+id/question4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -132,37 +143,47 @@
             android:text="17.4 เด็กที่ออกกลางคัน ไปทำอะไร"
             android:textColor="@color/colorPrimary" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup4"
+        <CheckBox
+            android:id="@+id/checkBox4_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="เรียนต่อ กศน/การศึกษาผู้ใหญ่ ... คน" />
+
+        <CheckBox
+            android:id="@+id/checkBox4_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ศึกษาเองที่บ้าน (โฮมสคูล) ... คน" />
+
+        <CheckBox
+            android:id="@+id/checkBox4_3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="เรียนต่อต่างประเทศ ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio4_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="เด็กที่ออกกลางคันไปทำอะไร" />
+        <CheckBox
+            android:id="@+id/checkBox4_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่ได้เรียนต่อแต่ทำงาน ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio4_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ศึกษาเองที่บ้าน     (โฮมสคูล)..........................คน" />
-            <RadioButton
-                android:id="@+id/radio4_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ศึกษาเองที่บ้าน     (โฮมสคูล)..........................คน" />
-        </RadioGroup>
+        <CheckBox
+            android:id="@+id/checkBox4_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่ได้เรียนต่อและไม่ได้ทำงาน ... คน" />
+
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -170,26 +191,21 @@
             android:text="17.5 เด็กอายุ 15 - 18 ปี มีความสนใจในการหาความรู้จากสื่อต่างๆเช่น การอ่านหนังสือ การดูข่าวสาร สารคดี การใช้อินเตอร์เน็ตเพื่อหาความรู้ เป็นต้น โดยเฉลี่ยกี่ชั่วโมงต่อสัปดาห์"
             android:textColor="@color/colorPrimary" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup5"
+        <CheckBox
+            android:id="@+id/checkBox5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/checkbox5_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=".........ชั่วโมง/สัปดาห์" />
-        </RadioGroup>
+            android:layout_height="wrap_content"
+            android:text=".........ชั่วโมง/สัปดาห์" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -206,12 +222,14 @@
                 android:id="@+id/radio6_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="1"
                 android:text="สนใจ จำนวน......คน" />
 
             <RadioButton
                 android:id="@+id/radio6_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่สนใจ" />
         </RadioGroup>
     </LinearLayout>

@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
+        android:layout_marginBottom="10dp"
         android:padding="20dp">
 
         <TextView
@@ -40,12 +41,14 @@
 
             <RadioButton
                 android:id="@+id/radio1_1"
+                android:tag="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="มี....คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
+                android:tag="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ไม่มี (ข้ามไปข้อ 19)" />
@@ -55,6 +58,7 @@
     <LinearLayout
         android:id="@+id/question2"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
@@ -73,21 +77,24 @@
 
             <RadioButton
                 android:id="@+id/radio2_1"
+                android:tag="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ได้รับการฝึกอบรม ด้านอาชีพทุกคน (ข้ามไปข้อ 19)" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
+                android:tag="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ได้รับการฝึกอบรม    ด้านอาชีพ....คน" />
+                android:text="ไม่ได้รับการฝึกอบรมด้านอาชีพ....คน" />
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question3"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
@@ -100,13 +107,13 @@
             android:textColor="@color/colorPrimary" />
 
         <CheckBox
-            android:id="@+id/radio3_1"
+            android:id="@+id/checkBox3_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ผู้ที่จบ ม.3 ในรอบปี    ที่ผ่านมา....คน" />
 
         <CheckBox
-            android:id="@+id/radio3_2"
+            android:id="@+id/checkBox3_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ผู้ที่จบ ม.3 ในปีอื่น ๆ ....คน" />
@@ -115,6 +122,7 @@
     <LinearLayout
         android:id="@+id/question4"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
@@ -127,10 +135,10 @@
             android:textColor="@color/colorPrimary" />
 
         <CheckBox
-            android:id="@+id/radio4_1"
+            android:id="@+id/checkBox4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="......คน" />
+            android:text="... คน" />
 
     </LinearLayout>
 

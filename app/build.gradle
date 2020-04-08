@@ -57,4 +57,5 @@ dependencies {
     implementation 'com.github.kittinunf.fuel:fuel-gson:1.15.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.layer-net:thai-datetimepicker:1.0.3'
+    implementation 'com.google.android.material:material:1.1.0'
 }
