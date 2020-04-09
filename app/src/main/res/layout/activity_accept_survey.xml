@@ -85,7 +85,7 @@
         android:layout_marginRight="52dp"
         android:background="@drawable/custom_menubutton"
         android:fontFamily="@font/thsarabun_bold"
-        android:text="ลงทะเบียน"
+        android:text="ส่งคำตอบ"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView11"

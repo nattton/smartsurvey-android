@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="10dp">
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="26. ในรอบปีที่ผ่านมา คนในครัวเรือนที่อายุตั้งแต่ 6 ปีขึ้นไปทุกคน ได้ปฏิบัติกิจกรรมทางศาสนาอย่างใดอย่างหนึ่ง  หรือหลายอย่าง อย่างน้อย สัปดาห์ละ 1 ครั้ง หรือไม่ (เช่น การร่วมพิธีกรรมทางศาสนา ทำบุญตักบาตร  ทำภาวนา/สมาธิ สวดมนต์ ฟังเทศน์ ฟังธรรม หรือการทำละหมาด และการเข้าโบสถ์คริสต์ เป็นต้น)"
+            android:text="32.1 ครัวเรือนนี้มีสตรีที่เป็นสมาชิกกองทุนพัฒนาบทบาทสตรี"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -46,14 +46,89 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1"
-                android:text="ปฏิบัติทุกคน" />
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="0"
-                android:text="ไม่ปฏิบัติ ... คน" />
+                android:text="ไม่มี" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="32.2 ครัวเรือนนี้มีสตรีทีได้รับเงินทุนหมุนเวียนของกองทุนพัฒนาบทบาทสตรี"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="1"
+                android:text="มี ... คน จำนวน ... บาท" />
+
+            <RadioButton
+                android:id="@+id/radio2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="0"
+                android:text="ไม่มี" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/question3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="32.3 ครัวเรือนนี้มีสตรีทีได้เข้าร่วมกิจกรรมของกองทุนพัฒนาบทบาทสตรี"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="1"
+                android:text="มี ... คน" />
+
+            <RadioButton
+                android:id="@+id/radio3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="0"
+                android:text="ไม่มี" />
+
         </RadioGroup>
     </LinearLayout>
 
@@ -90,4 +165,5 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
+
 </LinearLayout>

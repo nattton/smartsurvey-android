@@ -35,6 +35,7 @@
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
+            android:layout_marginBottom="20dp"
             android:id="@+id/radioGroup1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -43,20 +44,23 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่สูบบุหรี่ทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
+                android:tag="1"
                 android:layout_height="wrap_content"
-                android:text="สูบบุหรี่....คน" />
+                android:text="สูบบุหรี่ ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ผู้ที่สูบบุหรี่เป็นผู้ที่หารายได้หลักให้กับครัวเรือน" />
         </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ผู้ที่สูบบุหรี่เป็นผู้ที่หารายได้หลักให้กับครัวเรือน" />
     </LinearLayout>
 
     <LinearLayout

@@ -22,6 +22,7 @@
     </FrameLayout>
     <LinearLayout
         android:id="@+id/question1_1"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -32,12 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="31.1 กรณีมีสมาชิก 2 คนขึ้นไป อยู่ในครัวเรือนเดียวกัน"
-            android:textColor="@color/colorPrimary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="31.1.1 สมาชิกในครอบครัวมีเวลาอยู่พร้อมหน้าและได้ทำกิจกรรมร่วมกันอย่างน้อยสัปดาห์ละ 1 ครั้ง หรือ อย่างน้อยเดือนละ 4 ครั้ง"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -57,22 +52,13 @@
                 android:layout_height="wrap_content"
                 android:text="ไม่มี" />
         </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/question1_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:orientation="vertical"
-        android:padding="20dp">
 
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="31.1.2 สมาชิกในครอบครัวมีความเคารพนับถือกันและไม่มีการทะเลาะเบาะแว้งรุนแรง"
+            android:text="31.1.1 สมาชิกในครอบครัวมีเวลาอยู่พร้อมหน้าและได้ทำกิจกรรมร่วมกันอย่างน้อยสัปดาห์ละ 1 ครั้ง หรือ อย่างน้อยเดือนละ 4 ครั้ง"
             android:textColor="@color/colorPrimary" />
-
         <RadioGroup
             android:id="@+id/radioGroup1_2"
             android:layout_width="wrap_content"
@@ -90,10 +76,12 @@
                 android:layout_height="wrap_content"
                 android:text="ไม่มี" />
         </RadioGroup>
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/question1_3"
+        android:id="@+id/question1_2"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -103,7 +91,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="31.1.3 สมาชิกในครอบครัว เมื่อมีปัญหาจะปรึกษาหารือและช่วยเหลือซึ่งกันและกัน"
+            android:text="31.1.2 สมาชิกในครอบครัวมีความเคารพนับถือกันและไม่มีการทะเลาะเบาะแว้งรุนแรง"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -126,9 +114,44 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/question1_4"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="31.1.3 สมาชิกในครอบครัว เมื่อมีปัญหาจะปรึกษาหารือและช่วยเหลือซึ่งกันและกัน"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio1_4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="มี" />
+
+            <RadioButton
+                android:id="@+id/radio1_4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ไม่มี" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/question2_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">

@@ -39,14 +39,14 @@ class FirstMenuActivity : AppCompatActivity() {
             alertDialog.setTitle("ยืนยันการออกจากระบบ")
             alertDialog.setMessage("")
             alertDialog.setPositiveButton("ตกลง") { dialog, _ ->
-                dialog.dismiss()
+
                 val sharedPref = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
                 with(sharedPref.edit()) {
-                    putString(getString(R.string.pref_user), "")
-                    putString(getString(R.string.pref_user_token), "")
-                    apply()
-
+                    clear()
+                    commit()
                 }
+
+                dialog.dismiss()
 
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

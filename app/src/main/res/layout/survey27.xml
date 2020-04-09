@@ -20,10 +20,12 @@
             android:text="Header"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
+
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -43,13 +45,15 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่มี (ข้ามไปข้อ 28)" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="มี....คน" />
+                android:tag="1"
+                android:text="มี ... คน" />
         </RadioGroup>
     </LinearLayout>
 
@@ -57,6 +61,7 @@
         android:id="@+id/question2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -76,13 +81,15 @@
                 android:id="@+id/radio2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="1"
                 android:text="ได้รับทุกคน" />
 
             <RadioButton
                 android:id="@+id/radio2_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ได้รับ....คน" />
+                android:tag="0"
+                android:text="ไม่ได้รับ ... คน" />
         </RadioGroup>
     </LinearLayout>
 

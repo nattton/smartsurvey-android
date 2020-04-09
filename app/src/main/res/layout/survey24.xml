@@ -20,6 +20,7 @@
             android:text="Header"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
+
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
@@ -34,29 +35,35 @@
             android:text="24. ทุกคนในครัวเรือนนี้ ดื่มสุรา หรือไม่"
             android:textColor="@color/colorPrimary" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup1"
+        <CheckBox
+            android:id="@+id/checkBox1_1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="ไม่ดื่มสุราทุกคน" />
 
-            <RadioButton
-                android:id="@+id/radio1_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ไม่ดื่มสุราทุกคน" />
+        <CheckBox
+            android:id="@+id/checkBox1_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ดื่มสุรา ต่ำกว่า 15 ปี ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ดื่มสุรา\n- ต่ำกว่า 15 ปี....คน\n- 15-19 ปี ....คน\n- 20 ปีขึ้นไป ....คน" />
+        <CheckBox
+            android:id="@+id/checkBox1_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ดื่มสุรา 15-19 ปี ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ดหากผู้ที่ดื่มสุราเป็นผู้ที่หารายได้หลักให้กับครัวเรือน ดื่มสุราเฉลี่ยเดือนละ………ครั้ง" />
-        </RadioGroup>
+        <CheckBox
+            android:id="@+id/checkBox1_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ดื่มสุรา 20 ปีขึ้นไป .... คน" />
+
+        <CheckBox
+            android:id="@+id/radio1_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="หากผู้ที่ดื่มสุราเป็นผู้ที่หารายได้หลักให้กับครัวเรือน ดื่มสุราเฉลี่ยเดือนละ ... ครั้ง" />
     </LinearLayout>
 
     <LinearLayout

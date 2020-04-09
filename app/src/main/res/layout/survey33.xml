@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="10dp">
@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="28.1 ครัวเรือนนี้ มีผู้พิการ หรือไม่ "
+            android:text="33.1 ในรอบปีที่ผ่านมาคนในครัวเรือนได้รับการอบรมอาชีพตามแนวทางสร้างสัมมาชีพชุมชน หรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -45,23 +45,24 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
-                android:text="ไม่มี (ข้ามไปข้อ 28)" />
+                android:tag="1"
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
-                android:text="มี ... คน" />
+                android:tag="0"
+                android:text="ไม่มี" />
+
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question2"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -69,34 +70,87 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="28.2 ผู้พิการตามข้อ 28.1 มีบัตรประจำตัวคนพิการ หรือไม่"
+            android:text="33.2 สมาชิกในครัวเรือนได้รับการฝึกอบรมอาชีพตามแนวทางสร้างสัมมาชีพชุมชน และนำความรู้ไปใช้ประโยชน์ในการประกอบอาชีพอย่างไร"
             android:textColor="@color/colorPrimary" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <CheckBox
+            android:id="@+id/checkBox2_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="นำความรู้ไปพัฒนาต่อยอดอาชีพเดิม ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio2_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tag="1"
-                android:text="มีทุกคน" />
+        <CheckBox
+            android:id="@+id/checkBox2_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="นำความรู้ไประกอบอาชีพใหม่ ... คน" />
 
-            <RadioButton
-                android:id="@+id/radio2_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tag="0"
-                android:text="ไม่มี....คน" />
-        </RadioGroup>
+        <CheckBox
+            android:id="@+id/checkBox2_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ทำนา" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ทำไร่" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ทำสวน" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ประมง" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ปศุสัตว์" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ค้าขาย" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="รับจ้างใช้แรงงาน" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="บริการ" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ธุรกิจส่วนตัว" />
+
+        <CheckBox
+            android:id="@+id/checkBox2_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="อื่นๆ (ระบุ) ......" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/question3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">
@@ -104,7 +158,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="28.3 ผู้พิการได้รับการดูแลเอาใจใส่ในชีวิตความเป็นอยู่ ด้านอาหารการกิน เสื้อผ้าเครื่องนุ่งห่ม และได้รับการดูแลเมื่อยามเจ็บไข้ได้ป่วยการดูแลเอาใจใส่ด้านสภาพจิตใจจากคนในครอบครัว หมู่บ้านหรือชุมชน รวมทั้งได้รับสวัสดิการชุมชนหรือเบี้ยยังชีพจากภาครัฐ หรือภาคเอกชน หรือไม่"
+            android:text="33.3 รายได้จากการประกอบสัมมาชีพชุมชน ตามข้อ 33.2"
             android:textColor="@color/colorPrimary" />
 
         <RadioGroup
@@ -116,13 +170,16 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ได้รับทุกคน" />
+                android:tag="1"
+                android:text="ไม่มีรายได้" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ไม่ได้รับ..............คน" />
+                android:tag="0"
+                android:text="มีรายได้ จำนวน ... บาท" />
+
         </RadioGroup>
     </LinearLayout>
 
@@ -159,4 +216,5 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
+
 </LinearLayout>

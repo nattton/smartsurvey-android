@@ -20,13 +20,14 @@
             android:text="Header"
             android:textColor="@color/colorPrimary" />
     </FrameLayout>
+
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -35,68 +36,73 @@
             android:textColor="@color/colorPrimary" />
 
         <CheckBox
-            android:id="@+id/check1_1"
+            android:id="@+id/checkBox1_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เงินสด" />
 
         <CheckBox
-            android:id="@+id/check1_2"
+            android:id="@+id/checkBox1_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เงินฝากธนาคาร" />
 
         <CheckBox
-            android:id="@+id/check1_3"
+            android:id="@+id/checkBox1_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เงินฝากสหกรณ์" />
 
         <CheckBox
-            android:id="@+id/check1_4"
+            android:id="@+id/checkBox1_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="สเงินฝากกลุ่มออมทรัพย์ฯ" />
 
         <CheckBox
-            android:id="@+id/check1_5"
+            android:id="@+id/checkBox1_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เงินฝากกองทุนชุมชน" />
 
         <CheckBox
-            android:id="@+id/check1_6"
+            android:id="@+id/checkBox1_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="เงินฝากกองทุนการออมแห่งชาติ (กอช.)" />
 
         <CheckBox
-            android:id="@+id/check1_7"
+            android:id="@+id/checkBox1_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ทำประกันชีวิต" />
+
         <CheckBox
-            android:id="@+id/check1_8"
+            android:id="@+id/checkBox1_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ซื้อพันธบัตร" />
+
         <CheckBox
-            android:id="@+id/check1_9"
+            android:id="@+id/checkBox1_9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ซื้อทองคำ" />
+
         <CheckBox
-            android:id="@+id/check1_10"
+            android:id="@+id/checkBox1_10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ซื้อบ้านหรือที่ดิน" />
+
         <CheckBox
-            android:id="@+id/check1_11"
+            android:id="@+id/checkBox1_11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="อื่นๆ ......................." />
+            android:text="อื่นๆ ......" />
+
         <CheckBox
-            android:id="@+id/check1_12"
+            android:id="@+id/checkBox1_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ไม่มีการออมเงิน (ข้ามไปข้อ 24)" />
@@ -107,19 +113,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="23.2 ในรอบปีที่ผ่านมา ครัวเรือน มีการเก็บออมเงิน ตามข้อ 23.1 ปีละกี่บาท"
             android:textColor="@color/colorPrimary" />
-        <CheckBox
-            android:id="@+id/check2"
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=".....บาท" />
+            android:hint="..... บาท"
+            android:inputType="number" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -127,8 +136,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -145,12 +154,14 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="มี ..............คน" />
+                android:tag="1"
+                android:text="มี ... คน" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="0"
                 android:text="ไม่มี" />
         </RadioGroup>
     </LinearLayout>
@@ -160,8 +171,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -178,13 +189,15 @@
                 android:id="@+id/radio4_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ได้ (ระบุ)..............." />
+                android:tag="1"
+                android:text="ได้ (ระบุ) ......" />
 
             <RadioButton
                 android:id="@+id/radio4_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ถูกบุกรุก" />
+                android:tag="0"
+                android:text="ไม่ได้" />
         </RadioGroup>
     </LinearLayout>
 
@@ -193,8 +206,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -211,13 +224,15 @@
                 android:id="@+id/radio5_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ได้ (ระบุ)..............." />
+                android:tag="1"
+                android:text="ได้ (ระบุ) ......" />
 
             <RadioButton
                 android:id="@+id/radio5_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ถูกบุกรุก" />
+                android:tag="0"
+                android:text="ไม่ได้" />
         </RadioGroup>
     </LinearLayout>
 
