@@ -24,6 +24,7 @@
     <LinearLayout
         android:id="@+id/question1"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
@@ -110,6 +111,7 @@
 
     <LinearLayout
         android:id="@+id/question2"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -133,6 +135,7 @@
 
     <LinearLayout
         android:id="@+id/question3"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -168,6 +171,7 @@
 
     <LinearLayout
         android:id="@+id/question4"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_corner"
@@ -205,6 +209,7 @@
         android:id="@+id/question5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corner"
         android:orientation="vertical"
         android:padding="20dp">

@@ -66,7 +66,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="22.2 คนอายุ 60 ปีขึ้นไป มีอาชีพและมีรายได้ ทุกคน หรือไม่"
+            android:text="21.2 คนอายุ 60 ปีขึ้นไป มีอาชีพและมีรายได้ ทุกคน หรือไม่"
             android:textColor="@color/colorPrimary" />
 
         <CheckBox

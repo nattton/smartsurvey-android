@@ -30,9 +30,9 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
         }
     }
 
-    fun showDialog2InputNumber(question: String, hint: String, hint2: String, inputListener: (String, String) -> Unit) {
+    fun showDialogInput2(layoutId: Int, question: String, hint: String, hint2: String, inputListener: (String, String) -> Unit) {
         val mBuilder = AlertDialog.Builder(context)
-        val mView = layoutInflater.inflate(R.layout.dialog_2input_number, null)
+        val mView = layoutInflater.inflate(layoutId, null)
         mView.findViewById<TextView>(R.id.textQuestion).text = question
         val editTextInput = mView.findViewById<EditText>(R.id.editTextInput)
         val editTextInput2 = mView.findViewById<EditText>(R.id.editTextInput2)
@@ -46,6 +46,19 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
             inputListener(editTextInput.text.toString(), editTextInput2.text.toString())
         }
     }
+
+    fun showDialogInput2Number(question: String, hint: String, hint2: String, inputListener: (String, String) -> Unit) {
+        showDialogInput2(R.layout.dialog_input_2number, question, hint, hint2, inputListener)
+    }
+
+    fun showDialogInputNumberText(question: String, hint: String, hint2: String, inputListener: (String, String) -> Unit) {
+        showDialogInput2(R.layout.dialog_input_number_text, question, hint, hint2, inputListener)
+    }
+
+    fun showDialogInputTextNumber(question: String, hint: String, hint2: String, inputListener: (String, String) -> Unit) {
+        showDialogInput2(R.layout.dialog_input_text_number, question, hint, hint2, inputListener)
+    }
+
 
     fun showDialogInput(question: String, hint: String, inputListener: (String) -> Unit) {
         val mBuilder = AlertDialog.Builder(context)

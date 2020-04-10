@@ -193,6 +193,38 @@ class SurveySubMasterActivity : AppCompatActivity() {
         }
     }
 
+    private fun setCheckBoxInput2Number(questionNo: String, checkBoxID: Int, question: String, hint: String, hint2: String, formatTemplate: String) {
+        val checkBox = findViewInBody(checkBoxID) as CheckBox
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                if (question != "")
+                    formUtil.showDialogInput2Number(question, hint, hint2) { v1, v2 ->
+                        checkBox.text = formatTemplate.format(v1, v2)
+                        family.answer[questionNo] = "1,$v1,$v2"
+                    }
+                else family.answer[questionNo] = "1"
+            } else {
+                family.answer.remove(questionNo)
+            }
+        }
+    }
+
+    private fun setCheckBoxInputNumberText(questionNo: String, checkBoxID: Int, question: String, hint: String, hint2: String, formatTemplate: String) {
+        val checkBox = findViewInBody(checkBoxID) as CheckBox
+        checkBox.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                if (question != "")
+                    formUtil.showDialogInputNumberText(question, hint, hint2) { v1, v2 ->
+                        checkBox.text = formatTemplate.format(v1, v2)
+                        family.answer[questionNo] = "1,$v1,$v2"
+                    }
+                else family.answer[questionNo] = "1"
+            } else {
+                family.answer.remove(questionNo)
+            }
+        }
+    }
+
     private fun setRadioInput(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, formatTemplate: String) {
         (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
             val firstVal = findViewInBody(checkedId).tag.toString()
@@ -225,12 +257,28 @@ class SurveySubMasterActivity : AppCompatActivity() {
         }
     }
 
-    private fun setRadio2InputNumber(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, hint2: String, formatTemplate: String) {
+    private fun setRadioInput2Number(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, hint2: String, formatTemplate: String) {
         (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
             val firstVal = findViewInBody(checkedId).tag.toString()
             when (checkedId) {
                 radioId -> {
-                    formUtil.showDialog2InputNumber(question, hint, hint2) { v1, v2 ->
+                    formUtil.showDialogInput2Number(question, hint, hint2) { v1, v2 ->
+                        (findViewInBody(checkedId) as RadioButton).text = formatTemplate.format(v1, v2)
+                        family.answer[questionNo] = "$firstVal,$v1,$v2"
+                    }
+                }
+                else -> family.answer[questionNo] = firstVal
+            }
+            saveData()
+        }
+    }
+
+    private fun setRadioInputNumberText(questionNo: String, radioGroupId: Int, radioId: Int, question: String, hint: String, hint2: String, formatTemplate: String) {
+        (findViewInBody(radioGroupId) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
+            val firstVal = findViewInBody(checkedId).tag.toString()
+            when (checkedId) {
+                radioId -> {
+                    formUtil.showDialogInputNumberText(question, hint, hint2) { v1, v2 ->
                         (findViewInBody(checkedId) as RadioButton).text = formatTemplate.format(v1, v2)
                         family.answer[questionNo] = "$firstVal,$v1,$v2"
                     }
@@ -357,7 +405,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
 
         setRadioInputNumber("1631", R.id.radioGroup3, R.id.radio3_1, "จำนวน", "... คน", "มี %s คน")
         setRadioInputNumber("1641", R.id.radioGroup4, R.id.radio4_2, "ไม่ได้รับการตรวจ", "... คน", "ไม่ได้รับการตรวจ %s คน")
-        setRadioInputNumber("1651", R.id.radioGroup4, R.id.radio5_2, "ไม่ได้รับการตรวจ", "... คน", "ไม่ได้รับการตรวจ %s คน")
+        setRadioInputNumber("1651", R.id.radioGroup5, R.id.radio5_2, "ไม่ได้รับการตรวจ", "... คน", "ไม่ได้รับการตรวจ %s คน")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 4
@@ -779,7 +827,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         setCheckBox("42021", R.id.checkBox2_1)
         setCheckBoxInputNumber("42022", R.id.checkBox2_2, "จำนวน", " ... คน", "ไม่มีอาชีพและไม่มีรายได้ %s คน")
         setCheckBoxInputNumber("42023", R.id.checkBox2_3, "จำนวน", " ... คน", "ไม่มีอาชีพแต่มีรายได้ %s คน")
-        setCheckBoxInput("42031", R.id.checkBox3, "จำนวน ,อาชีพ", " ... คน, ระบุอาชีพ ...", "จำนวน %s")
+        setCheckBoxInputNumberText("42031", R.id.checkBox3, "จำนวนคน, อาชีพ", "... คน", "ระบุอาชีพ ...", "%s คน ระบุอาชีพ %s")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             initView(3)
@@ -794,27 +842,14 @@ class SurveySubMasterActivity : AppCompatActivity() {
 
     private fun setSurvey21() {
         layoutInflater.inflate(R.layout.survey21, linearBody, true)
-        (findViewInBody(R.id.radioGroup1) as RadioGroup).setOnCheckedChangeListener { _, checkedId ->
-            val questionNo = "4211"
-            val firstVal = findViewInBody(checkedId).tag.toString()
-            when (checkedId) {
-                R.id.radio1_1 -> {
-                    formUtil.showDialogInputNumber("จำนวน", "... คน") {
-                        (findViewInBody(checkedId) as RadioButton).text = "มี $it คน"
-                        family.answer[questionNo] = "$firstVal,$it"
-                    }
-                }
-                else -> family.answer[questionNo] = firstVal
-            }
-            saveData()
-        }
 
+        setRadioInputNumber("42111", R.id.radioGroup1, R.id.radio1_1, "จำนวน", " ... คน", "มี  %s คน")
         setCheckBox("42121", R.id.checkBox2_1)
         setCheckBoxInputNumber("42122", R.id.checkBox2_2, "จำนวน", " ... คน", "ไม่มีอาชีพและไม่มีรายได้ %s คน")
         setCheckBoxInputNumber("42123", R.id.checkBox2_3, "จำนวน", " ... คน", "ไม่มีอาชีพแต่มีรายได้ %s คน")
-        setCheckBoxInput("42131", R.id.checkBox3, "... คน, ... บาท", "... คน, ... บาท", "จำนวน %s")
-        setCheckBoxInput("42141", R.id.checkBox4, "จำนวน ,อาชีพ", " ... คน, ระบุอาชีพ ...", "จำนวน %s")
-        setCheckBoxInput("42151", R.id.checkBox5, "จำนวน ,อาชีพ", " ... คน, ระบุอาชีพ ...", "จำนวน %s")
+        setCheckBoxInput2Number("42131", R.id.checkBox3, "จำนวนคน, บาท", "... คน", "... บาท", "%s คน %s บาท")
+        setCheckBoxInputNumberText("42141", R.id.checkBox4, "จำนวนคน, อาชีพ", "... คน", "ระบุอาชีพ ...", "%s คน ระบุอาชีพ %s")
+        setCheckBoxInputNumberText("42151", R.id.checkBox5, "จำนวนคน, ประเภทสินค้าที่สนใจ", "... คน", "ประเภทสินค้าที่สนใจ ...", "%s คน ประเภทสินค้าที่สนใจ %s")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 0
@@ -901,9 +936,9 @@ class SurveySubMasterActivity : AppCompatActivity() {
         setRadioInput("422319", R.id.radioGroup3_9, R.id.radio3_9_1, "เข้าถึง อื่นๆ ระบุจำนวน บาท", "อื่นๆ ระบุ ...... , จำนวน ... บาท", "เข้าถึง %s บาท")
         setRadioInputNumber("422321", R.id.radioGroup3_2_1, R.id.radio3_2_1_2, "ระบุจำนวนที่ต้องการ", " ... บาท", "ไม่เพียงพอ ระบุจำนวนที่ต้องการ %s บาท")
 
-        setRadio2InputNumber("42241", R.id.radioGroup4_1, R.id.radio4_1_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
-        setRadio2InputNumber("42242", R.id.radioGroup4_2, R.id.radio4_2_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
-        setRadio2InputNumber("42243", R.id.radioGroup4_3, R.id.radio4_3_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
+        setRadioInput2Number("42241", R.id.radioGroup4_1, R.id.radio4_1_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
+        setRadioInput2Number("42242", R.id.radioGroup4_2, R.id.radio4_2_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
+        setRadioInput2Number("42243", R.id.radioGroup4_3, R.id.radio4_3_2, "จำนวน", " ... คน", " ... บาท", "มี %s คน %s บาท")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 1
@@ -959,8 +994,11 @@ class SurveySubMasterActivity : AppCompatActivity() {
     private fun setSurvey24() {
         layoutInflater.inflate(R.layout.survey24, linearBody, true)
 
-        setCheckBox("423110", R.id.checkBox1_10)
-        setCheckBoxInputNumber("423111", R.id.checkBox1_11, "อื่นๆ", " ...... ", "อื่นๆ %s")
+        setCheckBox("52411", R.id.checkBox1_1)
+        setCheckBoxInputNumber("52412", R.id.checkBox1_2, "จำนวน", " ... คน", "ดื่มสุราต่ำกว่า 15 ปี %s คน")
+        setCheckBoxInputNumber("52413", R.id.checkBox1_3, "จำนวน", " ... คน", "ดื่มสุรา 15-19 ปี %s คน")
+        setCheckBoxInputNumber("52414", R.id.checkBox1_4, "จำนวน", " ... คน", "ดื่มสุรา 20 ปีขึ้นไป %s คน")
+        setCheckBoxInputNumber("52415", R.id.checkBox1_5, "จำนวนเดือนละ", " ... ครั้ง", "หากผู้ที่ดื่มสุราเป็นผู้ที่หารายได้หลักให้กับครัวเรือน ดื่มสุราเฉลี่ยเดือนละ %s ครั้ง")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             initView(4)
@@ -1094,7 +1132,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         layoutInflater.inflate(R.layout.survey32, linearBody, true)
 
         setRadioInputNumber("63211", R.id.radioGroup1, R.id.radio1_1, "จำนวน", " ... คน", "มี %s คน")
-        setRadio2InputNumber("63221", R.id.radioGroup2, R.id.radio2_1, "จำนวน ... คน, ... บาท", " ... คน", "จำนวน ... บาท", "มี %s คน จำนวน %s บาท")
+        setRadioInput2Number("63221", R.id.radioGroup2, R.id.radio2_1, "จำนวน ... คน, ... บาท", " ... คน", "จำนวน ... บาท", "มี %s คน จำนวน %s บาท")
         setRadioInputNumber("63231", R.id.radioGroup3, R.id.radio3_1, "จำนวน", " ... คน", "มี %s คน")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
@@ -1124,6 +1162,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         setCheckBox("633210", R.id.checkBox2_10)
         setCheckBox("633211", R.id.checkBox2_11)
         setCheckBoxInput("633212", R.id.checkBox2_12, "อื่นๆ (ระบุ)", "", "อื่นๆ (ระบุ) %s")
+        setRadioInputNumber("63331", R.id.radioGroup3, R.id.radio3_2, "จำนวน", " ... คน", "มี %s คน")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 0
