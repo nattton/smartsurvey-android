@@ -45,7 +45,7 @@ class SurveySubMasterActivity : AppCompatActivity() {
         formUtil = FormUtils(this@SurveySubMasterActivity, layoutInflater)
         btnBack.setOnClickListener {
             val resultIntent = Intent()
-            resultIntent.putExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, surveyGroupID)
+            resultIntent.putExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, surveyGroup.id)
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }
@@ -1112,25 +1112,28 @@ class SurveySubMasterActivity : AppCompatActivity() {
         layoutInflater.inflate(R.layout.survey33, linearBody, true)
 
         setRadioInputNumber("63311", R.id.radioGroup1, R.id.radio1_2, "จำนวน", " ... คน", "มี %s คน")
-        setCheckBoxInputNumber("63321", R.id.checkBox1_1, "จำนวน", " ...... คน", "นำความรู้ไปพัฒนาต่อยอดอาชีพเดิม %s คน")
-        setCheckBoxInputNumber("63322", R.id.checkBox1_2, "จำนวน", " ...... คน", "นำความรู้ไประกอบอาชีพใหม่ %s คน")
-        setCheckBox("63323", R.id.checkBox1_3)
-        setCheckBox("63324", R.id.checkBox1_4)
-        setCheckBox("63325", R.id.checkBox1_5)
-        setCheckBox("63326", R.id.checkBox1_6)
-        setCheckBox("63327", R.id.checkBox1_7)
-        setCheckBox("63328", R.id.checkBox1_8)
-        setCheckBox("63329", R.id.checkBox1_9)
-        setCheckBox("633210", R.id.checkBox1_10)
-        setCheckBox("633211", R.id.checkBox1_11)
-        setCheckBoxInput("633212", R.id.checkBox1_2, "อื่นๆ (ระบุ)", "", "อื่นๆ (ระบุ) %s")
+        setCheckBoxInputNumber("63321", R.id.checkBox2_1, "จำนวน", " ...... คน", "นำความรู้ไปพัฒนาต่อยอดอาชีพเดิม %s คน")
+        setCheckBoxInputNumber("63322", R.id.checkBox2_2, "จำนวน", " ...... คน", "นำความรู้ไประกอบอาชีพใหม่ %s คน")
+        setCheckBox("63323", R.id.checkBox2_3)
+        setCheckBox("63324", R.id.checkBox2_4)
+        setCheckBox("63325", R.id.checkBox2_5)
+        setCheckBox("63326", R.id.checkBox2_6)
+        setCheckBox("63327", R.id.checkBox2_7)
+        setCheckBox("63328", R.id.checkBox2_8)
+        setCheckBox("63329", R.id.checkBox2_9)
+        setCheckBox("633210", R.id.checkBox2_10)
+        setCheckBox("633211", R.id.checkBox2_11)
+        setCheckBoxInput("633212", R.id.checkBox2_12, "อื่นๆ (ระบุ)", "", "อื่นๆ (ระบุ) %s")
 
         findViewInBody(R.id.btnPrevious).setOnClickListener {
             surveyMetricIndex = 0
             selectQuestion()
         }
         findViewInBody(R.id.btnNext).setOnClickListener {
-
+            val resultIntent = Intent()
+            resultIntent.putExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, surveyGroup.id)
+            setResult(GlobalValue.RESULT_FINISH, resultIntent)
+            finish()
         }
     }
 

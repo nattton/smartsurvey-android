@@ -37,7 +37,7 @@ class MemberSurveyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_member_survey)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         familyIndex = intent.getIntExtra(GlobalValue.EXTRA_FAMILY_INDEX, 0)
-        LoadData()
+        loadData()
 
         btnBack.setOnClickListener { onBackPressed() }
         btnDetail.setOnClickListener { ShowDetailMenu() }
@@ -91,11 +91,11 @@ class MemberSurveyActivity : AppCompatActivity() {
             family.hmember.add(member)
             show.dismiss()
             adapter.notifyDataSetChanged()
-            SaveData()
+            saveData()
         }
     }
 
-    fun LoadData() {
+    private fun loadData() {
         var waitingList = WaitingList(ArrayList())
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         var waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
@@ -105,7 +105,7 @@ class MemberSurveyActivity : AppCompatActivity() {
         family = waitingList.familyList[familyIndex]
     }
 
-    fun SaveData() {
+    private fun saveData() {
         var waitingList = WaitingList()
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         var waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")

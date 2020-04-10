@@ -139,7 +139,7 @@ class StartSurveyAcitivity : AppCompatActivity() {
     fun openHeaderSurvey(sc: SurveyGroup) {
         val intent = Intent(this, HeaderSurveyMasterActivity::class.java).apply {
             putExtra(GlobalValue.EXTRA_FAMILY_INDEX, familyIndex)
-            putExtra(GlobalValue.EXTRA_SURVEY_GROUP, sc)
+            putExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, sc.id)
         }
         startActivity(intent)
     }

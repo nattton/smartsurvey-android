@@ -45,15 +45,15 @@
                 android:id="@+id/radio1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
-                android:text="มี ... คน" />
+                android:tag="0"
+                android:text="ไม่มี" />
 
             <RadioButton
                 android:id="@+id/radio1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
-                android:text="ไม่มี" />
+                android:tag="1"
+                android:text="มี ... คน" />
 
         </RadioGroup>
     </LinearLayout>
@@ -212,7 +212,7 @@
             android:layout_marginBottom="4dp"
             android:background="@drawable/custom_menubutton"
             android:fontFamily="@font/thsarabun_bold"
-            android:text="ถัดไป"
+            android:text="ส่งคำตอบ"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>

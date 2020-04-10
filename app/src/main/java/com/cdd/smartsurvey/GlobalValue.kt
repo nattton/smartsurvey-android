@@ -6,6 +6,7 @@ object GlobalValue {
     var qestionerid = "0"
     var signature = ""
     var homeno = ""
+    val RESULT_FINISH = 10
     val EXTRA_COMMUNITY = "EXTRA_COMMUNITY"
     val EXTRA_FAMILY = "EXTRA_FAMILY"
     val EXTRA_FAMILY_INDEX = "EXTRA_FAMILY_INDEX"

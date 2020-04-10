@@ -26,14 +26,20 @@ class HeaderSurveyMasterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_survey_metric_master)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         btnBack.setOnClickListener { onBackPressed() }
-        surveyGroup = intent.getParcelableExtra(GlobalValue.EXTRA_SURVEY_GROUP)
+        val surveyGroupID = intent.getIntExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, 0)
         familyIndex = intent.getIntExtra(GlobalValue.EXTRA_FAMILY_INDEX, 0)
+
+
+        loadSurveyListGroup(surveyGroupID)
+    }
+
+    private fun loadSurveyListGroup(groupID: Int) {
+        val db = DatabaseHelper(this)
+        surveyGroup = db.getSurveyGroup(groupID)!!
         imgIcon.setImageBitmap(ImageUtil.convert(surveyGroup.groupImage))
         txtHeaderValue.text = surveyGroup.groupName
         txtMetricValue.text = "ประกอบด้วย ${surveyGroup.groupMetric}"
-        val db = DatabaseHelper(this)
-        surveyMetricsList = db.getAllSurveyMetrics(surveyGroup.id.toString())
-
+        surveyMetricsList = db.getAllSurveyMetrics(groupID.toString())
         listViewSurveyMetric.layoutManager = LinearLayoutManager(this)
         listViewSurveyMetric.setHasFixedSize(true)
         listViewSurveyMetric.adapter = SurveyMetricRecyclerViewAdapter(surveyMetricsList) { view, i, surveyMetric ->
@@ -44,18 +50,24 @@ class HeaderSurveyMasterActivity : AppCompatActivity() {
             }
             startActivityForResult(intent, 100)
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            val surveyGroupID = data?.getIntExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, 0)
-            if (surveyGroupID != 0) {
-                val db = DatabaseHelper(this)
-                surveyGroup = db.getSurveyGroup(surveyGroupID!!)!!
-                surveyMetricsList = db.getAllSurveyMetrics(surveyGroupID.toString())
-                (listViewSurveyMetric.adapter as SurveyMetricRecyclerViewAdapter).notifyDataSetChanged()
+        if (requestCode == 100) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    val surveyGroupID = data?.getIntExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, 0)
+                    if (surveyGroupID != 0) {
+                        loadSurveyListGroup(surveyGroupID!!)
+                    }
+                }
+                GlobalValue.RESULT_FINISH -> {
+                    val resultIntent = Intent()
+                    setResult(GlobalValue.RESULT_FINISH, resultIntent)
+                    finish()
+                }
             }
+
         }
 
         super.onActivityResult(requestCode, resultCode, data)

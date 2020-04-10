@@ -52,8 +52,9 @@ class RegisterPagesNewFamilyActivity : AppCompatActivity(), DatePickerDialog.OnD
         allMessage = AllMessage()
         imageView = findViewById<View>(R.id.profileimage) as CircleImageView
         btnCapture!!.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, 1)
+//            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            startActivityForResult(intent, 1)
+            dispatchTakePictureIntent()
         }
 
         txtBirthDate.setOnClickListener {
