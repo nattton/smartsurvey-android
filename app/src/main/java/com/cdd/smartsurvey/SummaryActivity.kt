@@ -1,14 +1,12 @@
 package com.cdd.smartsurvey
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.cdd.smartsurvey.http.model.Family
-import com.cdd.smartsurvey.http.model.WaitingList
-import com.google.gson.Gson
+import com.cdd.smartsurvey.utils.AppDBHelper
 import kotlinx.android.synthetic.main.activity_summary.*
 
 class SummaryActivity : AppCompatActivity() {
@@ -19,7 +17,8 @@ class SummaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_summary)
         familyIndex = intent.getIntExtra(GlobalValue.EXTRA_FAMILY_INDEX, 0)
-        loadFamily(familyIndex)
+        val appDBHelper = AppDBHelper(applicationContext)
+        family = appDBHelper.loadFamily(familyIndex)
 
         btnNext.setOnClickListener {
             val intent = Intent(this, AcceptSurveyActivity::class.java).apply {
@@ -283,7 +282,7 @@ class SummaryActivity : AppCompatActivity() {
         }
 
         family.answer["summary"] = sumResult
-        saveData()
+        appDBHelper.saveFamily(family, familyIndex)
     }
 
     private fun TextView.pass(): TextView {
@@ -301,31 +300,5 @@ class SummaryActivity : AppCompatActivity() {
         return this?.toIntOrNull() ?: default
     }
 
-    private fun loadFamily(index: Int) {
-        var waitingList = WaitingList()
-        val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-        val waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
-        if (waitingJson != "") {
-            waitingList = Gson().fromJson(waitingJson, WaitingList::class.java)
-        }
 
-        family = waitingList.familyList[index]
-    }
-
-    private fun saveData() {
-        var waitingList = WaitingList()
-        val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-        var waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
-        if (waitingJson != "") {
-            waitingList = Gson().fromJson(waitingJson, WaitingList::class.java)
-        }
-
-        waitingList.familyList[familyIndex] = family
-
-        waitingJson = Gson().toJson(waitingList)
-        sharedPref.edit().apply {
-            putString(getString(R.string.pref_waiting_list), waitingJson)
-            apply()
-        }
-    }
 }

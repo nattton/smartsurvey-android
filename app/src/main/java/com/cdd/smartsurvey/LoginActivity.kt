@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cdd.smartsurvey.http.model.LoginResponse
+import com.cdd.smartsurvey.utils.AppDBHelper
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.result.Result
@@ -33,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
             override fun run() {
                 runOnUiThread {
                     val txtNetWorkStatus = findViewById<View>(R.id.txtNetworkStatus) as TextView
-                    if (isNetworkAvailable == true) {
+                    if (isNetworkAvailable) {
                         txtNetWorkStatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.networkon, 0, 0, 0)
                         txtNetWorkStatus.setTextColor(resources.getColor(R.color.colorNetworkOn))
                         txtNetWorkStatus.text = "  Online / ออนไลน์"
@@ -129,6 +130,11 @@ class LoginActivity : AppCompatActivity() {
                                     putString(getString(R.string.pref_position), loginResponse.position)
                                     putString(getString(R.string.pref_photo), loginResponse.photo)
                                     apply()
+                                }
+
+                                val appDBHelper = AppDBHelper(applicationContext)
+                                appDBHelper.loadCommunityList {
+
                                 }
 
                                 if (loginResponse.activation == "0") {

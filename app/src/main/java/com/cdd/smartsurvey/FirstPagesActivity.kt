@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cdd.smartsurvey.adapter.CommunityListAdapter
 import com.cdd.smartsurvey.http.model.Community
+import com.cdd.smartsurvey.utils.AppDBHelper
 import com.cdd.smartsurvey.utils.CheckAccuracy
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelManager
@@ -22,66 +23,47 @@ import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_firstpages.*
 
 class FirstPagesActivity : AppCompatActivity() {
-
-    var communityListItems: Array<Community>? = null
+    lateinit var appDBHelper: AppDBHelper
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_firstpages)
-        FuelManager.instance.basePath = GlobalValue.apiUrl
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        appDBHelper = AppDBHelper(applicationContext)
 
         btnNewFamily.setOnClickListener {
             val community = Community()
             openNewFamily(community)
         }
-        loadCommunityList()
+        appDBHelper.loadCommunityList {
+            setCommunityListAdapter(it)
+        }
+
         btnWaitingList.setOnClickListener {
             val intent = Intent(this, WaitingUploadActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun loadCommunityList() {
-        val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-                ?: return
-        var userTokenKey = sharedPref.getString(getString(R.string.pref_user_token), "")
-        var userKey = sharedPref.getString(getString(R.string.pref_user), "")
-        Fuel.get("/mobile.php?u=${userKey}&t=${GlobalValue.apiToken}&task=getcommunity&token=${userTokenKey}")
-                .responseObject(Community.Deserializer()) { _, _, result ->
-                    when (result) {
-                        is Result.Success -> {
-                            val (commuList, _) = result
-                            communityListItems = commuList
-                            setCommunityList()
-
-                        }
-                        is Result.Failure -> {
-
-                        }
-
-                    }
-                }
-    }
-
-    private fun setCommunityList() {
-        val adapter = CommunityListAdapter(applicationContext, communityListItems!!)
+    private fun setCommunityListAdapter(communityListItems: Array<Community>?) {
+        if (communityListItems == null) return
+        val adapter = CommunityListAdapter(applicationContext, communityListItems)
         communityListView.adapter = adapter
         communityListView.setOnItemClickListener { parent, view, position, id ->
-            val selectedItem = communityListItems!!.get(position)
+            val selectedItem = communityListItems.get(position)
 
             val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@FirstPagesActivity)
             alertDialog.setTitle("ยืนยันเลือกชุมชน")
             alertDialog.setMessage(selectedItem.community_name)
-            alertDialog.setPositiveButton("ตกลง", { dialog, which ->
+            alertDialog.setPositiveButton("ตกลง") { dialog, which ->
                 openNewFamily(selectedItem)
                 dialog.dismiss()
-            })
-            alertDialog.setNegativeButton("ยกเลิก", { dialog, which ->
+            }
+            alertDialog.setNegativeButton("ยกเลิก") { dialog, which ->
 
-            })
+            }
 
             val dialog: Dialog = alertDialog.create()
             dialog.show()
