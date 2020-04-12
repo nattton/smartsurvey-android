@@ -6,19 +6,17 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.cdd.smartsurvey.data.model.Family
+import com.cdd.smartsurvey.http.model.Family
 import com.cdd.smartsurvey.sqlite.DatabaseHelper
 import com.cdd.smartsurvey.sqlite.model.Amphur
 import com.cdd.smartsurvey.sqlite.model.Community
 import com.cdd.smartsurvey.sqlite.model.Province
 import com.cdd.smartsurvey.sqlite.model.Tumbon
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_address_survey.*
 import java.util.*
 

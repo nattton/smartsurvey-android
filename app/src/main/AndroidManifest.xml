@@ -34,7 +34,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PeopleCardDetailActivity"></activity>
+        <activity android:name=".SummaryActivity"></activity>
+        <activity android:name=".PeopleCardDetailActivity" />
         <activity android:name=".PeopleCardActivity" />
         <activity android:name=".DetailMemberMenuActivity" />
         <activity android:name=".AEMemberSurvey" />

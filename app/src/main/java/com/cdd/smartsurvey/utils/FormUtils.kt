@@ -77,10 +77,8 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
 
     fun showAlertDialogWithPrefix(txtPrefix: TextView, txtGender: TextView) {
         val txtSearch: EditText
-        val db: DatabaseHelper
-        val prefixList: MutableList<Prefix> = ArrayList()
-        db = DatabaseHelper(context)
-        prefixList.addAll(db.allPrefixs)
+        val db = DatabaseHelper(context)
+        val prefixList = db.allPrefixs
         var item: Prefix
         val itemDataList = ArrayList<Map<String, Any?>>()
         for (i in prefixList.indices) {
@@ -127,8 +125,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
     fun showAlertDialogWithGender(txtGender: TextView) {
         val txtSearch: EditText
         val genderList: MutableList<Gender> = ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(context)
+        val db = DatabaseHelper(context)
         genderList.addAll(db.allGenders)
         var item: Gender
         val itemDataList = ArrayList<Map<String, Any?>>()
@@ -169,8 +166,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
     fun showAlertDialogWithProvince(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val provinceList: MutableList<Province> = java.util.ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(context)
+        val db = DatabaseHelper(context)
         provinceList.addAll(db.allProvinces)
         var item: Province
         val itemDataList = java.util.ArrayList<Map<String, Any?>>()
@@ -217,8 +213,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
     fun showAlertDialogWithAmphur(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val amphurList: MutableList<Amphur> = java.util.ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(context)
+        val db = DatabaseHelper(context)
         amphurList.addAll(db.getAllAmphurs(if (txtProvince.tag == null) "0" else txtProvince.tag.toString()))
         var item: Amphur
         val itemDataList = java.util.ArrayList<Map<String, Any?>>()
@@ -263,8 +258,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
     fun showAlertDialogWithTumbon(txtProvince: TextView, txtAmphur: TextView, txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val tumbonList: MutableList<Tumbon> = java.util.ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(context)
+        val db = DatabaseHelper(context)
         tumbonList.addAll(db.getAllTumbons(if (txtAmphur.tag == null) "0" else txtAmphur.tag.toString()))
         var item: Tumbon
         val itemDataList = java.util.ArrayList<Map<String, Any?>>()
@@ -307,8 +301,7 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
     fun showAlertDialogWithCommunity(txtTumbon: TextView, txtCommunity: TextView) {
         val txtSearch: EditText
         val communityList: MutableList<Community> = java.util.ArrayList()
-        val db: DatabaseHelper
-        db = DatabaseHelper(context)
+        val db = DatabaseHelper(context)
         communityList.addAll(db.getAllCommunitys(if (txtTumbon!!.tag == null) "0" else txtTumbon!!.tag.toString()))
         var item: Community
         val itemDataList = java.util.ArrayList<Map<String, Any?>>()
@@ -343,7 +336,130 @@ class FormUtils(var context: Context, var layoutInflater: LayoutInflater) {
             txtCommunity.text = clickItemMap["codename"] as String?
             show.dismiss()
         }
-        val btnClose = mView.findViewById<View>(R.id.btnClose) as Button
+        val btnClose = mView.findViewById(R.id.btnClose) as Button
         btnClose.setOnClickListener { show.dismiss() }
+    }
+
+    fun showAlertDialogWithCareer(txtCareer: TextView) {
+        val txtSearch: EditText
+        val db = DatabaseHelper(context)
+        val careerList = db.allCareers
+        var item: Career
+        val itemDataList = ArrayList<Map<String, Any?>>()
+
+        for (i in careerList.indices) {
+            item = careerList[i]
+            val listItemMap: MutableMap<String, Any?> = HashMap()
+            listItemMap["code"] = item.code
+            listItemMap["codename"] = item.codename
+            itemDataList.add(listItemMap)
+        }
+        val mBuilder = AlertDialog.Builder(context)
+        val mView = layoutInflater.inflate(R.layout.dialog_career_valuelist, null)
+        val careerAdapter = SimpleAdapter(context, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
+        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
+        txtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                careerAdapter.filter.filter(s)
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+        val list = mView.findViewById<View>(R.id.lstValue) as ListView
+        list.adapter = careerAdapter
+        mBuilder.setView(mView)
+        val show = mBuilder.show()
+        list.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, index, l ->
+            val clickItemObj = adapterView.adapter.getItem(index)
+            val clickItemMap = clickItemObj as HashMap<*, *>
+            txtCareer.tag = clickItemMap["code"]
+            txtCareer.text = clickItemMap["codename"] as String?
+            show.dismiss()
+        }
+        val btnClose = mView.findViewById<View>(R.id.btnClose)
+        btnClose!!.setOnClickListener { show.dismiss() }
+    }
+
+    fun showAlertDialogWithEducation(txtEducation: TextView) {
+        val txtSearch: EditText
+        val db = DatabaseHelper(context)
+        val educationList = db.allEducations
+        var item: Education
+        val itemDataList = ArrayList<Map<String, Any?>>()
+
+        for (i in educationList.indices) {
+            item = educationList[i]
+            val listItemMap: MutableMap<String, Any?> = HashMap()
+            listItemMap["code"] = item.code
+            listItemMap["codename"] = item.codename
+            itemDataList.add(listItemMap)
+        }
+        val mBuilder = AlertDialog.Builder(context)
+        val mView = layoutInflater.inflate(R.layout.dialog_education_valuelist, null)
+        val careerAdapter = SimpleAdapter(context, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
+        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
+        txtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                careerAdapter.filter.filter(s)
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+        val list = mView.findViewById(R.id.lstValue) as ListView
+        list.adapter = careerAdapter
+        mBuilder.setView(mView)
+        val show = mBuilder.show()
+        list.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, index, l ->
+            val clickItemObj = adapterView.adapter.getItem(index)
+            val clickItemMap = clickItemObj as HashMap<*, *>
+            txtEducation.tag = clickItemMap["code"]
+            txtEducation.text = clickItemMap["codename"] as String?
+            show.dismiss()
+        }
+        val btnClose = mView.findViewById(R.id.btnClose) as Button
+        btnClose!!.setOnClickListener { show.dismiss() }
+    }
+
+    fun showAlertDialogWithReligion(txtReligion: TextView) {
+        val txtSearch: EditText
+        val db = DatabaseHelper(context)
+        val religionList = db.allReligions
+        var item: Religion
+        val itemDataList = ArrayList<Map<String, Any?>>()
+
+        for (i in religionList.indices) {
+            item = religionList[i]
+            val listItemMap: MutableMap<String, Any?> = HashMap()
+            listItemMap["code"] = item.code
+            listItemMap["codename"] = item.codename
+            itemDataList.add(listItemMap)
+        }
+        val mBuilder = AlertDialog.Builder(context)
+        val mView = layoutInflater.inflate(R.layout.dialog_religion_valuelist, null)
+        val religionAdapter = SimpleAdapter(context, itemDataList, android.R.layout.simple_list_item_2, arrayOf("codename"), intArrayOf(android.R.id.text1))
+        txtSearch = mView.findViewById<View>(R.id.editText) as EditText
+        txtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                religionAdapter.filter.filter(s)
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+        val list = mView.findViewById(R.id.lstValue) as ListView
+        list.adapter = religionAdapter
+        mBuilder.setView(mView)
+        val show = mBuilder.show()
+        list.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, index, l ->
+            val clickItemObj = adapterView.adapter.getItem(index)
+            val clickItemMap = clickItemObj as HashMap<*, *>
+            txtReligion.tag = clickItemMap["code"]
+            txtReligion.text = clickItemMap["codename"] as String?
+            show.dismiss()
+        }
+        val btnClose = mView.findViewById(R.id.btnClose) as Button
+        btnClose!!.setOnClickListener { show.dismiss() }
     }
 }

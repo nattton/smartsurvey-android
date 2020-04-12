@@ -170,14 +170,14 @@
                 android:id="@+id/radio3_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="1"
+                android:tag="0"
                 android:text="ไม่มีรายได้" />
 
             <RadioButton
                 android:id="@+id/radio3_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tag="0"
+                android:tag="1"
                 android:text="มีรายได้ จำนวน ... บาท" />
 
         </RadioGroup>

@@ -18,7 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
-import com.cdd.smartsurvey.data.model.Family
+import com.cdd.smartsurvey.http.model.Family
 import com.cdd.smartsurvey.http.model.Community
 import com.cdd.smartsurvey.utils.*
 import com.layernet.thaidatetimepicker.date.DatePickerDialog

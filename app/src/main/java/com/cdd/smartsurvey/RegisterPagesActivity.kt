@@ -37,7 +37,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+class RegisterPagesActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "registerPagesActivity"
     }
@@ -181,7 +181,11 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         txtBirthDate.setOnClickListener {
             val now = Calendar.getInstance()
             val dpd = DatePickerDialog.newInstance(
-                    this@RegisterPagesActivity,
+                    { view, year, monthOfYear, dayOfMonth ->
+                        Log.d(TAG, "onDateSet: dd/mm/yyyy: $dayOfMonth/${monthOfYear + 1}/${year + 543}")
+                        val date = "$dayOfMonth/${monthOfYear + 1}/${year + 543}"
+                        txtBirthDate.text = date
+                    },
                     now[Calendar.YEAR],
                     now[Calendar.MONTH],
                     now[Calendar.DAY_OF_MONTH]
@@ -381,11 +385,5 @@ class RegisterPagesActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
             e.printStackTrace()
         }
 
-    }
-
-    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        Log.d(TAG, "onDateSet: dd/mm/yyyy: $dayOfMonth/${monthOfYear + 1}/${year + 543}")
-        val date = "$dayOfMonth/${monthOfYear + 1}/${year + 543}"
-        txtBirthDate.text = date
     }
 }

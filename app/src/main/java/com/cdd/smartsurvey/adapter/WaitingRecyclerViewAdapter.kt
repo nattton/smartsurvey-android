@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cdd.smartsurvey.R
-import com.cdd.smartsurvey.data.model.Family
+import com.cdd.smartsurvey.http.model.Family
 import kotlinx.android.synthetic.main.list_item_waiting.view.*
 
-class WaitingRecyclerViewAdapter(val familyItemList: List<Family>,
-                                 val clickListener: (View, Int, Family) -> Unit) :
+class WaitingRecyclerViewAdapter(private val familyItemList: List<Family>,
+                                 private val clickListener: (View, Int, Family) -> Unit) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,7 +28,7 @@ class WaitingRecyclerViewAdapter(val familyItemList: List<Family>,
     class FamilyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Family, position: Int, clickListener: (View, Int, Family) -> Unit) {
             itemView.txtCardID.text = item.idcard
-            itemView.txtName.text = "${item.fname} ${item.lname}"
+            itemView.txtName.text = "%s %s".format(item.fname, item.lname)
             itemView.setOnClickListener { clickListener(itemView, position, item) }
             itemView.btnUpload.setOnClickListener { clickListener(itemView.btnUpload, position, item) }
             itemView.btnDelete.setOnClickListener { clickListener(itemView.btnDelete, position, item) }

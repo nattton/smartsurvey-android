@@ -13,8 +13,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import com.cdd.smartsurvey.data.model.Family
-import com.cdd.smartsurvey.data.model.WaitingList
+import com.cdd.smartsurvey.http.model.Family
+import com.cdd.smartsurvey.http.model.WaitingList
 import com.cdd.smartsurvey.sqlite.DatabaseHelper
 import com.cdd.smartsurvey.sqlite.model.SurveyGroup
 import com.cdd.smartsurvey.utils.ImageUtil
@@ -120,7 +120,7 @@ class StartSurveyAcitivity : AppCompatActivity() {
         btnSend.setOnClickListener { goSatisfactionSurvey() }
     }
 
-    fun loadFamily(index: Int) {
+    private fun loadFamily(index: Int) {
         var waitingList = WaitingList()
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         val waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
@@ -131,12 +131,14 @@ class StartSurveyAcitivity : AppCompatActivity() {
         family = waitingList.familyList[index]
     }
 
-    fun goSatisfactionSurvey() {
-        val intent = Intent(this, SatisfactionSurveyActivity::class.java)
+    private fun goSatisfactionSurvey() {
+        val intent = Intent(this, SatisfactionSurveyActivity::class.java).apply {
+            putExtra(GlobalValue.EXTRA_FAMILY_INDEX, familyIndex)
+        }
         startActivity(intent)
     }
 
-    fun openHeaderSurvey(sc: SurveyGroup) {
+    private fun openHeaderSurvey(sc: SurveyGroup) {
         val intent = Intent(this, HeaderSurveyMasterActivity::class.java).apply {
             putExtra(GlobalValue.EXTRA_FAMILY_INDEX, familyIndex)
             putExtra(GlobalValue.EXTRA_SURVEY_GROUP_ID, sc.id)

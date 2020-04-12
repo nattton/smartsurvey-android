@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.cdd.smartsurvey.R
-import com.cdd.smartsurvey.data.model.Member
-import kotlinx.android.synthetic.main.list_item_member.view.*
+import com.cdd.smartsurvey.http.model.Member
 
 class MemberListAdapter(private val context: Context,
                         private val dataSource: ArrayList<Member>) : BaseAdapter() {

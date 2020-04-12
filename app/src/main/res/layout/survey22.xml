@@ -462,7 +462,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:tag="1"
-                android:text="เข้าถึง ระบุ ... บาท" />
+                android:text="เข้าถึง อื่นๆ ระบุ ... จำนวน ... บาท" />
 
             <RadioButton
                 android:id="@+id/radio3_9_2"

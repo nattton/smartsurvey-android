@@ -31,12 +31,15 @@ class SatisfactionSurveyActivity : AppCompatActivity() {
             }
         })
         btnNext.setOnClickListener {
-            goAcceptSurvey()
+            goSummary()
         }
     }
 
-    fun goAcceptSurvey() {
-        val intent = Intent(this, AcceptSurveyActivity::class.java)
+    private fun goSummary() {
+        val intent = Intent(this, SummaryActivity::class.java).apply {
+
+        }
+
         startActivity(intent)
     }
 }

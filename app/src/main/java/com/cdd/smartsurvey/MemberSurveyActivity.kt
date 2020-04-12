@@ -10,14 +10,15 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.cdd.smartsurvey.adapter.MemberListAdapter
-import com.cdd.smartsurvey.data.model.Family
-import com.cdd.smartsurvey.data.model.Member
-import com.cdd.smartsurvey.data.model.WaitingList
+import com.cdd.smartsurvey.http.model.Family
+import com.cdd.smartsurvey.http.model.Member
+import com.cdd.smartsurvey.http.model.WaitingList
 import com.cdd.smartsurvey.utils.FormUtils
 import com.google.gson.Gson
+import com.layernet.thaidatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_member_survey.*
 import kotlinx.android.synthetic.main.activity_member_survey.btnSave
-import java.util.ArrayList
+import java.util.*
 
 class MemberSurveyActivity : AppCompatActivity() {
     lateinit var family: Family
@@ -62,14 +63,22 @@ class MemberSurveyActivity : AppCompatActivity() {
         val mView = layoutInflater.inflate(R.layout.dialog_aemember_survey, null)
         mBuilder.setView(mView)
         val show = mBuilder.show()
-        val rdPeopleUse = mView.findViewById<RadioButton>(R.id.rdPeopleUse)
-        rdPeopleUse.setOnClickListener { ShowPeopleCard() }
+        val radioWelfareCard1 = mView.findViewById<RadioButton>(R.id.radioWelfareCard1)
+        radioWelfareCard1.setOnClickListener { ShowPeopleCard() }
         val txtPrefix = mView.findViewById<TextView>(R.id.txtPrefix)
         val txtName = mView.findViewById<TextView>(R.id.txtName)
         val txtSurname = mView.findViewById<TextView>(R.id.txtSurname)
         val txtGender = mView.findViewById<TextView>(R.id.txtGender)
         val txtCardID = mView.findViewById<TextView>(R.id.txtCardID)
         val txtBirthDate = mView.findViewById<TextView>(R.id.txtBirthDate)
+        val txtJob = mView.findViewById<TextView>(R.id.txtJob)
+        val txtEducation = mView.findViewById<TextView>(R.id.txtEducation)
+        val txtReligion = mView.findViewById<TextView>(R.id.txtReligion)
+        val txtRelation = mView.findViewById<EditText>(R.id.txtRelation)
+        val radioGroupHealth = mView.findViewById<RadioGroup>(R.id.radioGroupHealth)
+        val radioGroupAbility = mView.findViewById<RadioGroup>(R.id.radioGroupAbility)
+        val radioGroupInformant = mView.findViewById<RadioGroup>(R.id.radioGroupInformant)
+        val radioGroupWelfareCard = mView.findViewById<RadioGroup>(R.id.radioGroupWelfareCard)
 
         txtPrefix.setOnClickListener {
             formUltis.showAlertDialogWithPrefix(txtPrefix, txtGender)
@@ -77,6 +86,38 @@ class MemberSurveyActivity : AppCompatActivity() {
         txtGender.setOnClickListener {
             formUltis.showAlertDialogWithGender(txtGender)
         }
+        txtJob.setOnClickListener {
+            formUltis.showAlertDialogWithCareer(txtJob)
+        }
+        txtEducation.setOnClickListener {
+            formUltis.showAlertDialogWithEducation(txtEducation)
+        }
+        txtReligion.setOnClickListener {
+            formUltis.showAlertDialogWithReligion(txtReligion)
+        }
+
+        txtBirthDate.setOnClickListener {
+            val now = Calendar.getInstance()
+            val dpd = DatePickerDialog.newInstance(
+                    { view, year, monthOfYear, dayOfMonth ->
+                        val date = "$dayOfMonth/${monthOfYear + 1}/${year + 543}"
+                        txtBirthDate.text = date
+                    },
+                    now[Calendar.YEAR],
+                    now[Calendar.MONTH],
+                    now[Calendar.DAY_OF_MONTH]
+            )
+
+            dpd.show(fragmentManager, "Datepickerdialog");
+        }
+
+        val onCheckChange = RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            group.tag = mView.findViewById<RadioButton>(checkedId).tag
+        }
+
+        radioGroupHealth.setOnCheckedChangeListener(onCheckChange)
+        radioGroupAbility.setOnCheckedChangeListener(onCheckChange)
+        radioGroupInformant.setOnCheckedChangeListener(onCheckChange)
 
 
         mView.findViewById<Button>(R.id.btnClose).setOnClickListener { show.dismiss() }
@@ -88,11 +129,46 @@ class MemberSurveyActivity : AppCompatActivity() {
             member.gender = txtGender.tag.toString()
             member.idcard = txtCardID.text.toString()
 
+            member.jobname = txtJob.tag.toString()
+            member.education = txtEducation.tag.toString()
+            member.religion = txtReligion.tag.toString()
+            member.relation = txtRelation.text.toString()
+            member.health = radioGroupHealth.tag.toString()
+            member.ability = radioGroupAbility.tag.toString()
+            member.welfare_card = radioGroupWelfareCard.tag.toString()
+
+            if (member.prefix == "") {
+                alertDialog("กรุณาเเลือกคำนำหน้า")
+                return@setOnClickListener
+            }
+
+            if (member.firstname == "") {
+                alertDialog("กรุณากรอกชื่อ")
+                txtName.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (member.lastname == "") {
+                alertDialog("กรุณากรอกนามสกุล")
+                txtSurname.requestFocus()
+                return@setOnClickListener
+            }
+
             family.hmember.add(member)
             show.dismiss()
             adapter.notifyDataSetChanged()
             saveData()
         }
+    }
+
+    private fun alertDialog(message: String) {
+        val ab = AlertDialog.Builder(this@MemberSurveyActivity, R.style.AlertDialogTheme)
+        ab.setTitle("แจ้งเตือน")
+        ab.setMessage(message)
+        ab.setPositiveButton("ตกลง") { dialog, which ->
+            dialog.dismiss()
+        }
+        ab.show()
     }
 
     private fun loadData() {

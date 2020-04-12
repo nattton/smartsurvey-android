@@ -19,4 +19,41 @@
         <item name="android:fontFamily">@font/thsarabun_bold</item>
     </style>
 
+    <style name="Summary_Header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Summary_Body">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:textColor">#222222</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Summary_Pass">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPass</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:text">@string/pass</item>
+    </style>
+
+    <style name="Summary_NotPass">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorNotPass</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:text">@string/not_pass</item>
+    </style>
+
+    <string name="pass">ผ่าน</string>
+    <string name="not_pass">ไม่ผ่าน</string>
 </resources>

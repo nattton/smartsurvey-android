@@ -185,6 +185,102 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
             return provinces
         }
 
+    val allCareers: List<Career>
+        get() {
+            val careers: MutableList<Career> = ArrayList()
+
+            // Select All Query
+            val selectQuery = "SELECT  * FROM " + Career.TABLE_NAME + " ORDER BY " +
+                    Career.COLUMN_ID
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(selectQuery, null)
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    val career = Career()
+                    career.id = cursor.getInt(cursor.getColumnIndex(Career.COLUMN_ID))
+                    career.code = cursor.getString(cursor.getColumnIndex(Career.COLUMN_CODE))
+                    career.codename = cursor.getString(cursor.getColumnIndex(Career.COLUMN_CODENAME))
+                    career.create_by = cursor.getString(cursor.getColumnIndex(Career.COLUMN_CREATE_BY))
+                    career.create_date = cursor.getString(cursor.getColumnIndex(Career.COLUMN_CREATE_DATE))
+                    career.modify_by = cursor.getString(cursor.getColumnIndex(Career.COLUMN_MODIFY_BY))
+                    career.modify_date = cursor.getString(cursor.getColumnIndex(Career.COLUMN_MODIFY_DATE))
+                    careers.add(career)
+                } while (cursor.moveToNext())
+            }
+
+            // close db connection
+            db.close()
+
+            // return notes list
+            return careers
+        }
+
+    val allEducations: List<Education>
+        get() {
+            val educations: MutableList<Education> = ArrayList()
+
+            // Select All Query
+            val selectQuery = "SELECT  * FROM " + Education.TABLE_NAME + " ORDER BY " +
+                    Education.COLUMN_ID
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(selectQuery, null)
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    val education = Education()
+                    education.id = cursor.getInt(cursor.getColumnIndex(Education.COLUMN_ID))
+                    education.code = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CODE))
+                    education.codename = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CODENAME))
+                    education.create_by = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CREATE_BY))
+                    education.create_date = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CREATE_DATE))
+                    education.modify_by = cursor.getString(cursor.getColumnIndex(Education.COLUMN_MODIFY_BY))
+                    education.modify_date = cursor.getString(cursor.getColumnIndex(Education.COLUMN_MODIFY_DATE))
+                    educations.add(education)
+                } while (cursor.moveToNext())
+            }
+
+            // close db connection
+            db.close()
+
+            // return notes list
+            return educations
+        }
+
+    val allReligions: List<Religion>
+        get() {
+            val religions: MutableList<Religion> = ArrayList()
+
+            // Select All Query
+            val selectQuery = "SELECT  * FROM " + Religion.TABLE_NAME + " ORDER BY " +
+                    Religion.COLUMN_ID
+            val db = this.writableDatabase
+            val cursor = db.rawQuery(selectQuery, null)
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    val religion = Religion()
+                    religion.id = cursor.getInt(cursor.getColumnIndex(Education.COLUMN_ID))
+                    religion.code = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CODE))
+                    religion.codename = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CODENAME))
+                    religion.create_by = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CREATE_BY))
+                    religion.create_date = cursor.getString(cursor.getColumnIndex(Education.COLUMN_CREATE_DATE))
+                    religion.modify_by = cursor.getString(cursor.getColumnIndex(Education.COLUMN_MODIFY_BY))
+                    religion.modify_date = cursor.getString(cursor.getColumnIndex(Education.COLUMN_MODIFY_DATE))
+                    religions.add(religion)
+                } while (cursor.moveToNext())
+            }
+
+            // close db connection
+            db.close()
+
+            // return notes list
+            return religions
+        }
+
     fun getAllAmphurs(keyValue: String): List<Amphur> {
         val amphurs: MutableList<Amphur> = ArrayList()
 

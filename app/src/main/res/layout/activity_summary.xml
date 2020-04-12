@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaitingUploadActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bgimage" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/borderlayout" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.060"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.040"
+        app:srcCompat="@drawable/cddlogo_pages" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:fontFamily="@font/thsarabun_bold"
+        android:scaleType="fitXY"
+        android:text="ตารางสรุป"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/bordermenu" />
+
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/custom_menubutton"
+        android:fontFamily="@font/thsarabun_bold"
+        android:text="กลับสู่เมนู"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintStart_toStartOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="34dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.53"
+        tools:visibility="invisible" />
+
+    <ScrollView
+        android:id="@+id/scrollViewBody"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:paddingBottom="20dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/imageView11"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@id/imageView4">
+
+        <LinearLayout
+            android:id="@+id/linearBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Summary_Header"
+                android:text="หมวดที่ 1 สุขภาพ" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="1. เด็กแรกเกิดมีน้ำหนัก 2,500 กรัม ขึ้นไป" />
+
+                <TextView
+                    android:id="@+id/textPass1"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="2. เด็กแรกเกิดได้กินนมแม่อย่างเดียวอย่างน้อย 6 เดือนแรกติดต่อกัน" />
+
+                <TextView
+                    android:id="@+id/textPass2"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="3. เด็กแรกเกิดถึง 12 ปี ได้รับวัคซีนป้องกันโรคครบตามตารางสร้างเสริมภูมิคุ้มกันโรค" />
+
+                <TextView
+                    android:id="@+id/textPass3"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="4. ครัวเรือนกินอาหารถูกสุขลักษณะ ปลอดภัย และได้มาตรฐาน" />
+
+                <TextView
+                    android:id="@+id/textPass4"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="5. ครัวเรือนมีการใช้ยาเพื่อบำบัด บรรเทาอาการเจ็บป่วยเบื้องต้นอย่างเหมาะสม" />
+
+                <TextView
+                    android:id="@+id/textPass5"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="6. คนอายุ 35 ปีขึ้นไป ได้รับการตรวจสุขภาพประจำปี" />
+
+                <TextView
+                    android:id="@+id/textPass6"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="7. คนอายุ 6 ปีขึ้นไป ออกกำลังกายอย่างน้อยสัปดาห์ละ 3 วัน ๆ ละ 30 นาที" />
+
+                <TextView
+                    android:id="@+id/textPass7"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Summary_Header"
+                android:text="หมวดที่ 2 สภาพแวดล้อม" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="8. ครัวเรือนมีความมั่นคงในที่อยู่อาศัยและบ้านมีสภาพคงทนถาวร" />
+
+                <TextView
+                    android:id="@+id/textPass8"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="9. ครัวเรือนมีน้ำสะอาดสำหรับดื่มและบริโภคเพียงพอตลอดปี อย่างน้อยคนละ 5 ลิตรต่อวัน" />
+
+                <TextView
+                    android:id="@+id/textPass9"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="10. ครัวเรือนมีน้ำใช้เพียงพอตลอดปี อย่างน้อยคนละ 45 ลิตรต่อวัน" />
+
+                <TextView
+                    android:id="@+id/textPass10"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="11. ครัวเรือนมีการจัดบ้านเรือนเป็นระเบียบเรียบร้อย สะอาด และถูกสุขลักษณะ" />
+
+                <TextView
+                    android:id="@+id/textPass11"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="12. ครัวเรือนไม่ถูกรบกวนจากมลพิษ" />
+
+                <TextView
+                    android:id="@+id/textPass12"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="13. ครัวเรือนมีการป้องกันอุบัติภัย และภัยธรรมชาติอย่างถูกวิธี" />
+
+                <TextView
+                    android:id="@+id/textPass13"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="14. ครัวเรือนมีความปลอดภัยในชีวิตและทรัพย์สิน" />
+
+                <TextView
+                    android:id="@+id/textPass14"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Summary_Header"
+                android:text="หมวดที่ 3  การศึกษา" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="15. เด็กอายุ 3 - 5 ปี ได้รับการบริการเลี้ยงดูเตรียมความพร้อมก่อนวัยเรียน" />
+
+                <TextView
+                    android:id="@+id/textPass15"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="16. เด็กอายุ 6 - 14 ปี ได้รับการศึกษาภาคบังคับ 9 ปี" />
+
+                <TextView
+                    android:id="@+id/textPass16"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="17. เด็กจบชั้น ม.3 ได้เรียนต่อชั้น ม.4 หรือเทียบเท่า" />
+
+                <TextView
+                    android:id="@+id/textPass17"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="18. คนในครัวเรือนที่จบการศึกษาภาคบังคับ 9 ปี ที่ไม่ได้เรียนต่อและยังไม่มีงานทำ ได้รับการฝึกอบรมด้านอาชีพ" />
+
+                <TextView
+                    android:id="@+id/textPass18"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="19. คนอายุ 15 - 59 ปี อ่าน เขียนภาษาไทย และคิดเลขอย่างง่ายได้" />
+
+                <TextView
+                    android:id="@+id/textPass19"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Summary_Header"
+                android:text="หมวดที่ 4 การมีงานทำและรายได้" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="20. คนอายุ 15 - 59 ปี มีอาชีพและรายได้" />
+
+                <TextView
+                    android:id="@+id/textPass20"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="21. คนอายุ 60 ปี ขึ้นไปมีอาชีพและรายได้" />
+
+                <TextView
+                    android:id="@+id/textPass21"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="22. รายได้เฉลี่ยของคนในครัวเรือนต่อปี" />
+
+                <TextView
+                    android:id="@+id/textPass22"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="23. ครัวเรือนมีการเก็บออมเงิน" />
+
+                <TextView
+                    android:id="@+id/textPass23"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Summary_Header"
+                android:text="หมวดที่ 5 ค่านิยม" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="24. คนในครัวเรือนไม่ดื่มสุรา" />
+
+                <TextView
+                    android:id="@+id/textPass24"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="25. คนในครัวเรือนไม่สูบบุหรี่" />
+
+                <TextView
+                    android:id="@+id/textPass25"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="26. คนอายุ 6 ปีขึ้นไป ปฏิบัติกิจกรรมทางศาสนาอย่างน้อยสัปดาห์ละ 1 ครั้ง" />
+
+                <TextView
+                    android:id="@+id/textPass26"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="27. ผู้สูงอายุได้รับการดูแลจากครอบครัว ชุมชน ภาครัฐ หรือภาคเอกชน" />
+
+                <TextView
+                    android:id="@+id/textPass27"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="28. ผู้พิการได้รับการดูแลจากครอบครัว ชุมชน ภาครัฐ หรือภาคเอกชน" />
+
+                <TextView
+                    android:id="@+id/textPass28"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="29. ผู้ป่วยโรคเรื้อรังได้รับการดูแลจากครอบครัว ชุมชน ภาครัฐ  หรือภาคเอกชน" />
+
+                <TextView
+                    android:id="@+id/textPass29"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="30. ครัวเรือนมีส่วนร่วมทำกิจกรรมสาธารณะเพื่อประโยชน์ของชุมชนหรือท้องถิ่น" />
+
+                <TextView
+                    android:id="@+id/textPass30"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Summary_Body"
+                    android:text="31. ครอบครัวมีความอบอุ่น" />
+
+                <TextView
+                    android:id="@+id/textPass31"
+                    style="@style/Summary_NotPass" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="116dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_button_positive"
+                android:fontFamily="@font/thsarabun_bold"
+                android:text="ถัดไป"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewBody" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

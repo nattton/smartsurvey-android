@@ -8,10 +8,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cdd.smartsurvey.adapter.WaitingRecyclerViewAdapter
-import com.cdd.smartsurvey.data.model.WaitingList
+import com.cdd.smartsurvey.http.model.WaitingList
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_waiting_upload.*
 
@@ -45,7 +46,7 @@ class WaitingUploadActivity : AppCompatActivity() {
                     ab.setTitle("แจ้งเตือน")
                     ab.setMessage("ต้องการลบข้อมูลชุดนี้?")
                     ab.setPositiveButton("ตกลง") { dialog, which ->
-                        DeleteFamily(position)
+                        deleteFamily(position)
                         dialog.dismiss()
                     }
                     ab.setNegativeButton("ยกเลิก") { dialog, which ->
@@ -54,7 +55,7 @@ class WaitingUploadActivity : AppCompatActivity() {
                     ab.show()
                 }
                 R.id.btnUpload -> {
-                    UploadFamily(position)
+                    uploadFamily(position)
                 }
                 else -> {
                     val intent = Intent(this, MemberSurveyActivity::class.java).apply {
@@ -67,18 +68,42 @@ class WaitingUploadActivity : AppCompatActivity() {
         }
     }
 
-    fun UploadFamily(index: Int) {
+    private fun uploadFamily(index: Int) {
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         val waitingJson = sharedPref.getString(getString(R.string.pref_waiting_list), "")
         if (waitingJson != "") {
             val waitingList = Gson().fromJson(waitingJson, WaitingList::class.java)
             val family = waitingList.familyList[index]
+
             val familyJson = Gson().toJson(family)
             Log.d("familyJson", familyJson)
+
+            val params = listOf(
+                    Pair("t", GlobalValue.apiToken),
+                    Pair("task", "savesurvey"),
+                    Pair("family", familyJson)
+            )
+            Fuel.post("mobile.php", params)
+                    .also { println(it) }
+                    .responseString { _, _, result ->
+                        when (result) {
+                            is Result.Success -> {
+                                val (responseStr, _) = result
+                                Log.d("UploadFamily", responseStr)
+
+                                val ab = AlertDialog.Builder(this@WaitingUploadActivity, R.style.AlertDialogTheme)
+                                ab.setTitle("แจ้งเตือน")
+                                ab.setMessage(responseStr)
+                                ab.show()
+
+                            }
+
+                        }
+                    }
         }
     }
 
-    fun DeleteFamily(index: Int) {
+    private fun deleteFamily(index: Int) {
         val sharedPref = applicationContext.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         waitingList.familyList.removeAt(index)
         val waitingJson = Gson().toJson(waitingList)
